@@ -11,11 +11,17 @@ var last_event_time: float = -1.0
 @onready var node_viewport = $SubViewport
 @onready var node_quad = $Quad
 @onready var node_area = $Quad/Area3D
+@onready var colourRect = $SubViewport/Control/ColorRect
+@onready var game = $"../.."
+@onready var redirectPower = 's'
 
 func _ready():
 	node_area.mouse_entered.connect(_mouse_entered_area)
 	node_area.mouse_exited.connect(_mouse_exited_area)
 	node_area.input_event.connect(_mouse_input_event)
+
+	colourRect.visible = true
+	
 
 	# If the material is NOT set to use billboard settings, then avoid running billboard specific code
 	#if node_quad.get_surface_override_material(0).billboard_mode == BaseMaterial3D.BillboardMode.BILLBOARD_DISABLED:
@@ -25,6 +31,9 @@ func _ready():
 func _process(_delta):
 	# NOTE: Remove this function if you don't plan on using billboard settings.
 	# rotate_area_to_billboard()
+	
+	# game.collectionPower = 
+	
 	pass
 
 
@@ -130,3 +139,19 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 #
 		## Rotate in the Z axis to compensate camera tilt.
 		#node_area.rotate_object_local(Vector3.BACK, camera.rotation.z)
+
+
+
+
+
+
+
+
+
+
+
+# Custom Functionality
+
+func allocatePower(pFrom, pToo):
+	
+	pass

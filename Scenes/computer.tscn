@@ -22,6 +22,16 @@ data = PackedVector3Array(0.705, -0.405, 0, -0.705, -0.405, 0, 0.705, 0.405, 0, 
 [sub_resource type="Theme" id="Theme_3dryh"]
 TabContainer/font_sizes/font_size = 24
 
+[sub_resource type="Gradient" id="Gradient_m1ujp"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g4v7s"]
+gradient = SubResource("Gradient_m1ujp")
+
+[sub_resource type="Gradient" id="Gradient_7h0tq"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yf5fn"]
+gradient = SubResource("Gradient_7h0tq")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("3_7h0tq")
 shader_parameter/overlay = false
@@ -35,7 +45,7 @@ shader_parameter/roll_speed = 8.0
 shader_parameter/roll_size = 15.0
 shader_parameter/roll_variation = 1.8
 shader_parameter/distort_intensity = 0.05
-shader_parameter/aberration = 0.015000048212499895
+shader_parameter/aberration = 0.01500004821249989
 shader_parameter/noise_opacity = 0.4
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.06
@@ -90,8 +100,42 @@ current_tab = 0
 
 [node name="Power" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=678326908]
 layout_mode = 2
-texture = ExtResource("1_4xga7")
 metadata/_tab_index = 0
+
+[node name="OptionButton" type="OptionButton" parent="SubViewport/Control/TabContainer/Power" unique_id=1446472227]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 20.0
+toggle_mode = false
+item_count = 3
+popup/item_0/text = "Systems"
+popup/item_0/icon = SubResource("GradientTexture1D_g4v7s")
+popup/item_0/id = 0
+popup/item_1/text = "Sample Collection"
+popup/item_1/icon = ExtResource("1_4xga7")
+popup/item_1/id = 1
+popup/item_2/text = "Tether"
+popup/item_2/icon = SubResource("GradientTexture1D_yf5fn")
+popup/item_2/id = 2
+
+[node name="Systems" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=534573807]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+text = "System Power: 100%"
+
+[node name="Samples" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=157811073]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Sample Collection: 100%"
+
+[node name="Tether" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=1032806482]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Tether: 100%"
 
 [node name="Ship" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1895162407]
 visible = false
@@ -108,6 +152,7 @@ texture = ExtResource("1_4xga7")
 metadata/_tab_index = 2
 
 [node name="ColorRect" type="ColorRect" parent="SubViewport/Control" unique_id=1582421659]
+visible = false
 material = SubResource("ShaderMaterial_g4v7s")
 layout_mode = 1
 anchors_preset = 15
@@ -115,3 +160,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2

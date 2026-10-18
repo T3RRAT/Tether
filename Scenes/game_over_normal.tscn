@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b4bxjqrg1gp1x"]
 
+[ext_resource type="Script" uid="uid://fod7tird8kbd" path="res://Scenes/game_over_normal.gd" id="1_do5xh"]
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 size = Vector2(50, 50)
 
@@ -15,6 +17,7 @@ radius = 0.2
 height = 0.4
 
 [node name="Game Over Normal" type="Node3D" unique_id=1127787569]
+script = ExtResource("1_do5xh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2067670582]
 
@@ -28,6 +31,21 @@ Cause: Bleeding
 
 "
 
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=957514002]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -398.0
+offset_top = -189.0
+offset_right = -130.0
+offset_bottom = -114.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Play Again?"
+
 [node name="Floor" type="MeshInstance3D" parent="." unique_id=37814140]
 mesh = SubResource("PlaneMesh_g4v7s")
 
@@ -40,3 +58,5 @@ transform = Transform3D(0.90579295, -0.08821164, 0.4144368, 0.096927546, 0.99529
 [node name="Skull" type="MeshInstance3D" parent="." unique_id=1481142630]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51524764, 0.17112476, 0)
 mesh = SubResource("SphereMesh_g4v7s")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

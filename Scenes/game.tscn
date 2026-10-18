@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://3j7r724r0f5" path="res://flash-beacon.mp3" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://b56q2vd6u7y1w" path="res://Scripts/ideas.gd" id="2_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://uigs3q6cxjtu" path="res://Scenes/computer.tscn" id="4_wowpa"]
+[ext_resource type="PackedScene" uid="uid://c6xdf2q1e7la5" path="res://Scenes/monster.tscn" id="5_wowpa"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 rings = 6
@@ -53,6 +54,16 @@ size = Vector3(0.168, 1, 1.763)
 radius = 0.05
 height = 0.1
 
+[sub_resource type="BoxMesh" id="BoxMesh_7numd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1u0y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5s0fj"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_g4v7s"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_yf5fn"]
+
 [node name="Game" type="Node3D" unique_id=314259388]
 script = ExtResource("1_ebmjs")
 
@@ -69,15 +80,16 @@ unique_name_in_owner = true
 script = ExtResource("2_wrm1d")
 
 [node name="Capsule" type="MeshInstance3D" parent="Node3D" unique_id=479209511]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 mesh = SubResource("CapsuleMesh_g4v7s")
 
 [node name="Cube" type="MeshInstance3D" parent="Node3D" unique_id=1666532331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+visible = false
 mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="Sphere" type="MeshInstance3D" parent="Node3D" unique_id=317362868]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 mesh = SubResource("SphereMesh_g4v7s")
 
 [node name="Prism" type="MeshInstance3D" parent="Node3D" unique_id=451739118]
@@ -170,13 +182,6 @@ distance_fade_begin = 100.0
 spot_range = 50.0
 spot_angle = 10.0
 
-[node name="Enemy Timers" type="Node" parent="." unique_id=1836175048]
-
-[node name="Monster Timer" type="Timer" parent="Enemy Timers" unique_id=673639333]
-wait_time = 5.0
-
-[node name="Monster Kill" type="Timer" parent="Enemy Timers" unique_id=636602924]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2073344733]
 environment = SubResource("Environment_g4v7s")
 
@@ -235,16 +240,53 @@ transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 1.35, -1.5)
 
 [node name="Computer Up Pos" type="MeshInstance3D" parent="Computer Items" unique_id=1698906977]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, -1.5)
+visible = false
 mesh = SubResource("SphereMesh_yf5fn")
 
 [node name="Computer Down Pos" type="MeshInstance3D" parent="Computer Items" unique_id=1378832576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1.5)
+visible = false
 mesh = SubResource("SphereMesh_yf5fn")
+
+[node name="Monster2 Items" type="Node3D" parent="." unique_id=513290752]
+
+[node name="Position1" type="MeshInstance3D" parent="Monster2 Items" unique_id=734222919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, -50)
+mesh = SubResource("BoxMesh_7numd")
+
+[node name="Position2" type="MeshInstance3D" parent="Monster2 Items" unique_id=1094507317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+mesh = SubResource("BoxMesh_p1u0y")
+
+[node name="Position3" type="MeshInstance3D" parent="Monster2 Items" unique_id=1913516363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -50)
+mesh = SubResource("BoxMesh_5s0fj")
+
+[node name="Monster1 Items" type="Node3D" parent="." unique_id=13616945]
+
+[node name="Monster" parent="Monster1 Items" unique_id=52509860 instance=ExtResource("5_wowpa")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, -150, 0)
+
+[node name="Inactive Position" type="MeshInstance3D" parent="Monster1 Items" unique_id=308802788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+mesh = SubResource("TorusMesh_g4v7s")
+
+[node name="Active Position" type="MeshInstance3D" parent="Monster1 Items" unique_id=152537375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+mesh = SubResource("TorusMesh_yf5fn")
+
+[node name="Monster1 Timers" type="Node" parent="Monster1 Items" unique_id=1836175048]
+
+[node name="Monster Timer" type="Timer" parent="Monster1 Items/Monster1 Timers" unique_id=673639333]
+wait_time = 5.0
+
+[node name="Monster Kill" type="Timer" parent="Monster1 Items/Monster1 Timers" unique_id=636602924]
+wait_time = 5.0
 
 [connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
 [connection signal="timeout" from="Player Timers/Power Timer" to="." method="_on_power_timer_timeout"]
 [connection signal="finished" from="Player/Flash Sound" to="." method="_on_flash_sound_finished"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Left Button" to="." method="_on_left_button_mouse_entered"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Right Button" to="." method="_on_right_button_mouse_entered"]
-[connection signal="timeout" from="Enemy Timers/Monster Timer" to="." method="_on_monster_timer_timeout"]
-[connection signal="timeout" from="Enemy Timers/Monster Kill" to="." method="_on_monster_kill_timeout"]
+[connection signal="timeout" from="Monster1 Items/Monster1 Timers/Monster Timer" to="." method="_on_monster_timer_timeout"]
+[connection signal="timeout" from="Monster1 Items/Monster1 Timers/Monster Kill" to="." method="_on_monster_kill_timeout"]

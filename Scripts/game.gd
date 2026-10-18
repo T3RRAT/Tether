@@ -25,9 +25,17 @@ var computerState = -1
 var inCutscene = false
 var inUserInterface = false
 
+var lvStatus = "normal"
 var session = 0
 var monsterAI = 0
 var monsterAggroAmount = 0
+
+# Monster 1 Objects
+@onready var monsterOne = $"Monster1 Items/Monster"
+@onready var monsterPositionActive = $"Monster1 Items/Active Position"
+@onready var monsterPositionInactive = $"Monster1 Items/Inactive Position"
+@onready var monsterKillTimer = $"Monster1 Items/Monster1 Timers/Monster Kill"
+
 
 @onready var cam = $"Player Camera"
 @onready var tCam = $"Tether Camera"
@@ -50,6 +58,8 @@ func _ready() -> void:
 	powerDrainTimer.start(powerDrainSpeed)
 	lightLeft.light_energy = 0
 	lightRight.light_energy = 0
+	
+	monsterOne.position = monsterPositionInactive.position
 	pass # Replace with function body.
 
 
@@ -149,8 +159,9 @@ func _process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("Flip Computer"):
-		if camLocation == 0:
+		if camLocation == 0 && buttonInteract == false:
 			computerState = computerState * -1
+			interactionMade()
 			
 		
 	
@@ -170,14 +181,38 @@ func _process(delta: float) -> void:
 	pass
 
 # Custom Functions
-func monsterAttack(): 
+func monsterSpawn(): 
 	print("monster attacks")
+	# Spawn Monster
+	# Start time till death timer
+	# If timer ends 
+	# then player dies and death animation into tp into death screen
+	# Else if player avoids Death 
+	# sound plays aknowledging threat is gone and animation f them going away plays
+	# Also if you flash the other monster you cna see them slightly but they wont move
+	# thos this is more otherthing
+	
+	monsterOne.position = monsterActive.position
+	monsterKillTimer.start()
 	
 	pass
+
+func secondMonsterSpawn():
+	# Generate a a random number from 1 to 3
+	# Spawn second Monster at location based off of rng
+	# Start kill timer for second monster
+	# If player repositions
+	# Then player survives
+	# Else
+	# Play animation and kill player, send to death screen.
+	
+	var location = randi_range(1,3)
+	
 
 func checkMonster():
 	if monsterActive == true:
 		print("its a monsta!")
+		monsterActive = false
 		pass
 
 func relocateShip(position):
@@ -237,12 +272,22 @@ func _on_flash_sound_finished() -> void:
 func _on_monster_timer_timeout() -> void:
 	monsterAggroAmount += randi_range(1, monsterAI)
 	if monsterAggroAmount > 20:
-		monsterAttack()
+		monsterSpawn()
+		monsterAggroAmount = 0
 	pass # Replace with function body.
 
 
 func _on_monster_kill_timeout() -> void:
-	get_tree().change_scene_to_file("res://Scenes/game_over_normal.tscn")
+	if monsterActive == true:
+		if lvStatus.begins_with("n"):
+			get_tree().change_scene_to_file("res://Scenes/game_over_normal.tscn")
+			pass
+		elif lvStatus.begins_with("s"):
+			
+			pass
+		elif lvStatus.begins_with("A"):
+			
+			pass
 	pass # Replace with function body.
 
 

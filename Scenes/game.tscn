@@ -2,31 +2,97 @@
 
 [ext_resource type="Script" uid="uid://c0ai2ccmfn65p" path="res://Scripts/game.gd" id="1_ebmjs"]
 [ext_resource type="AudioStream" uid="uid://3j7r724r0f5" path="res://flash-beacon.mp3" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://b56q2vd6u7y1w" path="res://Scripts/ideas.gd" id="2_wrm1d"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+rings = 6
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(10, 10, 10)
 
 [sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_g4v7s"]
+size = Vector3(0.275, 0.275, 20)
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_mode = 2
+background_energy_multiplier = 0.0
+fog_light_energy = 0.01
+fog_density = 0.0
+fog_height_density = 0.5
+volumetric_fog_density = 0.5
+volumetric_fog_emission_energy = 0.1
+volumetric_fog_length = 10.0
+adjustment_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qxrlw"]
+radius = 1.0
+height = 4.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_57qmd"]
+size = Vector3(2, 0.179, 2.973)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+size = Vector3(1, 0.25878906, 0.8154297)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d0u6y"]
+size = Vector3(2, 0.137, 3.904)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qxrlw"]
+size = Vector3(2, 3.414, 0.109)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3gngh"]
+size = Vector3(0.16796875, 1, 2.4892578)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fcnqv"]
+size = Vector3(0.168, 1, 1.763)
 
 [node name="Game" type="Node3D" unique_id=314259388]
 script = ExtResource("1_ebmjs")
 
-[node name="Capsule" type="MeshInstance3D" parent="." unique_id=479209511]
+[node name="Player Timers" type="Node" parent="." unique_id=1981865248]
+
+[node name="Cam Move Timer" type="Timer" parent="Player Timers" unique_id=252281486]
+unique_name_in_owner = true
+wait_time = 0.3
+
+[node name="Power Timer" type="Timer" parent="Player Timers" unique_id=1243482138]
+unique_name_in_owner = true
+
+[node name="Node3D" type="Node3D" parent="." unique_id=212646375]
+script = ExtResource("2_wrm1d")
+
+[node name="Capsule" type="MeshInstance3D" parent="Node3D" unique_id=479209511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 mesh = SubResource("CapsuleMesh_g4v7s")
 
-[node name="Cube" type="MeshInstance3D" parent="." unique_id=1666532331]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+[node name="Cube" type="MeshInstance3D" parent="Node3D" unique_id=1666532331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
 mesh = SubResource("BoxMesh_g4v7s")
 
-[node name="Sphere" type="MeshInstance3D" parent="." unique_id=317362868]
+[node name="Sphere" type="MeshInstance3D" parent="Node3D" unique_id=317362868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 mesh = SubResource("SphereMesh_g4v7s")
 
+[node name="Prism" type="MeshInstance3D" parent="Node3D" unique_id=451739118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.976712)
+mesh = SubResource("PrismMesh_g4v7s")
+
+[node name="Player" type="MeshInstance3D" parent="." unique_id=1867483037]
+mesh = SubResource("CapsuleMesh_g4v7s")
+
+[node name="Flash Sound" type="AudioStreamPlayer3D" parent="Player" unique_id=826372398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6191205, -2.337995)
+stream = ExtResource("2_qxrlw")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Player" unique_id=1179562327]
+current = true
+
 [node name="Player Camera" type="Camera3D" parent="." unique_id=952425825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5785307, 0)
+current = true
+fov = 70.0
 
 [node name="2D Overlay" type="Node2D" parent="." unique_id=1101883087]
 
@@ -51,29 +117,89 @@ offset_bottom = 648.0
 scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(74, 324)
 
-[node name="Player" type="MeshInstance3D" parent="." unique_id=1867483037]
-mesh = SubResource("CapsuleMesh_g4v7s")
+[node name="Button" type="Button" parent="2D Overlay/Control" unique_id=1433246067]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 12.0
+offset_right = 904.0
+offset_bottom = 86.0
 
-[node name="Flash Sound" type="AudioStreamPlayer3D" parent="Player" unique_id=826372398]
-stream = ExtResource("2_qxrlw")
-
-[node name="Cam Move Timer" type="Timer" parent="." unique_id=252281486]
-wait_time = 0.3
-
-[node name="FlashLight" type="SpotLight3D" parent="." unique_id=1914040452]
+[node name="FlashLightLeft" type="SpotLight3D" parent="." unique_id=1914040452]
 unique_name_in_owner = true
+transform = Transform3D(0.9975641, 0, 0.06975647, 0, 1, 0, -0.06975647, 0, 0.9975641, -0.4, -0.869, -2.165)
+light_color = Color(1, 1, 0.7647059, 1)
+light_energy = 30.0
+light_volumetric_fog_energy = 4.0
+distance_fade_begin = 100.0
+spot_range = 50.0
+spot_angle = 10.0
+
+[node name="FlashLightRight" type="SpotLight3D" parent="." unique_id=1755514085]
+unique_name_in_owner = true
+transform = Transform3D(0.9975641, 0, -0.06975647, 0, 1, 0, 0.06975647, 0, 0.9975641, 0.4, -0.869, -2.165)
+light_color = Color(1, 1, 0.7647059, 1)
+light_energy = 30.0
+light_volumetric_fog_energy = 2.0
+distance_fade_begin = 100.0
+spot_range = 50.0
+spot_angle = 10.0
 
 [node name="Enemy Timers" type="Node" parent="." unique_id=1836175048]
 
 [node name="Monster Timer" type="Timer" parent="Enemy Timers" unique_id=673639333]
 wait_time = 5.0
 
-[node name="Prism" type="MeshInstance3D" parent="." unique_id=451739118]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-mesh = SubResource("PrismMesh_g4v7s")
+[node name="Monster Kill" type="Timer" parent="Enemy Timers" unique_id=636602924]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2073344733]
+environment = SubResource("Environment_g4v7s")
+
+[node name="Ship" type="Node3D" parent="." unique_id=2125485946]
+
+[node name="Ship Base" type="MeshInstance3D" parent="Ship" unique_id=558333249]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_qxrlw")
+
+[node name="Floor" type="MeshInstance3D" parent="Ship" unique_id=1172067452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9762977, 0)
+mesh = SubResource("BoxMesh_57qmd")
+
+[node name="Front" type="MeshInstance3D" parent="Ship" unique_id=2031032388]
+transform = Transform3D(1, 0, 0, 0, 0.5977168, -0.8017073, 0, 0.8017073, 0.5977168, 0, -0.62641954, -1.8166745)
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="Top" type="MeshInstance3D" parent="Ship" unique_id=969456207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99139625, 0.6630764)
+mesh = SubResource("BoxMesh_d0u6y")
+
+[node name="Back" type="MeshInstance3D" parent="Ship" unique_id=2089417692]
+transform = Transform3D(1, 0, 0, 0, 0.88184327, -0.47154263, 0, 0.47154263, 0.88184327, 0, 0, 2.005402)
+mesh = SubResource("BoxMesh_qxrlw")
+
+[node name="SideLeftBot" type="MeshInstance3D" parent="Ship" unique_id=1867844303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.6928464, 0.50388837)
+mesh = SubResource("BoxMesh_3gngh")
+
+[node name="SideRightBot" type="MeshInstance3D" parent="Ship" unique_id=1146516863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.693, 0.504)
+mesh = SubResource("BoxMesh_3gngh")
+
+[node name="SideLeftFront" type="MeshInstance3D" parent="Ship" unique_id=667747749]
+transform = Transform3D(0.8425355, 0.13236767, 0.52212346, -0.21968195, 0.96949565, 0.10870982, -0.49180672, -0.20629297, 0.84591335, 0.6116071, -0.69, -1.3261946)
+mesh = SubResource("BoxMesh_fcnqv")
+
+[node name="SideRightFront" type="MeshInstance3D" parent="Ship" unique_id=134746246]
+transform = Transform3D(0.8422409, -0.1331556, -0.5223982, 0.22025265, 0.9694455, 0.107999355, 0.49205595, -0.20602103, 0.8458347, -0.612, -0.69, -1.326)
+mesh = SubResource("BoxMesh_fcnqv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Ship" unique_id=348939154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8673491, 0.94401395)
+light_color = Color(0.36862746, 0, 0.62352943, 1)
+
+[connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
+[connection signal="timeout" from="Player Timers/Power Timer" to="." method="_on_power_timer_timeout"]
+[connection signal="finished" from="Player/Flash Sound" to="." method="_on_flash_sound_finished"]
 [connection signal="mouse_entered" from="2D Overlay/Control/Left Button" to="." method="_on_left_button_mouse_entered"]
 [connection signal="mouse_entered" from="2D Overlay/Control/Right Button" to="." method="_on_right_button_mouse_entered"]
-[connection signal="finished" from="Player/Flash Sound" to="." method="_on_flash_sound_finished"]
-[connection signal="timeout" from="Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
 [connection signal="timeout" from="Enemy Timers/Monster Timer" to="." method="_on_monster_timer_timeout"]
+[connection signal="timeout" from="Enemy Timers/Monster Kill" to="." method="_on_monster_kill_timeout"]

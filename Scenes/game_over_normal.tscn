@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b4bxjqrg1gp1x"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+size = Vector2(50, 50)
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_energy_multiplier = 0.54
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.483
+volumetric_fog_gi_inject = 0.0
+volumetric_fog_anisotropy = -0.9
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+radius = 0.2
+height = 0.4
+
+[node name="Game Over Normal" type="Node3D" unique_id=1127787569]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2067670582]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=949408286]
+offset_right = 967.0
+offset_bottom = 382.0
+theme_override_font_sizes/normal_font_size = 64
+text = "Operative Status: Deceased
+Time of Death: 0:00
+Cause: Bleeding
+
+"
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=37814140]
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1443124679]
+environment = SubResource("Environment_g4v7s")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1853663593]
+transform = Transform3D(0.90579295, -0.08821164, 0.4144368, 0.096927546, 0.9952915, 3.5477354e-09, -0.4124854, 0.040170338, 0.9100781, 0.13635695, 0.3890562, 0.9650284)
+
+[node name="Skull" type="MeshInstance3D" parent="." unique_id=1481142630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51524764, 0.17112476, 0)
+mesh = SubResource("SphereMesh_g4v7s")

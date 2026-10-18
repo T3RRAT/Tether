@@ -1,3 +1,14 @@
 [gd_scene format=3 uid="uid://c6xdf2q1e7la5"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_d0u6y"]
+
+[sub_resource type="TextMesh" id="TextMesh_57qmd"]
+text = "Monster"
+
 [node name="Monster" type="CharacterBody3D" unique_id=52509860]
+
+[node name="Killzone" type="CollisionShape3D" parent="." unique_id=1354167405]
+shape = SubResource("SphereShape3D_d0u6y")
+
+[node name="Monster Mesh" type="MeshInstance3D" parent="." unique_id=548511948]
+mesh = SubResource("TextMesh_57qmd")

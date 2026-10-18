@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://chggar40wg145"]
+
+[ext_resource type="FontFile" uid="uid://dpkc5p4heusbr" path="res://Assets/augiepixel.ttf" id="1_klylv"]
+
+[sub_resource type="Environment" id="Environment_p3fck"]
+background_mode = 2
+background_energy_multiplier = 0.0
+fog_enabled = true
+fog_height_density = 0.5
+volumetric_fog_density = 1.0
+
+[sub_resource type="Theme" id="Theme_g4v7s"]
+default_base_scale = 2.0
+default_font = ExtResource("1_klylv")
+
+[node name="Title Screen" type="Node3D" unique_id=1861249948]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1019443076]
+environment = SubResource("Environment_p3fck")
+
+[node name="2D Overlay" type="Node2D" parent="." unique_id=2021004530]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="2D Overlay" unique_id=1021477104]
+
+[node name="Play Button" type="TextureButton" parent="2D Overlay/CanvasLayer" unique_id=78656321]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_g4v7s")
+
+[node name="Button" type="Button" parent="2D Overlay/CanvasLayer" unique_id=1441553469]
+offset_left = 840.0
+offset_top = 406.0
+offset_right = 962.0
+offset_bottom = 476.0
+theme_override_fonts/font = ExtResource("1_klylv")
+theme_override_font_sizes/font_size = 64
+text = "Play"
+
+[node name="Label" type="Label" parent="2D Overlay/CanvasLayer" unique_id=2039814493]
+offset_left = 662.0
+offset_top = 183.0
+offset_right = 1026.0
+offset_bottom = 307.0
+theme_override_fonts/font = ExtResource("1_klylv")
+theme_override_font_sizes/font_size = 128
+text = "Tether"

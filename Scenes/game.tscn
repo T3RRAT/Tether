@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c0ai2ccmfn65p" path="res://Scripts/game.gd" id="1_ebmjs"]
 [ext_resource type="AudioStream" uid="uid://3j7r724r0f5" path="res://flash-beacon.mp3" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://b56q2vd6u7y1w" path="res://Scripts/ideas.gd" id="2_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://uigs3q6cxjtu" path="res://Scenes/computer.tscn" id="4_wowpa"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 rings = 6
@@ -48,6 +49,10 @@ size = Vector3(0.16796875, 1, 2.4892578)
 [sub_resource type="BoxMesh" id="BoxMesh_fcnqv"]
 size = Vector3(0.168, 1, 1.763)
 
+[sub_resource type="SphereMesh" id="SphereMesh_yf5fn"]
+radius = 0.05
+height = 0.1
+
 [node name="Game" type="Node3D" unique_id=314259388]
 script = ExtResource("1_ebmjs")
 
@@ -89,6 +94,10 @@ stream = ExtResource("2_qxrlw")
 [node name="AudioListener3D" type="AudioListener3D" parent="Player" unique_id=1179562327]
 current = true
 
+[node name="Tether Camera" type="Camera3D" parent="." unique_id=752433570]
+transform = Transform3D(-0.9615163, 0.06698731, 0.26645657, 0.18772802, 0.86830795, 0.4591291, -0.20061055, 0.49148148, -0.84746766, 0.62166464, 1.0373764, 2.6603546)
+fov = 50.0
+
 [node name="Player Camera" type="Camera3D" parent="." unique_id=952425825]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5785307, 0)
 current = true
@@ -98,31 +107,48 @@ fov = 70.0
 
 [node name="Control" type="Control" parent="2D Overlay" unique_id=1281495045]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Left Button" type="Button" parent="2D Overlay/Control" unique_id=534802264]
-layout_mode = 0
+[node name="CanvasLayer" type="CanvasLayer" parent="2D Overlay/Control" unique_id=1219470983]
+
+[node name="Left Button" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=534802264]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -324.0
 offset_right = 148.0
-offset_bottom = 648.0
+offset_bottom = 324.0
+grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(74, 324)
 
-[node name="Right Button" type="Button" parent="2D Overlay/Control" unique_id=288830261]
-layout_mode = 0
-offset_left = 1000.0
-offset_right = 1148.0
-offset_bottom = 648.0
+[node name="Right Button" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=288830261]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -324.0
+offset_bottom = 324.0
+grow_horizontal = 0
+grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(74, 324)
 
-[node name="Button" type="Button" parent="2D Overlay/Control" unique_id=1433246067]
-layout_mode = 0
-offset_left = 256.0
-offset_top = 12.0
-offset_right = 904.0
-offset_bottom = 86.0
+[node name="UpButton" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=1433246067]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_top = 30.0
+offset_right = 324.0
+offset_bottom = 104.0
+grow_horizontal = 2
 
 [node name="FlashLightLeft" type="SpotLight3D" parent="." unique_id=1914040452]
 unique_name_in_owner = true
@@ -192,14 +218,33 @@ mesh = SubResource("BoxMesh_fcnqv")
 transform = Transform3D(0.8422409, -0.1331556, -0.5223982, 0.22025265, 0.9694455, 0.107999355, 0.49205595, -0.20602103, 0.8458347, -0.612, -0.69, -1.326)
 mesh = SubResource("BoxMesh_fcnqv")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Ship" unique_id=348939154]
+[node name="Purple Light" type="OmniLight3D" parent="Ship" unique_id=348939154]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8673491, 0.94401395)
+visible = false
 light_color = Color(0.36862746, 0, 0.62352943, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Ship" unique_id=16834530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 1)
+light_color = Color(0.902198, 0.8014088, 0.52845573, 1)
+
+[node name="Computer Items" type="Node3D" parent="." unique_id=1150376009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6576913)
+
+[node name="Computer" parent="Computer Items" unique_id=129153883 instance=ExtResource("4_wowpa")]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 1.35, -1.5)
+
+[node name="Computer Up Pos" type="MeshInstance3D" parent="Computer Items" unique_id=1698906977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, -1.5)
+mesh = SubResource("SphereMesh_yf5fn")
+
+[node name="Computer Down Pos" type="MeshInstance3D" parent="Computer Items" unique_id=1378832576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1.5)
+mesh = SubResource("SphereMesh_yf5fn")
 
 [connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
 [connection signal="timeout" from="Player Timers/Power Timer" to="." method="_on_power_timer_timeout"]
 [connection signal="finished" from="Player/Flash Sound" to="." method="_on_flash_sound_finished"]
-[connection signal="mouse_entered" from="2D Overlay/Control/Left Button" to="." method="_on_left_button_mouse_entered"]
-[connection signal="mouse_entered" from="2D Overlay/Control/Right Button" to="." method="_on_right_button_mouse_entered"]
+[connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Left Button" to="." method="_on_left_button_mouse_entered"]
+[connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Right Button" to="." method="_on_right_button_mouse_entered"]
 [connection signal="timeout" from="Enemy Timers/Monster Timer" to="." method="_on_monster_timer_timeout"]
 [connection signal="timeout" from="Enemy Timers/Monster Kill" to="." method="_on_monster_kill_timeout"]

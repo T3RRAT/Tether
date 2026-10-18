@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://uigs3q6cxjtu"]
+
+[ext_resource type="Texture2D" uid="uid://cg4cjqnn1vj7a" path="res://icon.svg" id="1_4xga7"]
+[ext_resource type="Script" uid="uid://dwbgh7q06vkj7" path="res://Scenes/computer.gd" id="1_m1ujp"]
+[ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="3_7h0tq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_yf5fn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_g4v7s")
+size = Vector2(1.41, 0.81)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3cxpa"]
+data = PackedVector3Array(0.705, -0.405, 0, -0.705, -0.405, 0, 0.705, 0.405, 0, -0.705, -0.405, 0, -0.705, 0.405, 0, 0.705, 0.405, 0)
+
+[sub_resource type="Theme" id="Theme_3dryh"]
+TabContainer/font_sizes/font_size = 24
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("3_7h0tq")
+shader_parameter/overlay = false
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/brightness = 1.4
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/aberration = 0.015000048212499895
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/pixelate = false
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.800000038
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.32400001539
+
+[node name="Computer" type="Node3D" unique_id=129153883]
+script = ExtResource("1_m1ujp")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1590787459]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1772993787]
+size = Vector3(1.6, 1, 0.1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=316805959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.06266138)
+operation = 2
+size = Vector3(1.4, 0.8, 0.1)
+
+[node name="Quad" type="MeshInstance3D" parent="." unique_id=359092796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.013243794)
+mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="Area3D" type="Area3D" parent="Quad" unique_id=186926410]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D" unique_id=1803618872]
+shape = SubResource("ConcavePolygonShape3D_3cxpa")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=778372070]
+
+[node name="Control" type="Control" parent="SubViewport" unique_id=934616759]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3dryh")
+
+[node name="TabContainer" type="TabContainer" parent="SubViewport/Control" unique_id=2039419334]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Power" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=678326908]
+layout_mode = 2
+texture = ExtResource("1_4xga7")
+metadata/_tab_index = 0
+
+[node name="Ship" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1895162407]
+visible = false
+modulate = Color(0.76580584, 0.6681873, 1, 1)
+layout_mode = 2
+texture = ExtResource("1_4xga7")
+metadata/_tab_index = 1
+
+[node name="TextureRect3" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1568788166]
+visible = false
+modulate = Color(0.3230459, 0.7567149, 0.09408315, 1)
+layout_mode = 2
+texture = ExtResource("1_4xga7")
+metadata/_tab_index = 2
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/Control" unique_id=1582421659]
+material = SubResource("ShaderMaterial_g4v7s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

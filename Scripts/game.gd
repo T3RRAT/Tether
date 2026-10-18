@@ -30,6 +30,7 @@ var monsterAI = 0
 var monsterAggroAmount = 0
 
 @onready var cam = $"Player Camera"
+@onready var tCam = $"Tether Camera"
 @onready var lightRight = %FlashLightRight
 @onready var lightLeft = %FlashLightLeft
 @onready var player = $Player
@@ -37,12 +38,18 @@ var monsterAggroAmount = 0
 @onready var powerDrainTimer = %"Power Timer"
 @onready var flashSound = $"Player/Flash Sound"
 
-@onready var buttonLeft = $"2D Overlay/Control/Left Button"
-@onready var buttonRight = $"2D Overlay/Control/Right Button"
+@onready var computer = $"Computer Items/Computer"
+@onready var computerDownPos = $"Computer Items/Computer Down Pos"
+@onready var computerUpPos = $"Computer Items/Computer Up Pos"
+
+@onready var buttonLeft = $"2D Overlay/Control/CanvasLayer/Left Button"
+@onready var buttonRight = $"2D Overlay/Control/CanvasLayer/Right Button"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	powerDrainTimer.start(powerDrainSpeed)
+	lightLeft.light_energy = 0
+	lightRight.light_energy = 0
 	pass # Replace with function body.
 
 
@@ -115,35 +122,47 @@ func _process(delta: float) -> void:
 		lightRight.light_energy = lerp(lightRight.light_energy, 0.0, delta * 6)
 	
 	if Input.is_action_just_pressed("Go Left"):
-		if inCutscene == false:
+		if inCutscene == false && buttonInteract == false:
 			if inUserInterface:
 				pass
 			elif farLeft == false:
 				camLocation -= 1
+				interactionMade()
 	
 	if Input.is_action_just_pressed("Go Right"):
-		if inCutscene == false:
+		if inCutscene == false && buttonInteract == false:
 			if inUserInterface:
 				pass
 			elif farRight == false:
 				camLocation += 1
+				interactionMade()
 	
 	if Input.is_action_just_pressed("Go Backwards"):
-		if camLocation == 0:
-			camLocation = 2
-		elif camLocation == 2:
-			camLocation = 0
-		# Location 2 refers to back of ship
+		if buttonInteract == false:
+			if camLocation == 0:
+				camLocation = 2
+				interactionMade()
+			elif camLocation == 2:
+				camLocation = 0
+				interactionMade()
+			# Location 2 refers to back of ship
 	
 	
 	if Input.is_action_just_pressed("Flip Computer"):
-		computerState = computerState * 1
+		if camLocation == 0:
+			computerState = computerState * -1
+			
+		
 	
 	
 	
 	# Computer Functionality
 	if computerState == 1:
-		
+		computer.position.y = lerp(computer.position.y, computerDownPos.position.y, delta * 6)
+		inCutscene = true
+	else:
+		computer.position.y = lerp(computer.position.y, computerUpPos.position.y, delta * 6)
+		inCutscene = false
 		pass
 	
 	
@@ -151,7 +170,7 @@ func _process(delta: float) -> void:
 	pass
 
 # Custom Functions
-func monsterAttack():
+func monsterAttack(): 
 	print("monster attacks")
 	
 	pass
@@ -176,6 +195,10 @@ func playerRotationSetter(location):
 	else:
 		player.rotation_degrees = Vector3(0, 0, shipPosition * location)
 
+func interactionMade():
+	buttonInteract = true
+	camMoveTimer.start()
+
 
 
 
@@ -187,9 +210,8 @@ func _on_left_button_mouse_entered() -> void:
 	if (buttonInteract == false):
 		#player.rotate(Vector3.UP, player.rotation.y + 90)
 		#player.rotation.y = angle_difference(player.rotation.y, player.rotation.y + 90)
-		buttonInteract = true
+		interactionMade()
 		camLocation = camLocation - 1
-		camMoveTimer.start()
 	pass # Replace with function body.
 
 
@@ -197,9 +219,8 @@ func _on_right_button_mouse_entered() -> void:
 	if (buttonInteract == false):
 		#player.rotation.y = angle_difference(player.rotation.y, player.rotation.y - 90)
 		#player.rotate(Vector3.DOWN, player.rotation.y - 90)
-		buttonInteract = true
+		interactionMade()
 		camLocation = camLocation + 1
-		camMoveTimer.start()
 	pass # Replace with function body.
 
 

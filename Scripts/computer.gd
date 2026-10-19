@@ -12,6 +12,7 @@ var last_event_time: float = -1.0
 @onready var node_quad = $Quad
 @onready var node_area = $Quad/Area3D
 @onready var colourRect = $SubViewport/Control/ColorRect
+
 @onready var game = $"../.."
 @onready var redirectPower = 's'
 
@@ -21,7 +22,6 @@ func _ready():
 	node_area.input_event.connect(_mouse_input_event)
 
 	colourRect.visible = true
-	
 
 	# If the material is NOT set to use billboard settings, then avoid running billboard specific code
 	#if node_quad.get_surface_override_material(0).billboard_mode == BaseMaterial3D.BillboardMode.BILLBOARD_DISABLED:

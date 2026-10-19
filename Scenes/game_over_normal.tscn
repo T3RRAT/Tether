@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b4bxjqrg1gp1x"]
 
-[ext_resource type="Script" uid="uid://fod7tird8kbd" path="res://Scenes/game_over_normal.gd" id="1_do5xh"]
+[ext_resource type="Script" uid="uid://fod7tird8kbd" path="res://Scripts/game_over_normal.gd" id="1_do5xh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 size = Vector2(50, 50)

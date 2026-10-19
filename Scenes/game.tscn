@@ -20,13 +20,14 @@ size = Vector3(0.275, 0.275, 20)
 [sub_resource type="Environment" id="Environment_g4v7s"]
 background_mode = 2
 background_energy_multiplier = 0.0
+glow_enabled = true
+glow_bloom = 0.05
 fog_light_energy = 0.01
 fog_density = 0.0
 fog_height_density = 0.5
 volumetric_fog_density = 0.5
 volumetric_fog_emission_energy = 0.1
 volumetric_fog_length = 10.0
-adjustment_enabled = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qxrlw"]
 radius = 1.0
@@ -54,15 +55,15 @@ size = Vector3(0.168, 1, 1.763)
 radius = 0.05
 height = 0.1
 
+[sub_resource type="TorusMesh" id="TorusMesh_g4v7s"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_yf5fn"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_7numd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_p1u0y"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5s0fj"]
-
-[sub_resource type="TorusMesh" id="TorusMesh_g4v7s"]
-
-[sub_resource type="TorusMesh" id="TorusMesh_yf5fn"]
 
 [node name="Game" type="Node3D" unique_id=314259388]
 script = ExtResource("1_ebmjs")
@@ -248,20 +249,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1.5)
 visible = false
 mesh = SubResource("SphereMesh_yf5fn")
 
-[node name="Monster2 Items" type="Node3D" parent="." unique_id=513290752]
-
-[node name="Position1" type="MeshInstance3D" parent="Monster2 Items" unique_id=734222919]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, -50)
-mesh = SubResource("BoxMesh_7numd")
-
-[node name="Position2" type="MeshInstance3D" parent="Monster2 Items" unique_id=1094507317]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
-mesh = SubResource("BoxMesh_p1u0y")
-
-[node name="Position3" type="MeshInstance3D" parent="Monster2 Items" unique_id=1913516363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -50)
-mesh = SubResource("BoxMesh_5s0fj")
-
 [node name="Monster1 Items" type="Node3D" parent="." unique_id=13616945]
 
 [node name="Monster" parent="Monster1 Items" unique_id=52509860 instance=ExtResource("5_wowpa")]
@@ -283,10 +270,30 @@ wait_time = 5.0
 [node name="Monster Kill" type="Timer" parent="Monster1 Items/Monster1 Timers" unique_id=636602924]
 wait_time = 5.0
 
+[node name="Monster Disappear" type="Timer" parent="Monster1 Items/Monster1 Timers" unique_id=1355332993]
+wait_time = 0.6
+one_shot = true
+
+[node name="Monster2 Items" type="Node3D" parent="." unique_id=513290752]
+
+[node name="Position1" type="MeshInstance3D" parent="Monster2 Items" unique_id=734222919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, -50)
+mesh = SubResource("BoxMesh_7numd")
+
+[node name="Position2" type="MeshInstance3D" parent="Monster2 Items" unique_id=1094507317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+mesh = SubResource("BoxMesh_p1u0y")
+
+[node name="Position3" type="MeshInstance3D" parent="Monster2 Items" unique_id=1913516363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -50)
+mesh = SubResource("BoxMesh_5s0fj")
+
 [connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
 [connection signal="timeout" from="Player Timers/Power Timer" to="." method="_on_power_timer_timeout"]
 [connection signal="finished" from="Player/Flash Sound" to="." method="_on_flash_sound_finished"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Left Button" to="." method="_on_left_button_mouse_entered"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Right Button" to="." method="_on_right_button_mouse_entered"]
+[connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/UpButton" to="." method="_on_up_button_mouse_entered"]
 [connection signal="timeout" from="Monster1 Items/Monster1 Timers/Monster Timer" to="." method="_on_monster_timer_timeout"]
 [connection signal="timeout" from="Monster1 Items/Monster1 Timers/Monster Kill" to="." method="_on_monster_kill_timeout"]
+[connection signal="timeout" from="Monster1 Items/Monster1 Timers/Monster Disappear" to="." method="_on_monster_disappear_timeout"]

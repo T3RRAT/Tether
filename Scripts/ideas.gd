@@ -27,4 +27,6 @@ func _process(delta: float) -> void:
 # would need to reset power, samples collected, monster timers, aggro, etc. 
 # Would death screens be just like that pause screen i worked on in my attempted at second jame gam?
 # it could work out. I just need to yoink or remember how that code worked
-#
+# I would darken the entire screen and have the image overlay?
+# and then the death info would appear as well as the uhhh. the like restart night button. 
+# How to set up homescreen then to have like, the continue night.

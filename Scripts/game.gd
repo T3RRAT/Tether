@@ -27,7 +27,7 @@ var inUserInterface = false
 
 var lvStatus = "normal"
 var session = 0
-var monsterAI = 0
+var monsterAI = 20
 var monsterAggroAmount = 0
 
 # Monster 1 Objects
@@ -35,6 +35,8 @@ var monsterAggroAmount = 0
 @onready var monsterPositionActive = $"Monster1 Items/Active Position"
 @onready var monsterPositionInactive = $"Monster1 Items/Inactive Position"
 @onready var monsterKillTimer = $"Monster1 Items/Monster1 Timers/Monster Kill"
+@onready var monsterActivityTimer = $"Monster1 Items/Monster1 Timers/Monster Timer"
+@onready var monsterDisappearTimer = $"Monster1 Items/Monster1 Timers/Monster Disappear"
 
 
 @onready var cam = $"Player Camera"
@@ -60,6 +62,7 @@ func _ready() -> void:
 	lightRight.light_energy = 0
 	
 	monsterOne.position = monsterPositionInactive.position
+	monsterActivityTimer.start()
 	pass # Replace with function body.
 
 
@@ -70,11 +73,13 @@ func _process(delta: float) -> void:
 	if camLocation == 1:
 		farRight = true
 		playerRotationSetter(1)
+		computerState = -1
 		#player.rotation_degrees = Vector3(0, -90, 0)
 		#relocateShip(1)
 	if camLocation == -1:
 		farLeft = true
 		playerRotationSetter(-1)
+		computerState = -1
 		#player.rotation_degrees = Vector3(0, 90, 0)
 		#relocateShip(-1)
 	if camLocation == 0:
@@ -119,7 +124,7 @@ func _process(delta: float) -> void:
 	
 	
 	# Handling Flashing Mechanic and Inputs
-	if Input.get_action_strength("ui_accept") && flashing == false && camLocation == 0:
+	if Input.get_action_strength("ui_accept") && (flashing == false) && (camLocation == 0):
 		if inCutscene == false && inUserInterface == false:
 			systemsPower = systemsPower - flashPowerDrain
 			lightLeft.light_energy = 40
@@ -170,15 +175,12 @@ func _process(delta: float) -> void:
 	# Computer Functionality
 	if computerState == 1:
 		computer.position.y = lerp(computer.position.y, computerDownPos.position.y, delta * 6)
-		inCutscene = true
 	else:
 		computer.position.y = lerp(computer.position.y, computerUpPos.position.y, delta * 6)
-		inCutscene = false
 		pass
-	
-	
-	
 	pass
+
+
 
 # Custom Functions
 func monsterSpawn(): 
@@ -191,8 +193,8 @@ func monsterSpawn():
 	# sound plays aknowledging threat is gone and animation f them going away plays
 	# Also if you flash the other monster you cna see them slightly but they wont move
 	# thos this is more otherthing
-	
-	monsterOne.position = monsterActive.position
+	monsterActive = true
+	monsterOne.global_position = monsterPositionActive.global_position
 	monsterKillTimer.start()
 	
 	pass
@@ -213,6 +215,7 @@ func checkMonster():
 	if monsterActive == true:
 		print("its a monsta!")
 		monsterActive = false
+		monsterDisappearTimer.start()
 		pass
 
 func relocateShip(position):
@@ -270,10 +273,11 @@ func _on_flash_sound_finished() -> void:
 
 
 func _on_monster_timer_timeout() -> void:
-	monsterAggroAmount += randi_range(1, monsterAI)
+	monsterAggroAmount += randi_range(10, monsterAI)
 	if monsterAggroAmount > 20:
 		monsterSpawn()
 		monsterAggroAmount = 0
+	monsterActivityTimer.start()
 	pass # Replace with function body.
 
 
@@ -298,7 +302,20 @@ func _on_power_timer_timeout() -> void:
 	
 	
 	powerDrainTimer.start(powerDrainSpeed)
-	print("Collection Power: %d" % collectionPower)
-	print("Systems Power: %d" % systemsPower)
+	#print("Collection Power: %d" % collectionPower)
+	#print("Systems Power: %d" % systemsPower)
 	
+	pass # Replace with function body.
+
+
+func _on_monster_disappear_timeout() -> void:
+	monsterOne.global_position = monsterPositionInactive.global_position
+	print("Should return to original position")
+	pass # Replace with function body.
+
+
+func _on_up_button_mouse_entered() -> void:
+	if camLocation == 0 && buttonInteract == false:
+			computerState = computerState * -1
+			interactionMade()
 	pass # Replace with function body.

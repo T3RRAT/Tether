@@ -1,15 +1,22 @@
 [gd_scene format=3 uid="uid://uigs3q6cxjtu"]
 
 [ext_resource type="Texture2D" uid="uid://cg4cjqnn1vj7a" path="res://icon.svg" id="1_4xga7"]
-[ext_resource type="Script" uid="uid://dwbgh7q06vkj7" path="res://Scenes/computer.gd" id="1_m1ujp"]
+[ext_resource type="Script" uid="uid://dwbgh7q06vkj7" path="res://Scripts/computer.gd" id="1_m1ujp"]
+[ext_resource type="Script" uid="uid://cxf4wvw6bmtf5" path="res://Scripts/shipTab.gd" id="3_3cxpa"]
 [ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="3_7h0tq"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_m1ujp"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_yf5fn")
+emission_enabled = true
+emission = Color(0.23031491, 0.23031494, 0.23031488, 1)
+emission_texture = SubResource("ViewportTexture_m1ujp")
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 resource_local_to_scene = true
@@ -96,9 +103,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Power" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=678326908]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -121,28 +129,94 @@ popup/item_2/id = 2
 
 [node name="Systems" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=534573807]
 layout_mode = 1
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 72.0
+offset_top = 141.0
+offset_right = 239.0
+offset_bottom = 172.0
 text = "System Power: 100%"
 
 [node name="Samples" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=157811073]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 78.0
+offset_top = 275.0
+offset_right = 274.0
+offset_bottom = 306.0
 text = "Sample Collection: 100%"
 
 [node name="Tether" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=1032806482]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 90.0
+offset_top = 207.0
+offset_right = 199.0
+offset_bottom = 238.0
 text = "Tether: 100%"
 
 [node name="Ship" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1895162407]
-visible = false
-modulate = Color(0.76580584, 0.6681873, 1, 1)
 layout_mode = 2
-texture = ExtResource("1_4xga7")
+script = ExtResource("3_3cxpa")
 metadata/_tab_index = 1
+
+[node name="Ship" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=877691258]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -68.0
+offset_right = 68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 1)
+icon = ExtResource("1_4xga7")
+
+[node name="Pos1" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1842611306]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -68.0
+offset_right = 136.0
+offset_bottom = 68.0
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+offset_transform_position = Vector2(-69, -69)
+icon = ExtResource("1_4xga7")
+
+[node name="Pos2" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1491902193]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.00003
+offset_top = -68.0
+offset_right = 68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+offset_transform_position = Vector2(-69, -69)
+icon = ExtResource("1_4xga7")
+
+[node name="Pos3" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1349207961]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -68.0
+offset_bottom = 68.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+offset_transform_position = Vector2(-69, -69)
+icon = ExtResource("1_4xga7")
 
 [node name="TextureRect3" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1568788166]
 visible = false
@@ -153,6 +227,7 @@ metadata/_tab_index = 2
 
 [node name="ColorRect" type="ColorRect" parent="SubViewport/Control" unique_id=1582421659]
 visible = false
+z_index = 1
 material = SubResource("ShaderMaterial_g4v7s")
 layout_mode = 1
 anchors_preset = 15
@@ -161,3 +236,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[connection signal="button_down" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_down"]
+[connection signal="button_up" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_up"]

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b56q2vd6u7y1w" path="res://Scripts/ideas.gd" id="2_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://uigs3q6cxjtu" path="res://Scenes/computer.tscn" id="4_wowpa"]
 [ext_resource type="PackedScene" uid="uid://c6xdf2q1e7la5" path="res://Scenes/monster.tscn" id="5_wowpa"]
+[ext_resource type="AudioStream" uid="uid://dmtpgoksgrl0k" path="res://Assets/Landing.wav" id="6_i6g32"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 rings = 6
@@ -273,6 +274,11 @@ wait_time = 5.0
 [node name="Monster Disappear" type="Timer" parent="Monster1 Items/Monster1 Timers" unique_id=1355332993]
 wait_time = 0.6
 one_shot = true
+
+[node name="AudioCue" type="AudioStreamPlayer3D" parent="Monster1 Items" unique_id=1331949831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.317244)
+stream = ExtResource("6_i6g32")
+volume_db = -15.0
 
 [node name="Monster2 Items" type="Node3D" parent="." unique_id=513290752]
 

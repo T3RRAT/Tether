@@ -37,21 +37,28 @@ var monsterAggroAmount = 0
 @onready var monsterKillTimer = $"Monster1 Items/Monster1 Timers/Monster Kill"
 @onready var monsterActivityTimer = $"Monster1 Items/Monster1 Timers/Monster Timer"
 @onready var monsterDisappearTimer = $"Monster1 Items/Monster1 Timers/Monster Disappear"
+@onready var mon1AudioCue = $"Monster1 Items/AudioCue"
 
 
+# Player and Ship Objects
 @onready var cam = $"Player Camera"
 @onready var tCam = $"Tether Camera"
 @onready var lightRight = %FlashLightRight
 @onready var lightLeft = %FlashLightLeft
 @onready var player = $Player
-@onready var camMoveTimer = %"Cam Move Timer"
-@onready var powerDrainTimer = %"Power Timer"
 @onready var flashSound = $"Player/Flash Sound"
 
+# Gameplay Important Objects
+@onready var camMoveTimer = %"Cam Move Timer"
+@onready var powerDrainTimer = %"Power Timer"
+
+
+# Computer Objects
 @onready var computer = $"Computer Items/Computer"
 @onready var computerDownPos = $"Computer Items/Computer Down Pos"
 @onready var computerUpPos = $"Computer Items/Computer Up Pos"
 
+# 2D Objects
 @onready var buttonLeft = $"2D Overlay/Control/CanvasLayer/Left Button"
 @onready var buttonRight = $"2D Overlay/Control/CanvasLayer/Right Button"
 
@@ -139,6 +146,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Go Left"):
 		if inCutscene == false && buttonInteract == false:
 			if inUserInterface:
+				computer.call("changeComputerTab", -1)
 				pass
 			elif farLeft == false:
 				camLocation -= 1
@@ -147,6 +155,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Go Right"):
 		if inCutscene == false && buttonInteract == false:
 			if inUserInterface:
+				computer.call("changeComputerTab", 1)
 				pass
 			elif farRight == false:
 				camLocation += 1
@@ -154,6 +163,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Go Backwards"):
 		if buttonInteract == false:
+			
 			if camLocation == 0:
 				camLocation = 2
 				interactionMade()
@@ -166,6 +176,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Flip Computer"):
 		if camLocation == 0 && buttonInteract == false:
 			computerState = computerState * -1
+			if farLeft == false:
+				farLeft = true
+				farRight = true
+			else:
+				farLeft = false
+				farRight = false
 			interactionMade()
 			
 		
@@ -175,9 +191,21 @@ func _process(delta: float) -> void:
 	# Computer Functionality
 	if computerState == 1:
 		computer.position.y = lerp(computer.position.y, computerDownPos.position.y, delta * 6)
+		inUserInterface = true
 	else:
 		computer.position.y = lerp(computer.position.y, computerUpPos.position.y, delta * 6)
-		pass
+		inUserInterface = false
+	
+	
+	if Input.is_action_just_pressed("One"):
+		computer.call("callShipPosition", 1)
+	
+	if Input.is_action_just_pressed("Two"):
+		computer.call("callShipPosition", 2)
+	
+	if Input.is_action_just_pressed("Three"):
+		computer.call("callShipPosition", 3)
+	
 	pass
 
 
@@ -194,6 +222,7 @@ func monsterSpawn():
 	# Also if you flash the other monster you cna see them slightly but they wont move
 	# thos this is more otherthing
 	monsterActive = true
+	mon1AudioCue.play()
 	monsterOne.global_position = monsterPositionActive.global_position
 	monsterKillTimer.start()
 	
@@ -218,9 +247,9 @@ func checkMonster():
 		monsterDisappearTimer.start()
 		pass
 
-func relocateShip(position):
+func relocateShip(positionRelocate):
 	player.rotation.z = 1.2 * (shipPosition - position)
-	shipPosition = position
+	shipPosition = positionRelocate
 	pass
 
 func playerRotationSetter(location):
@@ -245,7 +274,7 @@ func interactionMade():
 
 
 func _on_left_button_mouse_entered() -> void:
-	if (buttonInteract == false):
+	if (buttonInteract == false) && (inUserInterface == false):
 		#player.rotate(Vector3.UP, player.rotation.y + 90)
 		#player.rotation.y = angle_difference(player.rotation.y, player.rotation.y + 90)
 		interactionMade()
@@ -254,7 +283,7 @@ func _on_left_button_mouse_entered() -> void:
 
 
 func _on_right_button_mouse_entered() -> void:
-	if (buttonInteract == false):
+	if (buttonInteract == false) && (inUserInterface == false):
 		#player.rotation.y = angle_difference(player.rotation.y, player.rotation.y - 90)
 		#player.rotate(Vector3.DOWN, player.rotation.y - 90)
 		interactionMade()

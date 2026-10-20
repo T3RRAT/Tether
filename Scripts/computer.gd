@@ -13,6 +13,8 @@ var last_event_time: float = -1.0
 @onready var node_area = $Quad/Area3D
 @onready var colourRect = $SubViewport/Control/ColorRect
 
+@onready var tabs = $SubViewport/Control/TabContainer
+@onready var shipTab = $SubViewport/Control/TabContainer/Ship
 @onready var game = $"../.."
 @onready var redirectPower = 's'
 
@@ -151,6 +153,13 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 
 
 # Custom Functionality
+
+func changeComputerTab(direction):
+	tabs.current_tab = tabs.current_tab + (1 * direction)
+	pass
+
+func callShipPosition(location):
+	shipTab.call("changeShipPosition", location)
 
 func allocatePower(pFrom, pToo):
 	

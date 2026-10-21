@@ -131,7 +131,7 @@ func _process(delta: float) -> void:
 	
 	
 	# Handling Flashing Mechanic and Inputs
-	if Input.get_action_strength("ui_accept") && (flashing == false) && (camLocation == 0):
+	if Input.get_action_strength("Confirm Action") && (flashing == false) && (camLocation == 0):
 		if inCutscene == false && inUserInterface == false:
 			systemsPower = systemsPower - flashPowerDrain
 			lightLeft.light_energy = 40
@@ -139,6 +139,8 @@ func _process(delta: float) -> void:
 			flashing = true
 			flashSound.play(0.38) # Number is here to make sure flash sound isnt delayed
 			checkMonster()
+		elif inUserInterface == true:
+			computer.call("callChangeTrueShipPosition")
 	else:
 		lightLeft.light_energy = lerp(lightLeft.light_energy, 0.0, delta * 6)
 		lightRight.light_energy = lerp(lightRight.light_energy, 0.0, delta * 6)
@@ -198,13 +200,13 @@ func _process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("One"):
-		computer.call("callShipPosition", 1)
+		computer.call("callChangeShipPosition", 1)
 	
 	if Input.is_action_just_pressed("Two"):
-		computer.call("callShipPosition", 2)
+		computer.call("callChangeShipPosition", 2)
 	
 	if Input.is_action_just_pressed("Three"):
-		computer.call("callShipPosition", 3)
+		computer.call("callChangeShipPosition", 3)
 	
 	pass
 

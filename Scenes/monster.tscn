@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://c6xdf2q1e7la5"]
 
+[ext_resource type="Texture2D" uid="uid://bp4x00b2fdvim" path="res://Assets/bear5.webp" id="1_xhoai"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_d0u6y"]
 
 [sub_resource type="TextMesh" id="TextMesh_57qmd"]
 text = "Monster"
+
+[sub_resource type="TextMesh" id="TextMesh_g4v7s"]
+text = "insert markipler
+face here ->"
 
 [node name="Monster" type="CharacterBody3D" unique_id=52509860]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
@@ -12,4 +18,12 @@ transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
 shape = SubResource("SphereShape3D_d0u6y")
 
 [node name="Monster Mesh" type="MeshInstance3D" parent="." unique_id=548511948]
+visible = false
 mesh = SubResource("TextMesh_57qmd")
+
+[node name="bear5" type="Sprite3D" parent="." unique_id=1446904719]
+transform = Transform3D(0.19, 0, 0, 0, 0.19, 0, 0, 0, 0.19, 0, -0.3496968, 0)
+texture = ExtResource("1_xhoai")
+
+[node name="Markipler" type="MeshInstance3D" parent="." unique_id=1500083986]
+mesh = SubResource("TextMesh_g4v7s")

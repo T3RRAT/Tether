@@ -11,7 +11,7 @@ var last_event_time: float = -1.0
 @onready var node_viewport = $SubViewport
 @onready var node_quad = $Quad
 @onready var node_area = $Quad/Area3D
-@onready var colourRect = $SubViewport/Control/ColorRect
+@onready var crtFilter = $"SubViewport/Control/CRT Filter"
 
 @onready var tabs = $SubViewport/Control/TabContainer
 @onready var shipTab = $SubViewport/Control/TabContainer/Ship
@@ -23,7 +23,7 @@ func _ready():
 	node_area.mouse_exited.connect(_mouse_exited_area)
 	node_area.input_event.connect(_mouse_input_event)
 
-	colourRect.visible = true
+	crtFilter.visible = true
 
 	# If the material is NOT set to use billboard settings, then avoid running billboard specific code
 	#if node_quad.get_surface_override_material(0).billboard_mode == BaseMaterial3D.BillboardMode.BILLBOARD_DISABLED:
@@ -153,13 +153,18 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 
 
 # Custom Functionality
-
 func changeComputerTab(direction):
 	tabs.current_tab = tabs.current_tab + (1 * direction)
 	pass
 
-func callShipPosition(location):
+
+
+# Functions that call functions in shipTab
+func callChangeShipPosition(location):
 	shipTab.call("changeShipPosition", location)
+
+func callChangeTrueShipPosition():
+	shipTab.call("confirmRepositionMinigame")
 
 func allocatePower(pFrom, pToo):
 	

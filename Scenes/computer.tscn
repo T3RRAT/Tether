@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dwbgh7q06vkj7" path="res://Scripts/computer.gd" id="1_m1ujp"]
 [ext_resource type="Script" uid="uid://cxf4wvw6bmtf5" path="res://Scripts/shipTab.gd" id="3_3cxpa"]
 [ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="3_7h0tq"]
+[ext_resource type="Shader" uid="uid://ccsqya2nbhx2y" path="res://Scripts/blur.gdshader" id="5_3cxpa"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
 viewport_path = NodePath("SubViewport")
@@ -63,6 +64,47 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.32400001539
 
+[sub_resource type="Animation" id="Animation_3cxpa"]
+resource_name = "Blur Animation"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Blur Filter:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 5.0]
+}
+
+[sub_resource type="Animation" id="Animation_m7p0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Blur Filter:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m7p0i"]
+_data = {
+&"Blur Animation": SubResource("Animation_3cxpa"),
+&"RESET": SubResource("Animation_m7p0i")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+shader = ExtResource("5_3cxpa")
+shader_parameter/lod = 0.0
+
 [node name="Computer" type="Node3D" unique_id=129153883]
 script = ExtResource("1_m1ujp")
 
@@ -87,7 +129,7 @@ shape = SubResource("ConcavePolygonShape3D_3cxpa")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=778372070]
 
-[node name="Control" type="Control" parent="SubViewport" unique_id=934616759]
+[node name="Control" type="Control" parent="." unique_id=934616759]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,7 +138,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_3dryh")
 
-[node name="TabContainer" type="TabContainer" parent="SubViewport/Control" unique_id=2039419334]
+[node name="TabContainer" type="TabContainer" parent="Control" unique_id=2039419334]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,12 +147,12 @@ grow_horizontal = 2
 grow_vertical = 2
 current_tab = 1
 
-[node name="Power" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=678326908]
+[node name="Power" type="TextureRect" parent="Control/TabContainer" unique_id=678326908]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="OptionButton" type="OptionButton" parent="SubViewport/Control/TabContainer/Power" unique_id=1446472227]
+[node name="OptionButton" type="OptionButton" parent="Control/TabContainer/Power" unique_id=1446472227]
 visible = false
 layout_mode = 0
 offset_right = 40.0
@@ -127,7 +169,7 @@ popup/item_2/text = "Tether"
 popup/item_2/icon = SubResource("GradientTexture1D_yf5fn")
 popup/item_2/id = 2
 
-[node name="Systems" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=534573807]
+[node name="Systems" type="Button" parent="Control/TabContainer/Power" unique_id=534573807]
 layout_mode = 1
 offset_left = 72.0
 offset_top = 141.0
@@ -135,7 +177,7 @@ offset_right = 239.0
 offset_bottom = 172.0
 text = "System Power: 100%"
 
-[node name="Samples" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=157811073]
+[node name="Samples" type="Button" parent="Control/TabContainer/Power" unique_id=157811073]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 275.0
@@ -143,7 +185,7 @@ offset_right = 274.0
 offset_bottom = 306.0
 text = "Sample Collection: 100%"
 
-[node name="Tether" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=1032806482]
+[node name="Tether" type="Button" parent="Control/TabContainer/Power" unique_id=1032806482]
 layout_mode = 0
 offset_left = 90.0
 offset_top = 207.0
@@ -151,12 +193,12 @@ offset_right = 199.0
 offset_bottom = 238.0
 text = "Tether: 100%"
 
-[node name="Ship" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1895162407]
+[node name="Ship" type="TextureRect" parent="Control/TabContainer" unique_id=1895162407]
 layout_mode = 2
 script = ExtResource("3_3cxpa")
 metadata/_tab_index = 1
 
-[node name="Ship" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=877691258]
+[node name="Ship" type="Button" parent="Control/TabContainer/Ship" unique_id=877691258]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -174,7 +216,28 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("1_4xga7")
 autowrap_trim_flags = 192
 
-[node name="Hovering Colour" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Ship" unique_id=815774289]
+[node name="ShipLerpPos" type="Button" parent="Control/TabContainer/Ship/Ship" unique_id=995597633]
+visible = false
+self_modulate = Color(0.36265963, 0.15309086, 0.9556498, 1)
+top_level = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -89.0
+offset_right = 68.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+mouse_filter = 2
+icon = ExtResource("1_4xga7")
+
+[node name="Hovering Colour" type="ColorRect" parent="Control/TabContainer/Ship/Ship" unique_id=815774289]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -184,27 +247,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.83137256, 0.89411765, 0.92941177, 0)
 
-[node name="ShipLerpPos" type="Button" parent="SubViewport/Control/TabContainer/Ship/Ship" unique_id=995597633]
-top_level = true
-z_index = -1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.74289
-offset_top = -67.99999
-offset_right = 59.25714
-offset_bottom = 68.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 2
-icon = ExtResource("1_4xga7")
-
-[node name="Pos1" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1842611306]
+[node name="Pos1" type="Button" parent="Control/TabContainer/Ship" unique_id=1842611306]
 z_index = -1
 layout_mode = 1
 anchors_preset = 4
@@ -219,7 +262,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
-[node name="Pos2" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1491902193]
+[node name="Pos2" type="Button" parent="Control/TabContainer/Ship" unique_id=1491902193]
 z_index = -1
 layout_mode = 1
 anchors_preset = 8
@@ -238,7 +281,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
-[node name="Pos3" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1349207961]
+[node name="Pos3" type="Button" parent="Control/TabContainer/Ship" unique_id=1349207961]
 z_index = -1
 layout_mode = 1
 anchors_preset = 6
@@ -256,14 +299,33 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
-[node name="TextureRect3" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1568788166]
+[node name="True Ship Position" type="Button" parent="Control/TabContainer/Ship" unique_id=1780437102]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.00003
+offset_top = -68.0
+offset_right = 68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+icon = ExtResource("1_4xga7")
+
+[node name="TextureRect3" type="TextureRect" parent="Control/TabContainer" unique_id=1568788166]
 visible = false
 modulate = Color(0.3230459, 0.7567149, 0.09408315, 1)
 layout_mode = 2
 texture = ExtResource("1_4xga7")
 metadata/_tab_index = 2
 
-[node name="ColorRect" type="ColorRect" parent="SubViewport/Control" unique_id=1582421659]
+[node name="CRT Filter" type="ColorRect" parent="Control" unique_id=1582421659]
 visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_g4v7s")
@@ -275,5 +337,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="button_down" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_down"]
-[connection signal="button_up" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_up"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=841538324]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_m7p0i")
+
+[node name="Blur Filter" type="ColorRect" parent="Control" unique_id=782609685]
+material = SubResource("ShaderMaterial_yf5fn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="button_down" from="Control/TabContainer/Ship/Ship" to="Control/TabContainer/Ship" method="_on_ship_button_down"]
+[connection signal="button_up" from="Control/TabContainer/Ship/Ship" to="Control/TabContainer/Ship" method="_on_ship_button_up"]

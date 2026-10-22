@@ -1,0 +1,41 @@
+extends TextureButton
+
+
+var row = 0
+var column = 0
+
+var state = 0
+
+var nearbyMines = 0
+
+var tile_flagged = false
+var tile_hidden = true
+
+
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton && event.pressed && tile_hidden:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				
+				pass
+			MOUSE_BUTTON_RIGHT:
+				pass
+			MOUSE_BUTTON_MIDDLE:
+				pass
+		
+		pass
+	pass # Replace with function body.

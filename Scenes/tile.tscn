@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://n6mmv73lpmn6"]
+
+[ext_resource type="Script" uid="uid://gf3o3xqkewq5" path="res://Scripts/tile.gd" id="1_xsjyq"]
+
+[node name="Tile" type="TextureButton" unique_id=1456663302]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+button_mask = 7
+script = ExtResource("1_xsjyq")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

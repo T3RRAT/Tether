@@ -3,6 +3,7 @@ extends TextureRect
 var dragging = false
 var of = Vector2(0.0,0.0)
 
+var posNumeric = 2
 
 @onready var shipHovering = $"Ship/Hovering Colour"
 @onready var ShipIcon = $Ship
@@ -14,7 +15,7 @@ var of = Vector2(0.0,0.0)
 
 
 @onready var aniPlayer = $"../../AnimationPlayer"
-
+@onready var confirmButton = $"Confirm Button"
 
 @onready var game = $"../../../../../.."
 @onready var tabs = $".."
@@ -49,21 +50,30 @@ func _process(delta: float) -> void:
 		if abs(shipLerpPos.x - pos1.x) < abs(shipLerpPos.x - pos2.x):
 			# Lerp Draggable Ship to position 1
 			ShipIcon.position = lerp(ShipIcon.position, shipLerpPos, delta * 6)
+			posNumeric = 1
 		# Else If Draggable Ship is closer to position 3 compared to position 2
 		elif abs(shipLerpPos.x - pos3.x) < abs(shipLerpPos.x - pos2.x):
 			# Lerp Draggable Ship to position 3
 			ShipIcon.position = lerp(ShipIcon.position, shipLerpPos, delta * 6)
+			posNumeric = 3
 		# Else If Draggable Ship isn't closer to pos 1 or pos 3 compared to pos 2
 		else:
 			# Lerp Draggable Ship to position 2
 			ShipIcon.position = lerp(ShipIcon.position, shipLerpPos, delta * 6)
-			
+			posNumeric = 2
+		
+		
 		#shipHovering.color = Color(shipHovering.color, 0)
 		if shipLerpPos == trueShipPos:
 			ShipIcon.self_modulate = Color.WHITE
+			confirmButton.text = ("Current Position: %d" % posNumeric)
 		else:
 			ShipIcon.self_modulate = Color.BLUE_VIOLET
-	
+			confirmButton.text = ("Confirm Position: %d" % posNumeric)
+		
+		
+		
+		
 	
 	
 	
@@ -93,6 +103,7 @@ func confirmRepositionMinigame():
 		2:
 			print("Minesweeper")
 			# Fredsweeper frank where are youuuuu
+			
 		3: 
 			print("Click Box Captcha")
 		4:

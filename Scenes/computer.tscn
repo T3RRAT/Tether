@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dwbgh7q06vkj7" path="res://Scripts/computer.gd" id="1_m1ujp"]
 [ext_resource type="Script" uid="uid://cxf4wvw6bmtf5" path="res://Scripts/shipTab.gd" id="3_3cxpa"]
 [ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="3_7h0tq"]
+[ext_resource type="Script" uid="uid://dhvdrssnwfs2a" path="res://Scripts/minesweeper.gd" id="4_8u73g"]
+[ext_resource type="FontFile" uid="uid://dpkc5p4heusbr" path="res://Assets/augiepixel.ttf" id="4_m7p0i"]
 [ext_resource type="Shader" uid="uid://ccsqya2nbhx2y" path="res://Scripts/blur.gdshader" id="5_3cxpa"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
@@ -66,7 +68,7 @@ shader_parameter/vignette_opacity = 0.32400001539
 
 [sub_resource type="Animation" id="Animation_3cxpa"]
 resource_name = "Blur Animation"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -318,6 +320,437 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
+[node name="Confirm Button" type="Button" parent="Control/TabContainer/Ship" unique_id=1196104405]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = 82.0
+offset_right = 139.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+text = "Confirm Position: "
+icon = ExtResource("1_4xga7")
+
+[node name="Minigames" type="Control" parent="Control/TabContainer/Ship" unique_id=2113248723]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Minesweeper" type="GridContainer" parent="Control/TabContainer/Ship/Minigames" unique_id=2144897839]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -106.0
+offset_right = 106.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+columns = 4
+script = ExtResource("4_8u73g")
+
+[node name="1,1" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1691177709]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/1,1" unique_id=1714131099]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2,1" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=2066883407]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/2,1" unique_id=303347290]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3,1" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=807329083]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/3,1" unique_id=296048890]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4,1" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=458200583]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/4,1" unique_id=653766019]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1,2" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=920650554]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/1,2" unique_id=2101190839]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2,2" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1917230698]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/2,2" unique_id=663570828]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3,2" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1483811844]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/3,2" unique_id=442273383]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4,2" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1465582764]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/4,2" unique_id=1452513361]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1,3" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=649504899]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/1,3" unique_id=861191689]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2,3" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=638331337]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/2,3" unique_id=316192524]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3,3" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=956264251]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/3,3" unique_id=130743116]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4,3" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=145753869]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/4,3" unique_id=125706540]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1,4" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=663197535]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/1,4" unique_id=910520919]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2,4" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1710263797]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/2,4" unique_id=1893006658]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3,4" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=967683739]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/3,4" unique_id=980064029]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4,4" type="ColorRect" parent="Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1110461523]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/TabContainer/Ship/Minigames/Minesweeper/4,4" unique_id=898061499]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TextureRect3" type="TextureRect" parent="Control/TabContainer" unique_id=1568788166]
 visible = false
 modulate = Color(0.3230459, 0.7567149, 0.09408315, 1)
@@ -349,6 +782,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="button_down" from="Control/TabContainer/Ship/Ship" to="Control/TabContainer/Ship" method="_on_ship_button_down"]
 [connection signal="button_up" from="Control/TabContainer/Ship/Ship" to="Control/TabContainer/Ship" method="_on_ship_button_up"]

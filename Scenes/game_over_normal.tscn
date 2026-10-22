@@ -27,8 +27,7 @@ offset_bottom = 382.0
 theme_override_font_sizes/normal_font_size = 64
 text = "Operative Status: Deceased
 Time of Death: 0:00
-Cause: Bleeding
-
+Cause: bear5 was a bit hungry sorry
 "
 
 [node name="Button" type="Button" parent="CanvasLayer" unique_id=957514002]

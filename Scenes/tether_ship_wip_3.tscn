@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dggd6jegj3osv"]
+
+[ext_resource type="PackedScene" uid="uid://bykhvleksvb7q" path="res://Assets/Tether Ship wip3.glb" id="1_wmtq3"]
+
+[node name="Tether Ship wip3" unique_id=1688532181 instance=ExtResource("1_wmtq3")]

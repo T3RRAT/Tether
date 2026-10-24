@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c58gjyc8rg4fi"]
+
+[ext_resource type="Texture2D" uid="uid://d3l85sost4ouf" path="res://Assets/Jame Gam Yay but png.png" id="1_nsgo2"]
+[ext_resource type="Script" uid="uid://bwrwb2hqbrp5t" path="res://Scripts/click_captcha.gd" id="2_emmr5"]
+
+[node name="Click Captcha Button" type="Button" unique_id=118569621]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Click to Confirm"
+icon = ExtResource("1_nsgo2")
+script = ExtResource("2_emmr5")
+
+[node name="Loading Circle" type="Sprite2D" parent="." unique_id=1640274428]
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

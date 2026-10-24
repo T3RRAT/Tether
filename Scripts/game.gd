@@ -46,7 +46,7 @@ var monsterAggroAmount = 0
 @onready var lightRight = %FlashLightRight
 @onready var lightLeft = %FlashLightLeft
 @onready var player = $Player
-@onready var flashSound = $"Player/Flash Sound"
+@onready var flashSound = $"Ship/Flash Sound"
 
 # Gameplay Important Objects
 @onready var camMoveTimer = %"Cam Move Timer"
@@ -198,7 +198,7 @@ func _process(delta: float) -> void:
 		computer.position.y = lerp(computer.position.y, computerUpPos.position.y, delta * 6)
 		inUserInterface = false
 	
-	
+	# Computer Tab Switching Using Number Keys
 	if Input.is_action_just_pressed("One"):
 		computer.call("callChangeShipPosition", 1)
 	

@@ -21,4 +21,10 @@ script = ExtResource("2_emmr5")
 
 [node name="Loading Circle" type="Sprite2D" parent="." unique_id=1640274428]
 
+[node name="Loading Timer" type="Timer" parent="." unique_id=1972584390]
+
+[node name="Captcha Closing" type="Timer" parent="." unique_id=1700288783]
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="Loading Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Captcha Closing" to="." method="_on_captcha_closing_timeout"]

@@ -1,10 +1,12 @@
 extends Node3D
 
 var buttonInteract = false
-var farRight = false
-var farLeft = false
+var inRight = false
+var inLeft = false
 var flashing = false
 var monsterActive = false
+
+
 
 var tut = false
 
@@ -46,6 +48,7 @@ var monsterAggroAmount = 0
 @onready var lightRight = %FlashLightRight
 @onready var lightLeft = %FlashLightLeft
 @onready var player = $"Player Lerp Position"
+
 @onready var flashSound = $"Ship/Flash Sound"
 
 # Gameplay Important Objects
@@ -59,8 +62,8 @@ var monsterAggroAmount = 0
 @onready var computerUpPos = $"Computer Items/Computer Up Pos"
 
 # 2D Objects
-@onready var buttonLeft = $"2D Overlay/Control/CanvasLayer/Left Button"
-@onready var buttonRight = $"2D Overlay/Control/CanvasLayer/Right Button"
+#@onready var buttonLeft = $"2D Overlay/Control/CanvasLayer/Left Button"
+#@onready var buttonRight = $"2D Overlay/Control/CanvasLayer/Right Button"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -70,6 +73,10 @@ func _ready() -> void:
 	
 	monsterOne.position = monsterPositionInactive.position
 	monsterActivityTimer.start()
+	
+	
+	print(rad_to_deg(1))
+	
 	pass # Replace with function body.
 
 
@@ -77,39 +84,30 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	# Camera Locations
-	if camLocation == 1:
-		farRight = true
-		playerRotationSetter(1)
-		computerState = -1
-		#player.rotation_degrees = Vector3(0, -90, 0)
-		#relocateShip(1)
-	if camLocation == -1:
-		farLeft = true
-		playerRotationSetter(-1)
-		computerState = -1
-		#player.rotation_degrees = Vector3(0, 90, 0)
-		#relocateShip(-1)
+	
 	if camLocation == 0:
-		farLeft = false
-		farRight = false
 		playerRotationSetter(0)
-		#player.rotation_degrees = Vector3(0, 0, 0)
-		#relocateShip(0)
 	if camLocation == 2: # Location 2 refers to back of ship
-		farLeft = true
-		farRight = true
+		#farLeft = true
+		#farRight = true
 		playerRotationSetter(2)
+		pass
+	
+	while inLeft == true:
+		if player.rotation:
+			
+			pass
 		pass
 
 	
 	# Handle Camera Buttons
-	if farRight == true:
-		buttonRight.visible = false
-	if farLeft == true:
-		buttonLeft.visible = false
-	if not farLeft and not farRight:
-		buttonLeft.visible = true
-		buttonRight.visible = true
+	#if farRight == true:
+		#buttonRight.visible = false
+	#if farLeft == true:
+		#buttonLeft.visible = false
+	#if not farLeft and not farRight:
+		#buttonLeft.visible = true
+		#buttonRight.visible = true
 	
 	# Handling Player Camera
 	cam.rotation.y = lerp_angle(cam.rotation.y, player.rotation.y, 0.2)
@@ -150,18 +148,18 @@ func _process(delta: float) -> void:
 			if inUserInterface:
 				computer.call("changeComputerTab", -1)
 				pass
-			elif farLeft == false:
-				camLocation -= 1
-				interactionMade()
+			#elif farLeft == false:
+				#camLocation -= 1
+				#interactionMade()
 	
 	if Input.is_action_just_pressed("Go Right"):
 		if inCutscene == false && buttonInteract == false:
 			if inUserInterface:
 				computer.call("changeComputerTab", 1)
 				pass
-			elif farRight == false:
-				camLocation += 1
-				interactionMade()
+			#elif farRight == false:
+				#camLocation += 1
+				#interactionMade()
 	
 	if Input.is_action_just_pressed("Go Backwards"):
 		if buttonInteract == false:
@@ -178,12 +176,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Flip Computer"):
 		if camLocation == 0 && buttonInteract == false:
 			computerState = computerState * -1
-			if farLeft == false:
-				farLeft = true
-				farRight = true
-			else:
-				farLeft = false
-				farRight = false
+			#if farLeft == false:
+				#farLeft = true
+				#farRight = true
+			#else:
+				#farLeft = false
+				#farRight = false
 			interactionMade()
 			
 		
@@ -255,19 +253,23 @@ func relocateShip(positionRelocate):
 	pass
 
 func playerRotationSetter(location):
-	if location == 1:
-		player.rotation_degrees = Vector3(0, -90, -5)
-	elif location == -1:
-		player.rotation_degrees = Vector3(0, 90, 5)
-	elif location == 2:
-		player.rotation_degrees = Vector3(0, 180, 0)
+	if location == 0:
+		player.rotation
+		#player.rotation_degress = Vector3(0, 0, 0)
+	if location == 2:
+		#player.rotation_degrees = Vector3(0, 180, 0)
+		player
 	else:
-		player.rotation_degrees = Vector3(0, 0, shipPosition * location)
+		#player.rotation_degrees = Vector3(0, 0, shipPosition * location)
+		pass
 
 func interactionMade():
 	buttonInteract = true
 	camMoveTimer.start()
 
+func updateCamera():
+	#player.rotation_degrees = Vector3(0, player.rotation_degrees + mouse, 0)
+	pass
 
 
 
@@ -279,8 +281,10 @@ func _on_left_button_mouse_entered() -> void:
 	if (buttonInteract == false) && (inUserInterface == false):
 		#player.rotate(Vector3.UP, player.rotation.y + 90)
 		#player.rotation.y = angle_difference(player.rotation.y, player.rotation.y + 90)
-		interactionMade()
-		camLocation = camLocation - 1
+		#interactionMade()
+		#camLocation = camLocation - 1
+		inLeft = true
+		pass
 	pass # Replace with function body.
 
 
@@ -288,8 +292,12 @@ func _on_right_button_mouse_entered() -> void:
 	if (buttonInteract == false) && (inUserInterface == false):
 		#player.rotation.y = angle_difference(player.rotation.y, player.rotation.y - 90)
 		#player.rotate(Vector3.DOWN, player.rotation.y - 90)
-		interactionMade()
-		camLocation = camLocation + 1
+		#interactionMade()
+		#camLocation = camLocation + 1
+		#if player.rotation.y < 90:
+			#player.rotation_degrees = Vector3(0, player.rotation.y - 1, 0)
+		inRight = true
+		pass
 	pass # Replace with function body.
 
 

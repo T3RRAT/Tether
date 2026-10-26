@@ -19,6 +19,20 @@ size = Vector3(10, 10, 10)
 [sub_resource type="PrismMesh" id="PrismMesh_g4v7s"]
 size = Vector3(0.275, 0.275, 20)
 
+[sub_resource type="GDScript" id="GDScript_1l0tm"]
+script/source = "extends Camera3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [sub_resource type="Environment" id="Environment_g4v7s"]
 background_mode = 2
 background_energy_multiplier = 0.0
@@ -111,6 +125,7 @@ fov = 50.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.308696, 0)
 current = true
 fov = 70.0
+script = SubResource("GDScript_1l0tm")
 
 [node name="2D Overlay" type="Node2D" parent="." unique_id=1101883087]
 
@@ -125,15 +140,11 @@ grow_vertical = 2
 [node name="CanvasLayer" type="CanvasLayer" parent="2D Overlay/Control" unique_id=1219470983]
 
 [node name="Left Button" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=534802264]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -324.0
-offset_right = 148.0
-offset_bottom = 324.0
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 128.0
 grow_vertical = 2
-scale = Vector2(0.7, 0.7)
-pivot_offset = Vector2(74, 324)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="Right Button" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=288830261]
 anchors_preset = 6
@@ -141,13 +152,12 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -148.0
+offset_left = -128.0
 offset_top = -324.0
 offset_bottom = 324.0
 grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(0.7, 0.7)
-pivot_offset = Vector2(74, 324)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="UpButton" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=1433246067]
 anchors_preset = 5

@@ -3,6 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://bykhvleksvb7q" path="res://Assets/Tether Ship wip3.glb" id="1_wmtq3"]
 
 [node name="Tether Ship wip3" unique_id=1688532181 instance=ExtResource("1_wmtq3")]
-
-[node name="Door" parent="." index="0" unique_id=2073284237]
-visible = false

@@ -1,9 +1,15 @@
 extends Button
 
 @onready var button = $"."
+<<<<<<< HEAD
+<<<<<<< HEAD
 @onready var captcha_Processing_Timer = $"Loading Timer"
 @onready var captcha_Closing_Timer = $"Captcha Closing"
 
+=======
+>>>>>>> parent of beb0701 (Captcha buton work)
+=======
+>>>>>>> parent of beb0701 (Captcha buton work)
 var loading_circle = "res://icon.svg"
 var captchaState = false
 
@@ -26,6 +32,8 @@ func _process(delta: float) -> void:
 func openCaptcha():
 	pass
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 func closeCaptcha():
 	# remove loading circle with a checkmark
 	# ding sound
@@ -47,4 +55,12 @@ func _on_timer_timeout() -> void:
 
 func _on_captcha_closing_timeout() -> void:
 	
+=======
+func _on_pressed() -> void:
+	#button.icon = loading_circle
+>>>>>>> parent of beb0701 (Captcha buton work)
+=======
+func _on_pressed() -> void:
+	#button.icon = loading_circle
+>>>>>>> parent of beb0701 (Captcha buton work)
 	pass # Replace with function body.

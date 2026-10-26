@@ -47,8 +47,16 @@ var monsterAggroAmount = 0
 @onready var tCam = $"Tether Camera"
 @onready var lightRight = %FlashLightRight
 @onready var lightLeft = %FlashLightLeft
+<<<<<<< HEAD
+<<<<<<< HEAD
 @onready var player = $"Player Lerp Position"
 
+=======
+@onready var player = $Player
+>>>>>>> parent of beb0701 (Captcha buton work)
+=======
+@onready var player = $Player
+>>>>>>> parent of beb0701 (Captcha buton work)
 @onready var flashSound = $"Ship/Flash Sound"
 
 # Gameplay Important Objects

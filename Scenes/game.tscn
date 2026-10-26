@@ -113,7 +113,7 @@ mesh = SubResource("SphereMesh_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.976712)
 mesh = SubResource("PrismMesh_g4v7s")
 
-[node name="Player Lerp Position" type="MeshInstance3D" parent="." unique_id=1867483037]
+[node name="Player" type="MeshInstance3D" parent="." unique_id=1867483037]
 visible = false
 mesh = SubResource("CapsuleMesh_g4v7s")
 

@@ -44,3 +44,6 @@ offset_bottom = 307.0
 theme_override_fonts/font = ExtResource("1_klylv")
 theme_override_font_sizes/font_size = 128
 text = "Tether"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1132297574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

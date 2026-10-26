@@ -8,16 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://c6xdf2q1e7la5" path="res://Scenes/monster.tscn" id="5_wowpa"]
 [ext_resource type="AudioStream" uid="uid://dmtpgoksgrl0k" path="res://Assets/Landing.wav" id="6_i6g32"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
-rings = 6
-
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(10, 10, 10)
 
-[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
-
 [sub_resource type="PrismMesh" id="PrismMesh_g4v7s"]
 size = Vector3(0.275, 0.275, 20)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+rings = 6
 
 [sub_resource type="GDScript" id="GDScript_1l0tm"]
 script/source = "extends Camera3D
@@ -96,24 +94,16 @@ unique_name_in_owner = true
 [node name="Node3D" type="Node3D" parent="." unique_id=212646375]
 script = ExtResource("2_wrm1d")
 
-[node name="Capsule" type="MeshInstance3D" parent="Node3D" unique_id=479209511]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
-mesh = SubResource("CapsuleMesh_g4v7s")
-
 [node name="Cube" type="MeshInstance3D" parent="Node3D" unique_id=1666532331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
 visible = false
 mesh = SubResource("BoxMesh_g4v7s")
 
-[node name="Sphere" type="MeshInstance3D" parent="Node3D" unique_id=317362868]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-mesh = SubResource("SphereMesh_g4v7s")
-
 [node name="Prism" type="MeshInstance3D" parent="Node3D" unique_id=451739118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.976712)
 mesh = SubResource("PrismMesh_g4v7s")
 
-[node name="Player" type="MeshInstance3D" parent="." unique_id=1867483037]
+[node name="Player Lerp Position" type="MeshInstance3D" parent="." unique_id=1867483037]
 visible = false
 mesh = SubResource("CapsuleMesh_g4v7s")
 

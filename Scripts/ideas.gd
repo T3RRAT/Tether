@@ -30,3 +30,19 @@ func _process(delta: float) -> void:
 # I would darken the entire screen and have the image overlay?
 # and then the death info would appear as well as the uhhh. the like restart night button. 
 # How to set up homescreen then to have like, the continue night.
+
+
+
+
+
+
+
+
+
+
+# Things to do
+# Finish Captcha
+# Impliment death screen proper
+# Fix Computer UI bug
+# Stand Up and walking section
+# Make something antique????????

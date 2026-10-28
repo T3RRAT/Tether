@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://d3l85sost4ouf" path="res://Assets/Jame Gam Yay but png.png" id="1_nsgo2"]
 [ext_resource type="Script" uid="uid://bwrwb2hqbrp5t" path="res://Scripts/click_captcha.gd" id="2_emmr5"]
+[ext_resource type="Texture2D" uid="uid://chopwcmyvuo11" path="res://Assets/Loading circle plain.png" id="3_x0442"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
 
 [node name="Click Captcha Button" type="Button" unique_id=118569621]
 anchors_preset = 8
@@ -19,11 +22,20 @@ text = "Click to Confirm"
 icon = ExtResource("1_nsgo2")
 script = ExtResource("2_emmr5")
 
-[node name="Loading Circle" type="Sprite2D" parent="." unique_id=1640274428]
-
 [node name="Loading Timer" type="Timer" parent="." unique_id=1972584390]
 
 [node name="Captcha Closing" type="Timer" parent="." unique_id=1700288783]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=918313372]
+visible = false
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+
+[node name="Loading Image" type="Sprite2D" parent="." unique_id=294557057]
+position = Vector2(68, 69)
+scale = Vector2(0.07777776, 0.07777776)
+texture = ExtResource("3_x0442")
+
+[node name="Finished Image" type="Sprite2D" parent="." unique_id=1765238612]
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="timeout" from="Loading Timer" to="." method="_on_timer_timeout"]

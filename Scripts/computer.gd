@@ -168,5 +168,11 @@ func callChangeTrueShipPosition():
 	shipTab.call("confirmRepositionMinigame")
 
 
+
+# Functions that inner scenes call
+func click_Captcha_Finished():
+	game.call("clickCap_Computer_Game")
+	pass
+
 func allocatePower(pFrom, pToo):
 	pass

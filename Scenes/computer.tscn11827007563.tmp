@@ -1,0 +1,792 @@
+[gd_scene format=3 uid="uid://uigs3q6cxjtu"]
+
+[ext_resource type="Texture2D" uid="uid://cg4cjqnn1vj7a" path="res://icon.svg" id="1_4xga7"]
+[ext_resource type="Script" uid="uid://dwbgh7q06vkj7" path="res://Scripts/computer.gd" id="1_m1ujp"]
+[ext_resource type="Script" uid="uid://cxf4wvw6bmtf5" path="res://Scripts/shipTab.gd" id="3_3cxpa"]
+[ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="3_7h0tq"]
+[ext_resource type="Script" uid="uid://dhvdrssnwfs2a" path="res://Scripts/minesweeper.gd" id="4_8u73g"]
+[ext_resource type="FontFile" uid="uid://dpkc5p4heusbr" path="res://Assets/augiepixel.ttf" id="4_m7p0i"]
+[ext_resource type="Shader" uid="uid://ccsqya2nbhx2y" path="res://Scripts/blur.gdshader" id="5_3cxpa"]
+[ext_resource type="PackedScene" uid="uid://c58gjyc8rg4fi" path="res://Scenes/click_captcha.tscn" id="6_iofu4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m1ujp"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_yf5fn")
+emission_enabled = true
+emission = Color(0.23031491, 0.23031494, 0.23031488, 1)
+emission_texture = SubResource("ViewportTexture_m1ujp")
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_g4v7s")
+size = Vector2(1.41, 0.81)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3cxpa"]
+data = PackedVector3Array(0.705, -0.405, 0, -0.705, -0.405, 0, 0.705, 0.405, 0, -0.705, -0.405, 0, -0.705, 0.405, 0, 0.705, 0.405, 0)
+
+[sub_resource type="Theme" id="Theme_3dryh"]
+TabContainer/font_sizes/font_size = 24
+
+[sub_resource type="Gradient" id="Gradient_m1ujp"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g4v7s"]
+gradient = SubResource("Gradient_m1ujp")
+
+[sub_resource type="Gradient" id="Gradient_7h0tq"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yf5fn"]
+gradient = SubResource("Gradient_7h0tq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("3_7h0tq")
+shader_parameter/overlay = false
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/brightness = 1.4
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/aberration = 0.01500004821249989
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/pixelate = false
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.800000038
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.32400001539
+
+[sub_resource type="Animation" id="Animation_3cxpa"]
+resource_name = "Blur Animation"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Control/Blur Filter:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 5.0]
+}
+
+[sub_resource type="Animation" id="Animation_m7p0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Control/Blur Filter:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m7p0i"]
+_data = {
+&"Blur Animation": SubResource("Animation_3cxpa"),
+&"RESET": SubResource("Animation_m7p0i")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+shader = ExtResource("5_3cxpa")
+shader_parameter/lod = 0.0
+
+[node name="Computer" type="Node3D" unique_id=129153883]
+script = ExtResource("1_m1ujp")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1590787459]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1772993787]
+size = Vector3(1.6, 1, 0.1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=316805959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.06266138)
+operation = 2
+size = Vector3(1.4, 0.8, 0.1)
+
+[node name="Quad" type="MeshInstance3D" parent="." unique_id=359092796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.013243794)
+mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="Area3D" type="Area3D" parent="Quad" unique_id=186926410]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D" unique_id=1803618872]
+shape = SubResource("ConcavePolygonShape3D_3cxpa")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=778372070]
+
+[node name="Control" type="Control" parent="SubViewport" unique_id=934616759]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3dryh")
+
+[node name="TabContainer" type="TabContainer" parent="SubViewport/Control" unique_id=2039419334]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+
+[node name="Power" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=678326908]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="OptionButton" type="OptionButton" parent="SubViewport/Control/TabContainer/Power" unique_id=1446472227]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 20.0
+toggle_mode = false
+item_count = 3
+popup/item_0/text = "Systems"
+popup/item_0/icon = SubResource("GradientTexture1D_g4v7s")
+popup/item_0/id = 0
+popup/item_1/text = "Sample Collection"
+popup/item_1/icon = ExtResource("1_4xga7")
+popup/item_1/id = 1
+popup/item_2/text = "Tether"
+popup/item_2/icon = SubResource("GradientTexture1D_yf5fn")
+popup/item_2/id = 2
+
+[node name="Systems" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=534573807]
+layout_mode = 1
+offset_left = 72.0
+offset_top = 141.0
+offset_right = 239.0
+offset_bottom = 172.0
+text = "System Power: 100%"
+
+[node name="Samples" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=157811073]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 275.0
+offset_right = 274.0
+offset_bottom = 306.0
+text = "Sample Collection: 100%"
+
+[node name="Tether" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=1032806482]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 207.0
+offset_right = 199.0
+offset_bottom = 238.0
+text = "Tether: 100%"
+
+[node name="Ship" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1895162407]
+layout_mode = 2
+script = ExtResource("3_3cxpa")
+metadata/_tab_index = 1
+
+[node name="Ship" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=877691258]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -68.0
+offset_right = 68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 1)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+icon = ExtResource("1_4xga7")
+autowrap_trim_flags = 192
+
+[node name="ShipLerpPos" type="Button" parent="SubViewport/Control/TabContainer/Ship/Ship" unique_id=995597633]
+visible = false
+self_modulate = Color(0.36265963, 0.15309086, 0.9556498, 1)
+top_level = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -89.0
+offset_right = 68.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+mouse_filter = 2
+icon = ExtResource("1_4xga7")
+
+[node name="Hovering Colour" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Ship" unique_id=815774289]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.83137256, 0.89411765, 0.92941177, 0)
+
+[node name="Pos1" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1842611306]
+z_index = -1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -68.0
+offset_right = 136.0
+offset_bottom = 68.0
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+icon = ExtResource("1_4xga7")
+
+[node name="Pos2" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1491902193]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.00003
+offset_top = -68.0
+offset_right = 68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+icon = ExtResource("1_4xga7")
+
+[node name="Pos3" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1349207961]
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -68.0
+offset_bottom = 68.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+icon = ExtResource("1_4xga7")
+
+[node name="True Ship Position" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1780437102]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.00003
+offset_top = -68.0
+offset_right = 68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+icon = ExtResource("1_4xga7")
+
+[node name="Confirm Button" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1196104405]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = 82.0
+offset_right = 139.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+text = "Confirm Position: "
+icon = ExtResource("1_4xga7")
+
+[node name="Minigames" type="Control" parent="SubViewport/Control/TabContainer/Ship" unique_id=2113248723]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Minesweeper" type="GridContainer" parent="SubViewport/Control/TabContainer/Ship/Minigames" unique_id=2144897839]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -106.0
+offset_right = 106.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+columns = 4
+script = ExtResource("4_8u73g")
+
+[node name="1,1" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1691177709]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/1,1" unique_id=1714131099]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2,1" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=2066883407]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/2,1" unique_id=303347290]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3,1" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=807329083]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/3,1" unique_id=296048890]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4,1" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=458200583]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/4,1" unique_id=653766019]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1,2" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=920650554]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/1,2" unique_id=2101190839]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2,2" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1917230698]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/2,2" unique_id=663570828]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3,2" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1483811844]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/3,2" unique_id=442273383]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4,2" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1465582764]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/4,2" unique_id=1452513361]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1,3" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=649504899]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/1,3" unique_id=861191689]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2,3" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=638331337]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/2,3" unique_id=316192524]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3,3" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=956264251]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/3,3" unique_id=130743116]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4,3" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=145753869]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/4,3" unique_id=125706540]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1,4" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=663197535]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/1,4" unique_id=910520919]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2,4" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1710263797]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/2,4" unique_id=1893006658]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3,4" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=967683739]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/3,4" unique_id=980064029]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4,4" type="ColorRect" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper" unique_id=1110461523]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control/TabContainer/Ship/Minigames/Minesweeper/4,4" unique_id=898061499]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_m7p0i")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Click Captcha" parent="SubViewport/Control/TabContainer/Ship/Minigames" unique_id=1953865121 instance=ExtResource("6_iofu4")]
+layout_mode = 1
+
+[node name="Tab3" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1568788166]
+visible = false
+modulate = Color(0.3230459, 0.7567149, 0.09408315, 1)
+layout_mode = 2
+texture = ExtResource("1_4xga7")
+metadata/_tab_index = 2
+
+[node name="CRT Filter" type="ColorRect" parent="SubViewport/Control" unique_id=1582421659]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_g4v7s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/Control" unique_id=841538324]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_m7p0i")
+
+[node name="Blur Filter" type="ColorRect" parent="SubViewport/Control" unique_id=782609685]
+material = SubResource("ShaderMaterial_yf5fn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="button_down" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_down"]
+[connection signal="button_up" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_up"]

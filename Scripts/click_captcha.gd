@@ -1,5 +1,8 @@
 extends Button
 
+
+@onready var computer = $"../../../../../.."
+
 @onready var button = $"."
 @onready var checkbox_Image = $"Checkbox Image"
 @onready var loading_Image = $"Loading Image"
@@ -38,14 +41,17 @@ func _process(delta: float) -> void:
 	if captchaState == 0:
 		# Button is invisible
 		button.visible = false
+		loading_Image.visible = false
 		button.scale = Vector2(0, 0)
+		checkbox_Image.visible = false
 		#button.scale = lerp(button.scale, Vector2(0, 1), delta * 1)
-		loading_Image.scale = Vector2(0, 0)
+		#loading_Image.scale = Vector2(0, 0)
 		#loading_Image.scale = lerp(loading_Image.scale, Vector2(0, 0), delta * 1)
-		checkbox_Image.scale = lerp(checkbox_Image.scale, checkbox_Image_Scale, delta * 1)
+		#checkbox_Image.scale = lerp(checkbox_Image.scale, checkbox_Image_Scale, delta * 1)
 	elif captchaState == 1:
 		# Button is visible with icon
 		button.visible = true
+		checkbox_Image.visible = true
 		button.scale = lerp(button.scale, Vector2(0.8, 1), delta * 6)
 		
 		if s2T_On == false:
@@ -53,7 +59,7 @@ func _process(delta: float) -> void:
 	elif captchaState == 2:
 		# Button is loading. Icon should be invisible and loading circle should be working
 		#button.icon.visible = false
-		
+		loading_Image.visible = true
 		loading_Image.scale = lerp(loading_Image.scale, loading_Image_Scale, delta * 1)
 	elif captchaState == 3:
 		# Button is closing. Icon changes to finished icon
@@ -79,6 +85,7 @@ func closeCaptcha():
 	print("Close for business")
 	captchaState = 0
 	finsihed = true
+	computer.call("click_Captcha_Finished")
 	pass
 
 

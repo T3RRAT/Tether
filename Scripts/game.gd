@@ -153,6 +153,7 @@ func _process(delta: float) -> void:
 			checkMonster()
 		elif inUserInterface == true && called_To_Change == false:
 			computer.call("callChangeTrueShipPosition")
+			called_To_Change = true
 	else:
 		lightLeft.light_energy = lerp(lightLeft.light_energy, 0.0, delta * 6)
 		lightRight.light_energy = lerp(lightRight.light_energy, 0.0, delta * 6)
@@ -286,6 +287,14 @@ func interactionMade():
 func updateCamera():
 	#player.rotation_degrees = Vector3(0, player.rotation_degrees + mouse, 0)
 	pass
+
+
+# Functions that are called by inner scenes. i really need to learn if there is some better way of doing this
+func clickCap_Computer_Game():
+	called_To_Change = false
+	pass
+
+
 
 
 

@@ -26,6 +26,7 @@ var shipPosition = 0
 var computerState = -1
 var inCutscene = false
 var inUserInterface = false
+var called_To_Change = false
 
 var lvStatus = "normal"
 var session = 0
@@ -132,6 +133,7 @@ func _process(delta: float) -> void:
 		#print("below is cam rotation")
 		#print(cam.rotation.y)
 		print("Cam location = %d" % camLocation)
+		
 	
 	
 	# Handle Power
@@ -149,7 +151,7 @@ func _process(delta: float) -> void:
 			flashing = true
 			flashSound.play(0.38) # Number is here to make sure flash sound isnt delayed
 			checkMonster()
-		elif inUserInterface == true:
+		elif inUserInterface == true && called_To_Change == false:
 			computer.call("callChangeTrueShipPosition")
 	else:
 		lightLeft.light_energy = lerp(lightLeft.light_energy, 0.0, delta * 6)

@@ -1,17 +1,31 @@
 extends Button
 
 @onready var button = $"."
+@onready var checkbox_Image = $"Checkbox Image"
 @onready var loading_Image = $"Loading Image"
 @onready var finished_Image = $"Finished Image"
 
-@onready var captcha_Processing_Timer = $"Loading Timer"
-@onready var captcha_Closing_Timer = $"Captcha Closing"
+@onready var state_2_Timer = $"Captcha State 2"
+@onready var state_3_Timer = $"Captcha State 3"
+@onready var state_End_Timer = $"Captcha State End"
 
 # 0 = inactive, 1 = active, 2 = loading, 3 = closing
 var captchaState = 0
+var loading_Time = 1
+
+var loading_Image_Scale = null
+var finished_Image_Scale = null
+var checkbox_Image_Scale = null
+
+var s2T_On = false
+var s3T_On = false
+var finsihed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	loading_Image_Scale = loading_Image.scale
+	finished_Image_Scale = finished_Image.scale
+	checkbox_Image_Scale = checkbox_Image.scale
 	pass # Replace with function body.
 
 
@@ -19,61 +33,68 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	
+	
+	# Based on Captcha State, will change stuff ig
 	if captchaState == 0:
 		# Button is invisible
 		button.visible = false
-		button.scale = lerp(button.scale, Vector2(0, 1), delta * 1)
-		loading_Image.scale = lerp(loading_Image.scale, Vector2(0, 0), delta * 1)
+		button.scale = Vector2(0, 0)
+		#button.scale = lerp(button.scale, Vector2(0, 1), delta * 1)
+		loading_Image.scale = Vector2(0, 0)
+		#loading_Image.scale = lerp(loading_Image.scale, Vector2(0, 0), delta * 1)
+		checkbox_Image.scale = lerp(checkbox_Image.scale, checkbox_Image_Scale, delta * 1)
 	elif captchaState == 1:
 		# Button is visible with icon
 		button.visible = true
-		button.scale = lerp(button.scale, Vector2(1, 1), delta * 1)
-		loading_Image.scale = lerp(loading_Image.scale, Vector2(0, 0), delta * 1)
+		button.scale = lerp(button.scale, Vector2(0.8, 1), delta * 6)
+		
+		if s2T_On == false:
+			state_2_Timer.start(loading_Time)
 	elif captchaState == 2:
 		# Button is loading. Icon should be invisible and loading circle should be working
-		button.icon.visible = false
-		loading_Image.scale = lerp(loading_Image.scale, Vector2(1, 1), delta * 1)
+		#button.icon.visible = false
+		
+		loading_Image.scale = lerp(loading_Image.scale, loading_Image_Scale, delta * 1)
 	elif captchaState == 3:
 		# Button is closing. Icon changes to finished icon
-		finished_Image.scale = lerp(finished_Image.scale, Vector2(1, 1), delta * 1)
+		finished_Image.scale = lerp(finished_Image.scale, finished_Image_Scale, delta * 1)
 		loading_Image.scale = lerp(loading_Image.scale, Vector2(0, 0), delta * 0.1)
-		
+		if s3T_On == false:
+			state_3_Timer.start()
 		pass
 	
-	
+	# Should constantly just rotate the loading image
 	loading_Image.rotation_degrees = rotate_toward(loading_Image.rotation_degrees, loading_Image.rotation_degrees + 90, delta * 1)
 	
 	pass
 
 func openCaptcha():
+	print("Open Seasasesaeme")
+	captchaState = 1
+	finsihed = false
 	pass
 
 
 func closeCaptcha():
+	print("Close for business")
 	captchaState = 0
+	finsihed = true
 	pass
 
 
 func _on_pressed() -> void:
-	# remove image
-	# loading circle icon
+	print("Pressed and loading")
 	captchaState = 2
-	captcha_Processing_Timer.start()
 	pass # Replace with function body.
 
 # 
-
-
-
-
-
 func _on_captcha_state_2_timeout() -> void:
+	captchaState = 3
+	s2T_On = false
 	pass # Replace with function body.
 
 
 func _on_captcha_state_3_timeout() -> void:
-	pass # Replace with function body.
-
-
-func _on_captcha_state_end_timeout() -> void:
+	closeCaptcha()
+	s3T_On = false
 	pass # Replace with function body.

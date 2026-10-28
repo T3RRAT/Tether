@@ -15,6 +15,7 @@ var last_event_time: float = -1.0
 
 @onready var tabs = $SubViewport/Control/TabContainer
 @onready var shipTab = $SubViewport/Control/TabContainer/Ship
+@onready var click_Captcha = $"SubViewport/Control/TabContainer/Ship/Minigames/Click Captcha"
 @onready var game = $"../.."
 @onready var redirectPower = 's'
 
@@ -166,6 +167,6 @@ func callChangeShipPosition(location):
 func callChangeTrueShipPosition():
 	shipTab.call("confirmRepositionMinigame")
 
+
 func allocatePower(pFrom, pToo):
-	
 	pass

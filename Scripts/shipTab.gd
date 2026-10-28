@@ -20,6 +20,7 @@ var posNumeric = 2
 @onready var game = $"../../../../../.."
 @onready var tabs = $".."
 
+@onready var click_Captcha = $"Minigames/Click Captcha"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -94,18 +95,19 @@ func _on_ship_button_up() -> void:
 
 
 func confirmRepositionMinigame():
-	var minigameType = randi_range(1, 10)
+	var minigameType = randi_range(1, 1)
 	match minigameType:
 		# go on neal.fun to see captcha game for ideas for some very diabolical ones
 		# among us tasks can work here
 		1:
-			print("Forsaken Generator Puzzle")
+			print("Click Box Captcha")
+			click_Captcha.call("openCaptcha")
 		2:
 			print("Minesweeper")
 			# Fredsweeper frank where are youuuuu
 			
 		3: 
-			print("Click Box Captcha")
+			print("Forsaken Generator Puzzle")
 		4:
 			print("Select What Applies Captcha")
 		5:

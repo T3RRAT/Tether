@@ -261,7 +261,7 @@ visible = false
 mesh = SubResource("SphereMesh_yf5fn")
 
 [node name="Computer Down Pos" type="MeshInstance3D" parent="Computer Items" unique_id=1378832576]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1.5)
 visible = false
 mesh = SubResource("SphereMesh_yf5fn")
 

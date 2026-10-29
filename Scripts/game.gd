@@ -152,8 +152,8 @@ func _process(delta: float) -> void:
 			flashSound.play(0.38) # Number is here to make sure flash sound isnt delayed
 			checkMonster()
 		elif inUserInterface == true && called_To_Change == false:
-			computer.call("callChangeTrueShipPosition")
 			called_To_Change = true
+			computer.call("callChangeTrueShipPosition")
 	else:
 		lightLeft.light_energy = lerp(lightLeft.light_energy, 0.0, delta * 6)
 		lightRight.light_energy = lerp(lightRight.light_energy, 0.0, delta * 6)
@@ -292,7 +292,6 @@ func updateCamera():
 # Functions that are called by inner scenes. i really need to learn if there is some better way of doing this
 func clickCap_Computer_Game():
 	called_To_Change = false
-	pass
 
 
 

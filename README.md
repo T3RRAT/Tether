@@ -2,7 +2,7 @@
 Tether is a game in Godot that I'm currently making. It's a sit and survive similarly to Five Nights at Freddy's but instead of being a security guard in a pizzeria, you are a scientist in the voids of space. You are supposed to observe if the loneliest parts of space really are that empty. Unfortunately for you, there is more activity then expected. 
 
 ### How to Play?
-Press space to flash the space in front of you. Probably best to do so if you hear anything. Also you can't flash in front of you if you are looking at the front or have your computer down
+Press space to flash the space in front of you. Probably best to do so if you hear anything. Also you can't flash in front of you if you aren't looking at the front or have your computer down
 
 A, S, and D to turn your camera or alternatively, hover your mouse of the sides of the screen to turn left and right.
 

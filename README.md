@@ -19,7 +19,7 @@ Being serious, the game is built in Godot which I've used for the few game jams 
 This entire project does not contains work produced by AI.
 
 # Opening from source
-To open the project, download the files in this reop and put them all into a folder.
+To open the project, download the files in this repo and put them all into a folder.
 
 Install Godot either from https://godotengine.org/ or through steam
 

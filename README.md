@@ -3,8 +3,14 @@ Tether is a game in Godot that I'm currently making. It's a sit and survive simi
 
 ### How to Play?
 Press space to flash the space in front of you
+
 A, S, and D to turn your camera or alternatively, hover your mouse of the sides of the screen to turn left and right.
+
 Press W or hover your mouse over the top of the screen to pull down a computer. (as of now, it has little functoinality)
+
+You can use A and D or click on the individual tabs to switch tabs
+
+On the "Ship" tab specifically, you can use the number keys to switch the icon's position
 
 ### Little random facts since i was asked for more info
 This game originally was an idea I had for a past game jam by Hack Club where the theme was below the surface. I originally planned for the game to be underwater in a submarine as I was inspired to make a fangame for a roblox game I quite enjoyed but the developer was accused of some heinous actions. It's still up in the air whether or not the accusations were true but I decided I would pivot regardless which is how I'm now making a game about space. 

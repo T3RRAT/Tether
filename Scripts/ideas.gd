@@ -41,8 +41,8 @@ func _process(delta: float) -> void:
 
 
 # Things to do
-# Finish Captcha
+# Finish Captcha FINALLLY DONE OMG WHAT DO YOU MEAN I JUST HAD TO THROW IN A FREAKING .stop() AT THE END I THOUGHT THE TIMER ENDED WHEN IT ENDED BRO
 # Impliment death screen proper
 # Fix Computer UI bug
 # Stand Up and walking section
-# Make something antique????????
+# Make something antique???????? yeah i did have and idea of the stand up and walking sections but that would need a lot of work before i could impliment it so thats for next next week

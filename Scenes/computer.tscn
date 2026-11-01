@@ -322,7 +322,6 @@ mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
 [node name="Confirm Button" type="Button" parent="SubViewport/Control/TabContainer/Ship" unique_id=1196104405]
-z_index = -1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -336,7 +335,6 @@ offset_bottom = 218.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 2
 text = "Confirm Position: "
 icon = ExtResource("1_4xga7")
 
@@ -779,6 +777,7 @@ root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_m7p0i")
 
 [node name="Blur Filter" type="ColorRect" parent="SubViewport/Control" unique_id=782609685]
+visible = false
 material = SubResource("ShaderMaterial_yf5fn")
 layout_mode = 1
 anchors_preset = 15
@@ -790,3 +789,4 @@ mouse_filter = 2
 
 [connection signal="button_down" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_down"]
 [connection signal="button_up" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_up"]
+[connection signal="pressed" from="SubViewport/Control/TabContainer/Ship/Confirm Button" to="SubViewport/Control/TabContainer/Ship" method="_on_confirm_button_pressed"]

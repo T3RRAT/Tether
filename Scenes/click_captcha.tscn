@@ -26,10 +26,8 @@ alignment = 2
 script = ExtResource("2_emmr5")
 
 [node name="Captcha State 2" type="Timer" parent="." unique_id=1972584390]
-wait_time = 0.4
 
 [node name="Captcha State 3" type="Timer" parent="." unique_id=288131389]
-wait_time = 0.4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=918313372]
 visible = false

@@ -5,8 +5,7 @@ var inRight = false
 var inLeft = false
 var flashing = false
 var monsterActive = false
-
-
+var captchaActive = false
 
 var tut = false
 
@@ -26,7 +25,7 @@ var shipPosition = 0
 var computerState = -1
 var inCutscene = false
 var inUserInterface = false
-var called_To_Change = false
+var called_To_Change = 0
 
 var lvStatus = "normal"
 var session = 0
@@ -151,9 +150,10 @@ func _process(delta: float) -> void:
 			flashing = true
 			flashSound.play(0.38) # Number is here to make sure flash sound isnt delayed
 			checkMonster()
-		elif inUserInterface == true && called_To_Change == false:
-			called_To_Change = true
+		elif inUserInterface == true && called_To_Change <= 0:
+			called_To_Change = called_To_Change + 1
 			computer.call("callChangeTrueShipPosition")
+			captchaActive = true
 	else:
 		lightLeft.light_energy = lerp(lightLeft.light_energy, 0.0, delta * 6)
 		lightRight.light_energy = lerp(lightRight.light_energy, 0.0, delta * 6)
@@ -161,7 +161,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Go Left"):
 		if inCutscene == false && buttonInteract == false:
 			if inUserInterface:
-				computer.call("changeComputerTab", -1)
+				if captchaActive == false:
+					computer.call("changeComputerTab", -1)
 				pass
 			elif inLeft == false:
 				camLocation -= 1
@@ -291,7 +292,7 @@ func updateCamera():
 
 # Functions that are called by inner scenes. i really need to learn if there is some better way of doing this
 func clickCap_Computer_Game():
-	called_To_Change = false
+	called_To_Change = 0
 
 
 

@@ -68,14 +68,12 @@ func _process(delta: float) -> void:
 		if shipLerpPos == trueShipPos:
 			ShipIcon.self_modulate = Color.WHITE
 			confirmButton.text = ("Current Position: %d" % posNumeric)
+			confirmButton.z_index = -1
 		else:
 			ShipIcon.self_modulate = Color.BLUE_VIOLET
 			confirmButton.text = ("Confirm Position: %d" % posNumeric)
+			confirmButton.z_index = 0
 		
-		
-		
-		
-	
 	
 	
 	
@@ -102,7 +100,7 @@ func confirmRepositionMinigame():
 		1:
 			print("Click Box Captcha")
 			click_Captcha.call("openCaptcha")
-		2:
+		2: # anything past this is for hard mode if I get around to doing one
 			print("Minesweeper")
 			# Fredsweeper frank where are youuuuu
 			
@@ -152,3 +150,12 @@ func changeTrueShipPosition(location):
 func confirmPosition():
 	trueShipPos = shipLerpPos
 	pass
+
+
+func _on_confirm_button_pressed() -> void:
+	if trueShipPos == shipLerpPos:
+		print("What are you doing bozo")
+	elif trueShipPos != shipLerpPos:
+		print("Good answer nephew")
+		changeTrueShipPosition(null)
+	pass # Replace with function body.

@@ -11,7 +11,7 @@
 background_mode = 2
 background_energy_multiplier = 0.0
 fog_height_density = 0.5
-volumetric_fog_density = 1.0
+volumetric_fog_density = 0.47
 
 [sub_resource type="Theme" id="Theme_g4v7s"]
 default_base_scale = 2.0
@@ -110,6 +110,8 @@ shadow_mesh = SubResource("ArrayMesh_1ao2j")
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 size = Vector2(20, 3)
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_g4v7s"]
+
 [node name="Title Screen" type="Node3D" unique_id=1861249948]
 script = ExtResource("1_p3fck")
 
@@ -119,10 +121,11 @@ environment = SubResource("Environment_p3fck")
 [node name="2D Overlay" type="Node2D" parent="." unique_id=2021004530]
 top_level = true
 
-[node name="Sprite2D" type="Sprite2D" parent="2D Overlay" unique_id=777072339]
+[node name="Center Point" type="Sprite2D" parent="2D Overlay" unique_id=777072339]
+visible = false
 texture = ExtResource("3_55kwv")
 
-[node name="Camera2D" type="Camera2D" parent="2D Overlay/Sprite2D" unique_id=677103098]
+[node name="Camera2D" type="Camera2D" parent="2D Overlay/Center Point" unique_id=677103098]
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("2_twnyg")
@@ -163,7 +166,7 @@ text = "Tether"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="2D Overlay" unique_id=1505401229]
 
-[node name="ColorRect" type="ColorRect" parent="2D Overlay/CanvasLayer" unique_id=2043746991]
+[node name="CRT Filter Adjusred" type="ColorRect" parent="2D Overlay/CanvasLayer" unique_id=2043746991]
 material = SubResource("ShaderMaterial_g4v7s")
 anchors_preset = 15
 anchor_right = 1.0
@@ -174,24 +177,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Ship" type="MeshInstance3D" parent="." unique_id=561934700]
-transform = Transform3D(-0.5852282, -1.1261183, -0.28171924, 0.08429635, 0.27343574, -1.2681195, 1.1577575, -0.5891441, -0.050072826, -11.878, -0.655, -11.01)
-mesh = SubResource("ArrayMesh_p3fck")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1858523860]
-transform = Transform3D(0.97570956, -0.18083706, 0.12364777, -0.12157729, 0.022532973, 0.99232614, -0.18223551, -0.9832549, -4.351015e-08, 0, 0, 7.3416157)
-mesh = SubResource("PlaneMesh_g4v7s")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1801358996]
-transform = Transform3D(-0.18223555, -0.983255, -5.7827968e-08, -0.121577315, 0.022532975, 0.99232626, -0.97570956, 0.18083712, -0.12364777, 4.453583, 0, -3.1562462)
-mesh = SubResource("PlaneMesh_g4v7s")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=174016168]
-transform = Transform3D(0.18223548, 0.983255, 3.2231526e-08, -0.121577315, 0.022532975, 0.99232626, 0.97570956, -0.18083704, 0.12364778, -10.952256, 0, 2.7564964)
-mesh = SubResource("PlaneMesh_g4v7s")
-
 [node name="Test timer" type="Timer" parent="." unique_id=450193429]
-autostart = true
 
 [node name="Camera Pivot Point" type="Node3D" parent="." unique_id=1535813319]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
@@ -206,6 +192,41 @@ transform = Transform3D(0.80094963, 0, 0.59873176, 0, 1, 0, -0.59873176, 0, 0.80
 light_energy = 2.0
 spot_range = 17.784653
 spot_angle = 30.0
+
+[node name="Background Meshes" type="Node3D" parent="." unique_id=1996147776]
+
+[node name="Ship" type="MeshInstance3D" parent="Background Meshes" unique_id=561934700]
+transform = Transform3D(-0.5852282, -1.1261183, -0.28171924, 0.08429635, 0.27343574, -1.2681195, 1.1577575, -0.5891441, -0.050072826, -11.878, -0.655, -11.01)
+mesh = SubResource("ArrayMesh_p3fck")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Background Meshes/Ship" unique_id=590640598]
+transform = Transform3D(0.76923084, 1.1920929e-07, -3.7252903e-09, -2.9802322e-08, 0.7692307, 1.8626451e-09, 1.4901161e-08, -5.9604645e-08, 0.76923084, 0.043106556, 0.7231226, -0.26731253)
+visible = false
+light_color = Color(0.7066004, 0.57672805, 0.33602655, 1)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Background Meshes/Ship" unique_id=65044687]
+transform = Transform3D(0.70778555, -0.29515943, -0.060302764, 0.05196327, -0.03205564, 0.7668039, -0.29674122, -0.7096264, -0.009556588, 0.027079105, -3.6249485, 0.6660049)
+light_energy = 20.0
+spot_range = 6.1389313
+spot_angle = 14.752509
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background Meshes" unique_id=1858523860]
+transform = Transform3D(0.97570956, -0.18083706, 0.12364777, -0.12157729, 0.022532973, 0.99232614, -0.18223551, -0.9832549, -4.351015e-08, 0, 0, 7.3416157)
+visible = false
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Background Meshes" unique_id=1801358996]
+transform = Transform3D(-0.18223555, -0.983255, -5.7827968e-08, -0.121577315, 0.022532975, 0.99232626, -0.97570956, 0.18083712, -0.12364777, 4.453583, 0, -3.1562462)
+visible = false
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Background Meshes" unique_id=174016168]
+transform = Transform3D(0.18223548, 0.983255, 3.2231526e-08, -0.121577315, 0.022532975, 0.99232626, 0.97570956, -0.18083704, 0.12364778, -10.952256, 0, 2.7564964)
+visible = false
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="Stars" type="MeshInstance3D" parent="Background Meshes" unique_id=2130903834]
+mesh = SubResource("ArrayMesh_g4v7s")
 
 [connection signal="pressed" from="2D Overlay/Node2D/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Test timer" to="." method="_on_test_timer_timeout"]

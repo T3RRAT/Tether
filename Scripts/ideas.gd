@@ -41,8 +41,9 @@ func _process(delta: float) -> void:
 
 
 # Things to do
-# Finish Captcha FINALLLY DONE OMG WHAT DO YOU MEAN I JUST HAD TO THROW IN A FREAKING .stop() AT THE END I THOUGHT THE TIMER ENDED WHEN IT ENDED BRO
-# Impliment death screen proper
-# Fix Computer UI bug
+# Impliment death screen proper not yeat but title screen is in a pretty good place and did some testing with the death screen
+# Fix Computer UI bug. (Scale and position seem to be acting really weird)
+# Scale of captcha button is normal and then get smaller?? then again could just be a tether 0.0.4 issue. maybe it will fix itself in the newest export
 # Stand Up and walking section
-# Make something antique???????? yeah i did have and idea of the stand up and walking sections but that would need a lot of work before i could impliment it so thats for next next week
+# Player should be able to interact with a few things in the enviorment
+# Should it be a completly free roam as in movment or should it be like a point and click thing

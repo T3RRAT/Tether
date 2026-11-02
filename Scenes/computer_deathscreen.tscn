@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://c14qog2rimk6j"]
+
+[ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="1_reooy"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_reooy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d116u"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abhh1"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_reooy")
+emission_enabled = true
+emission = Color(0.23031491, 0.23031494, 0.23031488, 1)
+emission_texture = SubResource("ViewportTexture_d116u")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3sihf"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_abhh1")
+size = Vector2(1.41, 0.81)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ym187"]
+data = PackedVector3Array(0.705, -0.405, 0, -0.705, -0.405, 0, 0.705, 0.405, 0, -0.705, -0.405, 0, -0.705, 0.405, 0, 0.705, 0.405, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sj32i"]
+shader = ExtResource("1_reooy")
+shader_parameter/overlay = false
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/brightness = 1.4
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/roll = true
+shader_parameter/roll_speed = 6.0
+shader_parameter/roll_size = 25.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/aberration = 0.06
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/pixelate = true
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.3
+
+[node name="Computer Deathscreen" type="Node3D" unique_id=1862319246]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1449182204]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1107253938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.36489257)
+size = Vector3(1.6, 1, 0.82978517)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1111409554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.06266138)
+operation = 2
+size = Vector3(1.4, 0.8, 0.1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1094011649]
+transform = Transform3D(0.8664056, 0.49934083, 0, -0.49934083, 0.8664056, 0, 0, 0, 1, 0.089873075, 0.64749914, -0.32855886)
+radius = 0.025
+height = 0.388
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=589880628]
+transform = Transform3D(0.7065685, -0.7076446, 0, 0.7076446, 0.7065685, 0, 0, 0, 1, -0.14206815, 0.59203494, -0.32855886)
+radius = 0.025
+height = 0.388
+
+[node name="Quad" type="MeshInstance3D" parent="." unique_id=1551988783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.013243794)
+mesh = SubResource("QuadMesh_3sihf")
+
+[node name="Area3D" type="Area3D" parent="Quad" unique_id=745837717]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D" unique_id=2118298341]
+shape = SubResource("ConcavePolygonShape3D_ym187")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1466346557]
+
+[node name="Control" type="Control" parent="SubViewport" unique_id=1170989195]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SubViewport/Control" unique_id=721405171]
+layout_mode = 0
+offset_right = 967.0
+offset_bottom = 454.0
+theme_override_font_sizes/normal_font_size = 48
+text = "dude's Status: Deceased
+Time of Death: who knows i've yet to code that functionality
+Cause: bear5 was a bit hungry sorry
+"
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/Control" unique_id=34472558]
+material = SubResource("ShaderMaterial_sj32i")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -122,6 +122,7 @@ func _process(delta: float) -> void:
 		buttonRight.visible = true
 	
 	# Handling Player Camera
+	cam.rotation.x = lerp_angle(cam.rotation.x, player.rotation.x, 0.2)
 	cam.rotation.y = lerp_angle(cam.rotation.y, player.rotation.y, 0.2)
 	cam.rotation.z = lerp(cam.rotation.z, player.rotation.z, 0.1)
 	
@@ -135,7 +136,7 @@ func _process(delta: float) -> void:
 		
 	
 	
-	# Handle Power
+	# Handle Power. TERRRY FOR GODS SAKE ITS BEEN 2 WEEKS GET ON WITH THE STUPID POWER MECHANIC AND STOP DILLY DALLYING
 	
 	
 	
@@ -270,14 +271,14 @@ func relocateShip(positionRelocate):
 
 func playerRotationSetter(location):
 	if location == 0:
-		player.rotation_degrees = Vector3(0, 0, 0)
+		player.rotation_degrees = Vector3(15, 0, 0)
 	elif location == -1:
-		player.rotation_degrees = Vector3(0, 90, 0)
+		player.rotation_degrees = Vector3(7.5, 90, 0)
 	elif location == 1:
-		player.rotation_degrees = Vector3(0, -90, 0)
+		player.rotation_degrees = Vector3(7.5, -90, 0)
 	elif location == 2:
 		player.rotation_degrees = Vector3(0, 180, 0)
-	else:
+	else: # yo what even is this shipPosition times location even for
 		player.rotation_degrees = Vector3(0, 0, shipPosition * location)
 		pass
 

@@ -8,6 +8,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	pass # Replace with function body.
 
 
@@ -16,6 +17,7 @@ func _process(delta: float) -> void:
 	spL1.look_at(focus.position)
 	spL2.look_at(focus.position)
 	spL3.look_at(focus.position)
+	
 	pass
 
 

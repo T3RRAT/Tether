@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fod7tird8kbd" path="res://Scripts/game_over_normal.gd" id="1_do5xh"]
 [ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="2_cdwej"]
+[ext_resource type="PackedScene" uid="uid://c14qog2rimk6j" path="res://Scenes/computer_deathscreen.tscn" id="3_l4ws6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("2_cdwej")
@@ -47,6 +48,7 @@ script = ExtResource("1_do5xh")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2067670582]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=949408286]
+visible = false
 offset_right = 967.0
 offset_bottom = 454.0
 theme_override_font_sizes/normal_font_size = 48
@@ -89,7 +91,8 @@ environment = SubResource("Environment_g4v7s")
 transform = Transform3D(0.90579295, -0.08821164, 0.4144368, 0.096927546, 0.9952915, 3.5477354e-09, -0.4124854, 0.040170338, 0.9100781, 0.13635695, 0.3890562, 0.9650284)
 
 [node name="Skull" type="MeshInstance3D" parent="." unique_id=1481142630]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.515, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87857115, 0.54485136, -0.18112683)
+visible = false
 mesh = SubResource("SphereMesh_g4v7s")
 
 [node name="SpotLight1" type="SpotLight3D" parent="." unique_id=479365420]
@@ -108,5 +111,8 @@ transform = Transform3D(0.6916077, 0.40574896, -0.59753376, 0.25481585, 0.637031
 light_energy = 16.0
 spot_range = 95.03477
 spot_angle = 5.706224
+
+[node name="Computer Deathscreen" parent="." unique_id=1862319246 instance=ExtResource("3_l4ws6")]
+transform = Transform3D(0.9330736, -0.25173986, 0.256906, 0.2604826, 0.96547854, 0, -0.24803723, 0.06691954, 0.9664364, -1, 0.3125459, 0)
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

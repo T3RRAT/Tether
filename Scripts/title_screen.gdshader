@@ -73,17 +73,17 @@ vec2 warp(vec2 uv) {
 
 // Screen border
 float border(vec2 uv) {
-    float radius = min(warp_amount, 0.08);
+    float radius = min(warp_amount, 0.1);
     radius = max(min(min(abs(radius * 1.0), abs(1.0)), abs(1.0)), 1e-26);
     vec2 abs_uv = abs(uv * 2.0 - 1.0) - vec2(1.0, 1.0) + radius;
     float dist = length(max(vec2(0.0), abs_uv)) / radius;
-    return clamp(1.0 - smoothstep(0.96, 1.0, dist), 0.0, 1.0);
+    return clamp(1.0 - smoothstep(0.0, 0.0, dist), 0.0, 1.0);
 }
 
 // Vignette effect
 float vignette(vec2 uv) {
     uv *= 1.0 - uv.xy;
-    float vig = uv.x * uv.y * 50.0;
+    float vig = uv.x * uv.y * 0.1;
     return pow(vig, vignette_intensity * vignette_opacity);
 }
 
@@ -155,7 +155,7 @@ void fragment() {
     
     // Apply border and vignette
     text.rgb *= border(uv);
-    text.rgb *= vignette(uv);
+    //text.rgb *= vignette(uv);
     
     // Handle clip warp
     if (clip_warp) {

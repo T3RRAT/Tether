@@ -1,6 +1,31 @@
 [gd_scene format=3 uid="uid://b4bxjqrg1gp1x"]
 
 [ext_resource type="Script" uid="uid://fod7tird8kbd" path="res://Scripts/game_over_normal.gd" id="1_do5xh"]
+[ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="2_cdwej"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("2_cdwej")
+shader_parameter/overlay = false
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/brightness = 1.4
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/roll = true
+shader_parameter/roll_speed = 6.0
+shader_parameter/roll_size = 25.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/aberration = 0.06
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/pixelate = true
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.3
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 size = Vector2(50, 50)
@@ -8,7 +33,7 @@ size = Vector2(50, 50)
 [sub_resource type="Environment" id="Environment_g4v7s"]
 background_energy_multiplier = 0.54
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.483
+volumetric_fog_density = 1.0
 volumetric_fog_gi_inject = 0.0
 volumetric_fog_anisotropy = -0.9
 
@@ -23,10 +48,10 @@ script = ExtResource("1_do5xh")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=949408286]
 offset_right = 967.0
-offset_bottom = 382.0
-theme_override_font_sizes/normal_font_size = 64
-text = "Operative Status: Deceased
-Time of Death: 0:00
+offset_bottom = 454.0
+theme_override_font_sizes/normal_font_size = 48
+text = "dude's Status: Deceased
+Time of Death: who knows i've yet to code that functionality
 Cause: bear5 was a bit hungry sorry
 "
 
@@ -45,6 +70,15 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 48
 text = "Play Again?"
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=422533243]
+visible = false
+material = SubResource("ShaderMaterial_g4v7s")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Floor" type="MeshInstance3D" parent="." unique_id=37814140]
 mesh = SubResource("PlaneMesh_g4v7s")
 
@@ -55,7 +89,24 @@ environment = SubResource("Environment_g4v7s")
 transform = Transform3D(0.90579295, -0.08821164, 0.4144368, 0.096927546, 0.9952915, 3.5477354e-09, -0.4124854, 0.040170338, 0.9100781, 0.13635695, 0.3890562, 0.9650284)
 
 [node name="Skull" type="MeshInstance3D" parent="." unique_id=1481142630]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51524764, 0.17112476, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.515, 0.2, 0)
 mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="SpotLight1" type="SpotLight3D" parent="." unique_id=479365420]
+transform = Transform3D(0.6916077, 0.40574902, -0.5975339, 0.25481585, 0.63703126, 0.7275026, 0.67583114, -0.6554074, 0.33718437, 1.4915504, 2.7138417, 1.4433247)
+light_energy = 16.0
+spot_angle = 5.706224
+
+[node name="SpotLight2" type="SpotLight3D" parent="." unique_id=672181013]
+transform = Transform3D(0.6916077, 0.405749, -0.59753376, 0.25481585, 0.63703126, 0.72750264, 0.67583114, -0.6554075, 0.33718446, -0.3831811, 2.7138417, -4.097409)
+light_energy = 16.0
+spot_range = 11.621985
+spot_angle = 5.706224
+
+[node name="SpotLight3" type="SpotLight3D" parent="." unique_id=2141502867]
+transform = Transform3D(0.6916077, 0.40574896, -0.59753376, 0.25481585, 0.63703126, 0.72750264, 0.67583114, -0.6554075, 0.33718446, -10.430098, 2.7138417, -4.097409)
+light_energy = 16.0
+spot_range = 95.03477
+spot_angle = 5.706224
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

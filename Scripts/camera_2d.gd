@@ -22,4 +22,10 @@ func _process(delta: float) -> void:
 	cam_Offset.y = clamp(cam_Offset.y, min_Offset/2, max_Offset/2)
 	
 	global_position = $"..".position + cam_Offset
+	
+	
+	
+	
+	
+	
 	pass

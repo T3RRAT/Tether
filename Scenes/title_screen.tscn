@@ -2,6 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://dpkc5p4heusbr" path="res://Assets/augiepixel.ttf" id="1_klylv"]
 [ext_resource type="Script" uid="uid://bp6d02fghalij" path="res://Scripts/title_screen.gd" id="1_p3fck"]
+[ext_resource type="Script" uid="uid://m7lmqnqypji8" path="res://Scripts/camera_2d.gd" id="2_twnyg"]
+[ext_resource type="Script" uid="uid://drjyqvmhdoelm" path="res://Scripts/camera_pivot_point.gd" id="3_4gxqj"]
+[ext_resource type="Texture2D" uid="uid://d3l85sost4ouf" path="res://Assets/Jame Gam Yay but png.png" id="3_55kwv"]
 
 [sub_resource type="Environment" id="Environment_p3fck"]
 background_mode = 2
@@ -13,8 +16,6 @@ volumetric_fog_density = 1.0
 [sub_resource type="Theme" id="Theme_g4v7s"]
 default_base_scale = 2.0
 default_font = ExtResource("1_klylv")
-
-[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbx3t"]
 resource_name = "Base"
@@ -92,15 +93,33 @@ script = ExtResource("1_p3fck")
 environment = SubResource("Environment_p3fck")
 
 [node name="2D Overlay" type="Node2D" parent="." unique_id=2021004530]
+top_level = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="2D Overlay" unique_id=1021477104]
+[node name="Sprite2D" type="Sprite2D" parent="2D Overlay" unique_id=777072339]
+texture = ExtResource("3_55kwv")
 
-[node name="Play Button" type="TextureButton" parent="2D Overlay/CanvasLayer" unique_id=78656321]
+[node name="Camera2D" type="Camera2D" parent="2D Overlay/Sprite2D" unique_id=677103098]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("2_twnyg")
+
+[node name="Elements Control" type="Node2D" parent="2D Overlay" unique_id=1129326246]
+
+[node name="Control" type="Control" parent="2D Overlay" unique_id=1556280215]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Node2D" type="Node2D" parent="2D Overlay" unique_id=601206160]
+position = Vector2(-576, -324)
+
+[node name="Play Button" type="TextureButton" parent="2D Overlay/Node2D" unique_id=78656321]
 offset_right = 40.0
 offset_bottom = 40.0
 theme = SubResource("Theme_g4v7s")
 
-[node name="Button" type="Button" parent="2D Overlay/CanvasLayer" unique_id=1441553469]
+[node name="Button" type="Button" parent="2D Overlay/Node2D" unique_id=1441553469]
 offset_left = 840.0
 offset_top = 406.0
 offset_right = 962.0
@@ -109,7 +128,7 @@ theme_override_fonts/font = ExtResource("1_klylv")
 theme_override_font_sizes/font_size = 64
 text = "Play"
 
-[node name="Label" type="Label" parent="2D Overlay/CanvasLayer" unique_id=2039814493]
+[node name="Label" type="Label" parent="2D Overlay/Node2D" unique_id=2039814493]
 offset_left = 662.0
 offset_top = 183.0
 offset_right = 1026.0
@@ -117,21 +136,6 @@ offset_bottom = 307.0
 theme_override_fonts/font = ExtResource("1_klylv")
 theme_override_font_sizes/font_size = 128
 text = "Tether"
-
-[node name="Original Position" type="MeshInstance3D" parent="." unique_id=276105721]
-transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 3)
-visible = false
-mesh = SubResource("SphereMesh_g4v7s")
-
-[node name="Camera" type="Camera3D" parent="." unique_id=1132297574]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-top_level = true
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Camera" unique_id=1067648610]
-transform = Transform3D(0.80094963, 0, 0.59873176, 0, 1, 0, -0.59873176, 0, 0.80094963, -0.29580498, 0, -0.3215499)
-light_energy = 2.0
-spot_range = 17.784653
-spot_angle = 30.0
 
 [node name="Ship" type="MeshInstance3D" parent="." unique_id=561934700]
 transform = Transform3D(-0.5852282, -1.1261183, -0.28171924, 0.08429635, 0.27343574, -1.2681195, 1.1577575, -0.5891441, -0.050072826, -11.878, -0.655, -11.01)
@@ -152,5 +156,19 @@ mesh = SubResource("PlaneMesh_g4v7s")
 [node name="Test timer" type="Timer" parent="." unique_id=450193429]
 autostart = true
 
-[connection signal="pressed" from="2D Overlay/CanvasLayer/Button" to="." method="_on_button_pressed"]
+[node name="Camera Pivot Point" type="Node3D" parent="." unique_id=1535813319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+script = ExtResource("3_4gxqj")
+
+[node name="Camera" type="Camera3D" parent="Camera Pivot Point" unique_id=1132297574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+top_level = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera Pivot Point/Camera" unique_id=1067648610]
+transform = Transform3D(0.80094963, 0, 0.59873176, 0, 1, 0, -0.59873176, 0, 0.80094963, -0.29580498, 0, -0.3215499)
+light_energy = 2.0
+spot_range = 17.784653
+spot_angle = 30.0
+
+[connection signal="pressed" from="2D Overlay/Node2D/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Test timer" to="." method="_on_test_timer_timeout"]

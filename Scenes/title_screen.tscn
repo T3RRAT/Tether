@@ -5,17 +5,41 @@
 [ext_resource type="Script" uid="uid://m7lmqnqypji8" path="res://Scripts/camera_2d.gd" id="2_twnyg"]
 [ext_resource type="Script" uid="uid://drjyqvmhdoelm" path="res://Scripts/camera_pivot_point.gd" id="3_4gxqj"]
 [ext_resource type="Texture2D" uid="uid://d3l85sost4ouf" path="res://Assets/Jame Gam Yay but png.png" id="3_55kwv"]
+[ext_resource type="Shader" uid="uid://cvltpilpbwy8h" path="res://Scripts/title_screen.gdshader" id="5_12m1t"]
 
 [sub_resource type="Environment" id="Environment_p3fck"]
 background_mode = 2
 background_energy_multiplier = 0.0
-fog_enabled = true
 fog_height_density = 0.5
 volumetric_fog_density = 1.0
 
 [sub_resource type="Theme" id="Theme_g4v7s"]
 default_base_scale = 2.0
 default_font = ExtResource("1_klylv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("5_12m1t")
+shader_parameter/overlay = false
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/brightness = 1.4
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/roll = true
+shader_parameter/roll_speed = 6.0
+shader_parameter/roll_size = 25.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/aberration = 0.06
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/pixelate = true
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbx3t"]
 resource_name = "Base"
@@ -136,6 +160,16 @@ offset_bottom = 307.0
 theme_override_fonts/font = ExtResource("1_klylv")
 theme_override_font_sizes/font_size = 128
 text = "Tether"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="2D Overlay" unique_id=1505401229]
+
+[node name="ColorRect" type="ColorRect" parent="2D Overlay/CanvasLayer" unique_id=2043746991]
+material = SubResource("ShaderMaterial_g4v7s")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Ship" type="MeshInstance3D" parent="." unique_id=561934700]
 transform = Transform3D(-0.5852282, -1.1261183, -0.28171924, 0.08429635, 0.27343574, -1.2681195, 1.1577575, -0.5891441, -0.050072826, -11.878, -0.655, -11.01)

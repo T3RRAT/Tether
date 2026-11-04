@@ -6,6 +6,7 @@ var max_Offset = 25
 
 var screen_Size = DisplayServer.screen_get_size()
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#$"..".position = Vector2(DisplayServer.screen_get_size().x/4, DisplayServer.screen_get_size().y/3)

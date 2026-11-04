@@ -3,6 +3,7 @@ extends Node3D
 @onready var Overlay = $"2D Overlay"
 @onready var Elements_Control_Position = $"2D Overlay/Elements Control".position
 @onready var cam2d_Offset = null
+@onready var CRT_Filter = $"2D Overlay/CanvasLayer/CRT Filter Adjusred"
 
 @onready var spotlight_For_Ship = $"Camera Pivot Point/Camera/SpotLight3D"
 @onready var light_Pointer = $"Background Meshes/Ship/Light Pointer"
@@ -36,10 +37,12 @@ var ship_Init_Position = null
 func _ready() -> void:
 	center_Vision = Elements_Control_Position
 	target_Vision = center_Vision
+	CRT_Filter.visible = true
 	
 	flash_Ship_Power = light_Source_Ship.light_energy
 	
 	ship_Init_Position = ship.position
+	ship_Lerp_Position = ship.position
 	pass # Replace with function body.
 
 
@@ -57,7 +60,7 @@ func _process(delta: float) -> void:
 	#Elements_Control_Position = lerp(center_Vision, target_Vision + get_viewport().get_mouse_position(), delta * 2)
 	Elements_Control_Position = target_Vision + get_viewport().get_mouse_position()
 	
-	
+	# should just idly move the ship so the title screen is less static
 	ship.position = lerp(ship.position, ship_Lerp_Position, delta * 0.1)
 	
 	
@@ -107,4 +110,9 @@ func _on_flashing_timer_timeout() -> void:
 
 
 func _on_ship_lerp_pos_change_timeout() -> void:
+	var sLP_x = ship_Init_Position.x + randf_range(-2.0, 2.0)
+	var sLP_y = ship_Init_Position.y + randf_range(-1.0, 1.0)
+	var sLP_z = ship_Init_Position.z + randf_range(-1.0, 1.0)
+	ship_Lerp_Position = Vector3(sLP_x, sLP_y, sLP_z)
+	print(ship_Lerp_Position)
 	pass # Replace with function body.

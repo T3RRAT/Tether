@@ -169,6 +169,7 @@ text = "Tether"
 [node name="CanvasLayer" type="CanvasLayer" parent="2D Overlay" unique_id=1505401229]
 
 [node name="CRT Filter Adjusred" type="ColorRect" parent="2D Overlay/CanvasLayer" unique_id=2043746991]
+visible = false
 material = SubResource("ShaderMaterial_g4v7s")
 anchors_preset = 15
 anchor_right = 1.0
@@ -230,6 +231,10 @@ light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 omni_range = 0.92346066
 
+[node name="Ship Lerp Pos Change" type="Timer" parent="Background Meshes/Ship" unique_id=1250755352]
+wait_time = 4.0
+autostart = true
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Background Meshes" unique_id=1858523860]
 transform = Transform3D(0.97570956, -0.18083706, 0.12364777, -0.12157729, 0.022532973, 0.99232614, -0.18223551, -0.9832549, -4.351015e-08, 0, 0, 7.3416157)
 visible = false
@@ -251,3 +256,4 @@ mesh = SubResource("ArrayMesh_g4v7s")
 [connection signal="pressed" from="2D Overlay/Node2D/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Test timer" to="." method="_on_test_timer_timeout"]
 [connection signal="timeout" from="Background Meshes/Ship/Flashing Timer" to="." method="_on_flashing_timer_timeout"]
+[connection signal="timeout" from="Background Meshes/Ship/Ship Lerp Pos Change" to="." method="_on_ship_lerp_pos_change_timeout"]

@@ -9,7 +9,7 @@ var captchaActive = false
 
 var tut = false
 
-var powerDrain = 1
+var powerDrainMultiplier = 1
 var powerDrainSpeed = 5
 var flashPowerDrain = 10
 
@@ -17,6 +17,7 @@ var samplesCollected = 0
 
 var systemsPower = 100
 var collectionPower = 100
+var securityPower = 100
 var tetherPower = 100
 var reservePower = 100
 
@@ -136,8 +137,10 @@ func _process(delta: float) -> void:
 		
 	
 	
-	# Handle Power. TERRRY FOR GODS SAKE ITS BEEN 2 WEEKS GET ON WITH THE STUPID POWER MECHANIC AND STOP DILLY DALLYING
-	
+	# Handle Power. 
+	while systemsPower > 0:
+		
+		pass
 	
 	
 	
@@ -230,14 +233,6 @@ func _process(delta: float) -> void:
 # Custom Functions
 func monsterSpawn(): 
 	print("monster attacks")
-	# Spawn Monster
-	# Start time till death timer
-	# If timer ends 
-	# then player dies and death animation into tp into death screen
-	# Else if player avoids Death 
-	# sound plays aknowledging threat is gone and animation f them going away plays
-	# Also if you flash the other monster you cna see them slightly but they wont move
-	# thos this is more otherthing
 	monsterActive = true
 	mon1AudioCue.play()
 	monsterOne.global_position = monsterPositionActive.global_position
@@ -361,10 +356,36 @@ func _on_monster_kill_timeout() -> void:
 
 
 func _on_power_timer_timeout() -> void:
+	# All Power
+	# Tether, Collection, Systems, Security
+	
+	
+	# Collection Power
+	# Collects information
 	if collectionPower > 0:
 		samplesCollected += 1
-	collectionPower = collectionPower - powerDrain
+		collectionPower = collectionPower - 1 * powerDrainMultiplier
 	
+	# Tether Power
+	# Power is generated and can be dispersed to other areas
+	# Constantly generates more but does drain under certain circumstances ie. when mites attach themself
+	if tetherPower > 0:
+		tetherPower = tetherPower + 1 * powerDrainMultiplier
+		
+	
+	# Systems Power is lights, radar
+	if systemsPower > 0:
+		systemsPower = systemsPower - 1 * powerDrainMultiplier
+		
+	
+	# Security Power
+	# Power is used when door is closed, or when the hull takes a lethal hit.
+	# Lethal hits subtracts 75% of the security power
+	if securityPower > 0:
+		# If hit, subtract power by 50
+		# else die
+		# if door is enforced then power will drain
+		pass
 	
 	powerDrainTimer.start(powerDrainSpeed)
 	#print("Collection Power: %d" % collectionPower)

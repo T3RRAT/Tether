@@ -30,7 +30,7 @@ shader_parameter/roll_speed = 6.0
 shader_parameter/roll_size = 0.0
 shader_parameter/roll_variation = 1.8
 shader_parameter/distort_intensity = 0.05
-shader_parameter/aberration = 0.006000047784999962
+shader_parameter/aberration = 0.00600004778499996
 shader_parameter/noise_opacity = 0.0
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.0
@@ -106,6 +106,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_1ao2j")
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 size = Vector2(20, 3)
@@ -206,9 +208,27 @@ light_color = Color(0.7066004, 0.57672805, 0.33602655, 1)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Background Meshes/Ship" unique_id=65044687]
 transform = Transform3D(0.70778555, -0.29515943, -0.060302764, 0.05196327, -0.03205564, 0.7668039, -0.29674122, -0.7096264, -0.009556588, 0.027079105, -3.6249485, 0.6660049)
+visible = false
 light_energy = 20.0
 spot_range = 6.1389313
 spot_angle = 14.752509
+
+[node name="Light Pointer" type="MeshInstance3D" parent="Background Meshes/Ship" unique_id=1595382943]
+transform = Transform3D(1.0000002, 1.7881393e-07, 5.2154064e-08, 0, 1.0000004, 3.5390258e-08, -7.450581e-09, -6.891787e-08, 1.0000001, -0.46281123, -0.3345108, -1.0182414)
+visible = false
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="Flashing Timer" type="Timer" parent="Background Meshes/Ship" unique_id=76985025]
+wait_time = 3.0
+autostart = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Background Meshes/Ship" unique_id=854963816]
+transform = Transform3D(0.7692307, 1.7881393e-07, -1.1175871e-08, -8.940697e-08, 0.7692308, 1.73226e-07, 2.0489097e-08, -2.4121255e-07, 0.7692309, 0.40091228, 2.7779512, -1.2832123)
+light_color = Color(0.99730235, 0.24270469, 0.2527609, 1)
+light_energy = 0.05
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 0.92346066
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Background Meshes" unique_id=1858523860]
 transform = Transform3D(0.97570956, -0.18083706, 0.12364777, -0.12157729, 0.022532973, 0.99232614, -0.18223551, -0.9832549, -4.351015e-08, 0, 0, 7.3416157)
@@ -230,3 +250,4 @@ mesh = SubResource("ArrayMesh_g4v7s")
 
 [connection signal="pressed" from="2D Overlay/Node2D/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Test timer" to="." method="_on_test_timer_timeout"]
+[connection signal="timeout" from="Background Meshes/Ship/Flashing Timer" to="." method="_on_flashing_timer_timeout"]

@@ -121,11 +121,12 @@ func confirmRepositionMinigame():
 			print("Adjust Counter")
 		10:
 			print("Fix Wires")
-	trueShipPos = shipLerpPos
 	pass
 
 
 func changeShipPosition(location):
+	# Changes Ship Icon Position, not true pos
+	
 	if tabs.current_tab == 1:
 		if location == 1:
 			shipLerpPos = pos1

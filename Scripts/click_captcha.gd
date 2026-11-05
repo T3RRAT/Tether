@@ -2,6 +2,7 @@ extends Button
 
 
 @onready var computer = $"../../../../../.."
+@onready var shipTab = $"../.."
 
 @onready var button = $"."
 @onready var checkbox_Image = $"Checkbox Image"
@@ -109,6 +110,7 @@ func _on_pressed() -> void:
 
 func _on_captcha_state_2_timeout() -> void:
 	captchaState = 3
+	shipTab.call("confirmPosition")
 	pass # Replace with function body.
 
 

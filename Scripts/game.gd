@@ -298,6 +298,12 @@ func updateCamera():
 func clickCap_Computer_Game():
 	called_To_Change = 0
 
+func tether_Power_Drain_Adjuster(num):
+	tether_Power_Drain = tetherPower + num
+	pass
+
+
+
 
 
 
@@ -395,7 +401,6 @@ func _on_power_timer_timeout() -> void:
 		# where you are given a freaking blaster
 		# shooting will reduce power by 5%
 		pass
-	collectionPower = collectionPower - powerDrainMultipler
 	
 	
 	powerDrainTimer.start(powerDrainSpeed)

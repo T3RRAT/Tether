@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cg4cjqnn1vj7a" path="res://icon.svg" id="1_4xga7"]
 [ext_resource type="Script" uid="uid://dwbgh7q06vkj7" path="res://Scripts/computer.gd" id="1_m1ujp"]
+[ext_resource type="Script" uid="uid://c6oskpxupxboq" path="res://Scripts/power.gd" id="2_i500x"]
 [ext_resource type="Script" uid="uid://cxf4wvw6bmtf5" path="res://Scripts/shipTab.gd" id="3_3cxpa"]
 [ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="3_7h0tq"]
 [ext_resource type="Script" uid="uid://dhvdrssnwfs2a" path="res://Scripts/minesweeper.gd" id="4_8u73g"]
@@ -9,7 +10,7 @@
 [ext_resource type="Shader" uid="uid://ccsqya2nbhx2y" path="res://Scripts/blur.gdshader" id="5_3cxpa"]
 [ext_resource type="PackedScene" uid="uid://c58gjyc8rg4fi" path="res://Scenes/click_captcha.tscn" id="6_iofu4"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_i500x"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m1ujp"]
@@ -17,7 +18,7 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_yf5fn")
+albedo_texture = SubResource("ViewportTexture_i500x")
 emission_enabled = true
 emission = Color(0.23031491, 0.23031494, 0.23031488, 1)
 emission_texture = SubResource("ViewportTexture_m1ujp")
@@ -131,6 +132,7 @@ mesh = SubResource("QuadMesh_g4v7s")
 shape = SubResource("ConcavePolygonShape3D_3cxpa")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=778372070]
+size = Vector2i(1152, 648)
 
 [node name="Control" type="Control" parent="SubViewport" unique_id=934616759]
 layout_mode = 3
@@ -153,13 +155,50 @@ current_tab = 1
 [node name="Power" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=678326908]
 visible = false
 layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_i500x")
 metadata/_tab_index = 0
+
+[node name="Drop Down" type="Button" parent="SubViewport/Control/TabContainer/Power" unique_id=1105241422]
+z_index = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -538.0
+offset_top = -63.0
+offset_right = -481.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "Textin"
+
+[node name="Control" type="Control" parent="SubViewport/Control/TabContainer/Power/Drop Down" unique_id=89661535]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="OptionButton" type="OptionButton" parent="SubViewport/Control/TabContainer/Power" unique_id=1446472227]
 visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 20.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -68.0
+offset_right = 219.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
 toggle_mode = false
 item_count = 3
 popup/item_0/text = "Systems"
@@ -196,6 +235,12 @@ offset_right = 199.0
 offset_bottom = 238.0
 text = "Tether: 100%"
 
+[node name="CheckButton" type="CheckButton" parent="SubViewport/Control/TabContainer/Power" unique_id=29956533]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 24.0
+text = "Test Button"
+
 [node name="Ship" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1895162407]
 layout_mode = 2
 script = ExtResource("3_3cxpa")
@@ -214,7 +259,6 @@ offset_right = 68.0
 offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.7, 1)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("1_4xga7")
 autowrap_trim_flags = 192
@@ -788,6 +832,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down" to="SubViewport/Control/TabContainer/Power" method="_on_drop_down_pressed"]
 [connection signal="button_down" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_down"]
 [connection signal="button_up" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_up"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Ship/Confirm Button" to="SubViewport/Control/TabContainer/Ship" method="_on_confirm_button_pressed"]

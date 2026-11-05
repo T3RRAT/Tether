@@ -173,6 +173,3 @@ func callChangeTrueShipPosition():
 func click_Captcha_Finished():
 	game.call("clickCap_Computer_Game")
 	pass
-
-func allocatePower(pFrom, pToo):
-	pass

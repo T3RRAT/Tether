@@ -9,7 +9,7 @@ var captchaActive = false
 
 var tut = false
 
-var powerDrainMultiplier = 1
+var powerDrainMultipler = 1
 var powerDrainSpeed = 5
 var flashPowerDrain = 10
 
@@ -20,6 +20,8 @@ var collectionPower = 100
 var securityPower = 100
 var tetherPower = 100
 var reservePower = 100
+var tether_Power_Drain = 0
+var powerTransfering = false
 
 var camLocation = 0
 var shipPosition = 0
@@ -137,10 +139,8 @@ func _process(delta: float) -> void:
 		
 	
 	
-	# Handle Power. 
-	while systemsPower > 0:
-		
-		pass
+	# Handle Power. TERRRY FOR GODS SAKE ITS BEEN 2 WEEKS GET ON WITH THE STUPID POWER MECHANIC AND STOP DILLY DALLYING
+	
 	
 	
 	
@@ -233,6 +233,14 @@ func _process(delta: float) -> void:
 # Custom Functions
 func monsterSpawn(): 
 	print("monster attacks")
+	# Spawn Monster
+	# Start time till death timer
+	# If timer ends 
+	# then player dies and death animation into tp into death screen
+	# Else if player avoids Death 
+	# sound plays aknowledging threat is gone and animation f them going away plays
+	# Also if you flash the other monster you cna see them slightly but they wont move
+	# thos this is more otherthing
 	monsterActive = true
 	mon1AudioCue.play()
 	monsterOne.global_position = monsterPositionActive.global_position
@@ -356,36 +364,39 @@ func _on_monster_kill_timeout() -> void:
 
 
 func _on_power_timer_timeout() -> void:
-	# All Power
-	# Tether, Collection, Systems, Security
-	
-	
-	# Collection Power
-	# Collects information
 	if collectionPower > 0:
 		samplesCollected += 1
-		collectionPower = collectionPower - 1 * powerDrainMultiplier
+		collectionPower = collectionPower - 1 * powerDrainMultipler
+		print(samplesCollected)
 	
 	# Tether Power
 	# Power is generated and can be dispersed to other areas
 	# Constantly generates more but does drain under certain circumstances ie. when mites attach themself
 	if tetherPower > 0:
-		tetherPower = tetherPower + 1 * powerDrainMultiplier
+		if powerTransfering == false:
+			tetherPower = tetherPower + 1 * powerDrainMultipler
+		elif powerTransfering == true:
+			tetherPower = tetherPower - tether_Power_Drain
+			
 		
 	
 	# Systems Power is lights, radar
 	if systemsPower > 0:
-		systemsPower = systemsPower - 1 * powerDrainMultiplier
+		systemsPower = systemsPower - 1 * powerDrainMultipler
 		
 	
 	# Security Power
 	# Power is used when door is closed, or when the hull takes a lethal hit.
 	# Lethal hits subtracts 75% of the security power
 	if securityPower > 0:
-		# If hit, subtract power by 50
+		# If hit, subtract power by 75
 		# else die
-		# if door is enforced then power will drain
+		# only really becomes useful during the final normal night
+		# where you are given a freaking blaster
+		# shooting will reduce power by 5%
 		pass
+	collectionPower = collectionPower - powerDrainMultipler
+	
 	
 	powerDrainTimer.start(powerDrainSpeed)
 	#print("Collection Power: %d" % collectionPower)

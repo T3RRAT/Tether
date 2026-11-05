@@ -105,7 +105,7 @@ func _on_flashing_timer_timeout() -> void:
 		var lightTime = randi_range(3, 9)
 		flash_Light_On = true
 		flashing_Light_Timer.start(lightTime)
-	#print("timer working")
+	print("timer working")
 	pass # Replace with function body.
 
 

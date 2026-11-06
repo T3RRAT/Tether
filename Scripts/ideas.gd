@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 
 # Things to do
 # Impliment death screen proper not yeat but title screen is in a pretty good place and did some testing with the death screen
-# Fix Computer UI bug. (Scale and position seem to be acting really weird)
+# Fix Computer UI bug. (Scale and position seem to be acting really weird) (I think its working)
 # Scale of captcha button is normal and then get smaller?? then again could just be a tether 0.0.4 issue. maybe it will fix itself in the newest export
 # Stand Up and walking section
 # Player should be able to interact with a few things in the enviorment

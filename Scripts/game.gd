@@ -139,8 +139,7 @@ func _process(delta: float) -> void:
 		
 	
 	
-	# Handle Power. TERRRY FOR GODS SAKE ITS BEEN 2 WEEKS GET ON WITH THE STUPID POWER MECHANIC AND STOP DILLY DALLYING
-	
+	# Handle Power. 
 	
 	
 	

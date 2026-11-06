@@ -155,7 +155,7 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 
 # Custom Functionality
 func changeComputerTab(direction):
-	tabs.current_tab = tabs.current_tab + (1 * direction)
+	tabs.current_tab = tabs.current_tab + direction
 	pass
 
 

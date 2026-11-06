@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 		# Button is visible with icon
 		button.visible = true
 		checkbox_Image.visible = true
-		button.scale = lerp(button.scale, Vector2(0.8, 1), delta * 6)
+		button.scale = lerp(button.scale, Vector2(1, 1), delta * 6)
 		
 	elif captchaState == 2:
 		# Button is loading. Icon should be invisible and loading circle should be working

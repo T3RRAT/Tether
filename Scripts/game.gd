@@ -19,7 +19,8 @@ var systemsPower = 100
 var collectionPower = 100
 var securityPower = 100
 var tetherPower = 100
-var reservePower = 100
+var communicationsPower = 100
+
 var tether_Power_Drain = 0
 var powerTransfering = false
 

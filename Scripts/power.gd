@@ -181,3 +181,7 @@ func _on_security_pressed() -> void:
 func _on_communications_pressed() -> void:
 	activeSelection = communications_Power
 	pass # Replace with function body.
+
+
+func _on_tether_power_pressed() -> void:
+	pass # Replace with function body.

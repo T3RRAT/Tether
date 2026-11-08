@@ -8,11 +8,35 @@ var mitesActive = false
 @onready var inner_Menu = $"Drop Down/Inner Menu"
 @onready var computer = $"../../../.."
 
-@onready var systems_Power = $"Drop Down/Inner Menu/Systems"
-@onready var collection_Power = $"Drop Down/Inner Menu/Collection"
-@onready var security_Power = $"Drop Down/Inner Menu/Security"
-@onready var communications_Power = $"Drop Down/Inner Menu/Communications"
-@onready var reverse_Button = $"Drop Down/Inner Menu/Reverse Button"
+@onready var systems_Power = $"Drop Down/Inner Menu/SystemsL"
+@onready var systems_Pr = $"Drop Down/Inner Menu/SystemsL/SystemsR"
+
+@onready var collection_Power = $"Drop Down/Inner Menu/CollectionL"
+@onready var collection_Pr = $"Drop Down/Inner Menu/Collection/CollectionR"
+
+@onready var security_Power = $"Drop Down/Inner Menu/SecurityL"
+@onready var security_Pr = $"Drop Down/Inner Menu/SecurityL/SecurityR"
+
+@onready var communications_Power = $"Drop Down/Inner Menu/CommsL"
+@onready var communications_Pr = $"Drop Down/Inner Menu/CommsL/CommsR"
+
+@onready var tether_Power = $"Drop Down/Inner Menu/Tether Left"
+@onready var tether_Pr = $"Drop Down/Inner Menu/Tether Left/Tether Right"
+
+
+var transferLerpPos = null
+var tetherLerpPos = null
+var systemsLerpPos = null
+var collectionLerpPos = null
+var securityLerpPos = null
+var commmsLerpPos = null
+
+var transferOrigin = null
+var tetherOrigin = null
+var systemsOrigin = null
+var collectionOrigin = null
+var securityOrigin = null
+var commsOrigin = null
 
 
 var powerDrainMultipler = 1
@@ -23,8 +47,10 @@ var tetherDrainMultipler = 1
 var flashPowerDrain = 10
 
 var charging = true
+
+var chargingOrigin = null
 var chargingDestination = null
-# Charge destination is based on number. 0 is to the tether, 1 is to systems, 2 collection, 3 security, and 4 comms
+# Charge destination/origin based on #. 0 = tether, 1 = system, 2 = collection, 3 = security, 4 = comms
 
 var samplesCollected = 0
 
@@ -36,12 +62,27 @@ var communicationsPower = 100
 var activeSelection = null
 
 
+
 var trans = Color(1,1,1,0)
 var notTrans = Color(1,1,1,1)
+
+var normFontColour = Color("dfdfdf")
+var originFontColour = Color("ffd4c8")
+var destinFontColour = Color("afeaff")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	p_drain_Timer.wait_time = powerDrainSpeed
+	
+	
+	systemsLerpPos = systems_Power.position
+	collectionLerpPos = collection_Power.position
+	securityLerpPos = security_Power.position
+	commmsLerpPos = communications_Power.position
+	
+	systemsOrigin = systems_Power.position - Vector2(0, 36)
+	print("Systems Origin: ")
+	print(systemsOrigin)
 	pass # Replace with function body.
 
 
@@ -50,19 +91,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	# Power of each individual system
+	systems_Power.text = ("Systems : %d" % round(systemsPower))
+	collection_Power.text = ("Collect : %d" % round(collectionPower))
+	security_Power.text = ("Security: %d" % round(securityPower))
+	communications_Power.text = ("Comms   : %d" % round(communicationsPower))
 	
 	
-	systems_Power.text = ("Systems Power: %d" % round(systemsPower))
-	collection_Power.text = ("Collection Power: %d" % round(collectionPower))
-	security_Power.text = ("Security Power: %d" % round(securityPower))
-	communications_Power = ("Communications Power %d" % round(collectionPower))
-	
-	
-	
+	# Colour if any item is selected as origin or destination
+	if chargingOrigin != null:
+		chargingOrigin.add_theme_color_override("font_color", originFontColour)
+	if chargingDestination != null:
+		chargingDestination.add_theme_color_override("font_color", destinFontColour)
 	
 	# If the Drop down menu is active, visibility will be turned on and begin lerping
 	if drop_Down_Menu_Active == true:
-		
+		#systems_Power.position = lerp(sysystems_Power.position, systemsLerpPos)
 		pass
 	elif drop_Down_Menu_Active == false:
 		inner_Menu.self_modulate = trans
@@ -84,7 +127,24 @@ func power_Destination_Change(location):
 			chargingDestination = 3
 		"comms":
 			chargingDestination = 4
-			
+		"tether":
+			chargingDestination = 0
+	pass
+
+func power_Origin_Change(location):
+	
+	
+	match location:
+		"systems":
+			chargingOrigin = 1
+		"collection":
+			chargingOrigin = 2
+		"security":
+			chargingOrigin = 3
+		"comms":
+			chargingOrigin = 4
+		"tether":
+			chargingOrigin = 0
 	pass
 
 func change_Lerp_Positions():
@@ -116,7 +176,6 @@ func _on_power_drain_timer_timeout() -> void:
 	systemsPower -= 0.1 * powerDrainMultipler
 	collectionPower -= 0.1 * powerDrainMultipler
 	securityPower -= 0.1 * powerDrainMultipler
-	#tetherPower -= 0.1 * powerDrainMultipler
 	communicationsPower -= 0.1 * powerDrainMultipler
 	
 	if mitesActive == true:
@@ -137,51 +196,48 @@ func _on_power_charge_timer_timeout() -> void:
 			1:
 				# Systems
 				tetherPower -= 0.2 * tetherDrainMultipler
-				
+				activeSelection -= 0.2 * tetherDrainMultipler
 			2:
 				# Collection
 				tetherPower -= 0.2 * tetherDrainMultipler
+				activeSelection -= 0.2 * tetherDrainMultipler
 			3:
 				# Security
 				tetherPower -= 0.2 * tetherDrainMultipler
+				activeSelection -= 0.2 * tetherDrainMultipler
 			4:
 				# Comms
 				tetherPower -= 0.2 * tetherDrainMultipler
+				activeSelection -= 0.2 * tetherDrainMultipler
 		pass
 	pass # Replace with function body.
 
 
-func _on_reverse_button_button_down() -> void:
-	chargingDestination = 0
-	charging = true
-	pass # Replace with function body.
 
-
-func _on_reverse_button_button_up() -> void:
-	chargingDestination = null
-	charging = false
-	pass # Replace with function body.
-
-
+# Left Click Buttons (Destination)
 func _on_systems_pressed() -> void:
-	activeSelection = systems_Power
-	pass # Replace with function body.
-
-
+	power_Destination_Change("systems")
 func _on_collection_pressed() -> void:
-	activeSelection = collection_Power
-	pass # Replace with function body.
-
-
+	power_Destination_Change("collection")
 func _on_security_pressed() -> void:
-	activeSelection = security_Power
-	pass # Replace with function body.
-
-
+	power_Destination_Change("security")
 func _on_communications_pressed() -> void:
-	activeSelection = communications_Power
-	pass # Replace with function body.
-
-
+	power_Destination_Change("comms")
 func _on_tether_power_pressed() -> void:
-	pass # Replace with function body.
+	power_Destination_Change("tether")
+
+# Transfer buttons
+func _on_transfer_power_button_down() -> void:
+	charging = true
+func _on_transfer_power_button_up() -> void:
+	charging = false
+
+# Right Click Buttons (Origin)
+func _on_systems_r_pressed() -> void:
+	power_Origin_Change("systems")
+func _on_collection_r_pressed() -> void:
+	power_Origin_Change("collection")
+func _on_security_r_pressed() -> void:
+	power_Origin_Change("security")
+func _on_comms_r_pressed() -> void:
+	power_Origin_Change("comms")

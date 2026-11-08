@@ -80,6 +80,7 @@ mesh = SubResource("QuadMesh_3sihf")
 shape = SubResource("ConcavePolygonShape3D_ym187")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1466346557]
+size = Vector2i(1152, 648)
 
 [node name="Control" type="Control" parent="SubViewport" unique_id=1170989195]
 layout_mode = 3

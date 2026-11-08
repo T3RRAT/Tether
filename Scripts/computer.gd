@@ -173,3 +173,7 @@ func callChangeTrueShipPosition():
 func click_Captcha_Finished():
 	game.call("clickCap_Computer_Game")
 	pass
+
+
+func _on_transfer_power_button_up() -> void:
+	pass # Replace with function body.

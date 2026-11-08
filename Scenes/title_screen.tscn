@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://m7lmqnqypji8" path="res://Scripts/camera_2d.gd" id="2_twnyg"]
 [ext_resource type="Script" uid="uid://drjyqvmhdoelm" path="res://Scripts/camera_pivot_point.gd" id="3_4gxqj"]
 [ext_resource type="Texture2D" uid="uid://d3l85sost4ouf" path="res://Assets/Jame Gam Yay but png.png" id="3_55kwv"]
+[ext_resource type="FontFile" uid="uid://dxy3j6qv3juoa" path="res://Assets/monogram.ttf" id="5_6vd4x"]
 [ext_resource type="Shader" uid="uid://cvltpilpbwy8h" path="res://Scripts/title_screen.gdshader" id="5_12m1t"]
 
 [sub_resource type="Environment" id="Environment_p3fck"]
@@ -153,7 +154,7 @@ offset_left = 840.0
 offset_top = 406.0
 offset_right = 962.0
 offset_bottom = 476.0
-theme_override_fonts/font = ExtResource("1_klylv")
+theme_override_fonts/font = ExtResource("5_6vd4x")
 theme_override_font_sizes/font_size = 64
 text = "Play"
 
@@ -162,7 +163,7 @@ offset_left = 662.0
 offset_top = 183.0
 offset_right = 1026.0
 offset_bottom = 307.0
-theme_override_fonts/font = ExtResource("1_klylv")
+theme_override_fonts/font = ExtResource("5_6vd4x")
 theme_override_font_sizes/font_size = 128
 text = "Tether"
 

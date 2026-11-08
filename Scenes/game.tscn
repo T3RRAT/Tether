@@ -66,9 +66,6 @@ script = ExtResource("1_ebmjs")
 unique_name_in_owner = true
 wait_time = 0.3
 
-[node name="Power Timer" type="Timer" parent="Player Timers" unique_id=1243482138]
-unique_name_in_owner = true
-
 [node name="Node3D" type="Node3D" parent="." unique_id=212646375]
 script = ExtResource("2_wrm1d")
 
@@ -130,7 +127,7 @@ grow_vertical = 2
 scale = Vector2(0.7, 0.8)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="UpButton" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=1433246067]
+[node name="ComputerButton" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=1433246067]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -186,7 +183,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7)
 current = true
 
 [node name="Computer Items" type="Node3D" parent="." unique_id=1150376009]
-transform = Transform3D(1, 0, 0, 0, 0.96592575, -0.258819, 0, 0.258819, 0.96592575, 0, -0.03, 0.93)
+transform = Transform3D(1, 0, 0, 0, 0.96592575, -0.258819, 0, 0.258819, 0.96592575, 0, -0.05, 0.93)
 
 [node name="Computer" parent="Computer Items" unique_id=129153883 instance=ExtResource("4_wowpa")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 1.35, -1.5)
@@ -248,10 +245,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -50)
 mesh = SubResource("BoxMesh_5s0fj")
 
 [connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
-[connection signal="timeout" from="Player Timers/Power Timer" to="." method="_on_power_timer_timeout"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Left Button" to="." method="_on_left_button_mouse_entered"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Right Button" to="." method="_on_right_button_mouse_entered"]
-[connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/UpButton" to="." method="_on_up_button_mouse_entered"]
+[connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/ComputerButton" to="." method="_on_up_button_mouse_entered"]
 [connection signal="finished" from="Ship/Flash Sound" to="." method="_on_flash_sound_finished"]
 [connection signal="timeout" from="Monster1 Items/Monster1 Timers/Monster Timer" to="." method="_on_monster_timer_timeout"]
 [connection signal="timeout" from="Monster1 Items/Monster1 Timers/Monster Kill" to="." method="_on_monster_kill_timeout"]

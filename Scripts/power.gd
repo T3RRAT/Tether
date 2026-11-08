@@ -22,7 +22,7 @@ var mitesActive = false
 
 @onready var tether_Power = $"Drop Down/Inner Menu/Tether Left"
 @onready var tether_Pr = $"Drop Down/Inner Menu/Tether Left/Tether Right"
-
+@onready var tether_Text = $"Drop Down/Inner Menu/Tether Left/TetherText"
 
 var transferLerpPos = null
 var tetherLerpPos = null
@@ -48,7 +48,10 @@ var flashPowerDrain = 10
 
 var charging = true
 
+var charging_Org_Button = null
 var chargingOrigin = null
+
+var charging_Des_Button = null
 var chargingDestination = null
 # Charge destination/origin based on #. 0 = tether, 1 = system, 2 = collection, 3 = security, 4 = comms
 
@@ -67,8 +70,8 @@ var trans = Color(1,1,1,0)
 var notTrans = Color(1,1,1,1)
 
 var normFontColour = Color("dfdfdf")
-var originFontColour = Color("ffd4c8")
-var destinFontColour = Color("afeaff")
+var originFontColour = Color("c45100")
+var destinFontColour = Color("4664ff")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -95,13 +98,14 @@ func _process(delta: float) -> void:
 	collection_Power.text = ("Collect : %d" % round(collectionPower))
 	security_Power.text = ("Security: %d" % round(securityPower))
 	communications_Power.text = ("Comms   : %d" % round(communicationsPower))
+	tether_Text.text = str(snapped(tetherPower, 0.1))
 	
 	
 	# Colour if any item is selected as origin or destination
 	if chargingOrigin != null:
-		chargingOrigin.add_theme_color_override("font_color", originFontColour)
+		charging_Org_Button.add_theme_color_override("font_color", originFontColour)
 	if chargingDestination != null:
-		chargingDestination.add_theme_color_override("font_color", destinFontColour)
+		charging_Des_Button.add_theme_color_override("font_color", destinFontColour)
 	
 	# If the Drop down menu is active, visibility will be turned on and begin lerping
 	if drop_Down_Menu_Active == true:
@@ -120,15 +124,45 @@ func power_Destination_Change(location):
 	
 	match location:
 		"systems":
-			chargingDestination = 1
+			chargingDestination = null
+			if charging_Des_Button:
+				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Des_Button = null
+			
+			chargingDestination = systemsPower
+			charging_Des_Button = systems_Power
 		"collection":
-			chargingDestination = 2
+			chargingDestination = null
+			if charging_Des_Button:
+				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Des_Button = null
+			
+			chargingDestination = collectionPower
+			charging_Des_Button = collection_Power
 		"security":
-			chargingDestination = 3
+			chargingDestination = null
+			if charging_Des_Button:
+				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Des_Button = null
+			
+			chargingDestination = securityPower
+			charging_Des_Button = security_Power
 		"comms":
-			chargingDestination = 4
+			chargingDestination = null
+			if charging_Des_Button:
+				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Des_Button = null
+			
+			chargingDestination = communicationsPower
+			charging_Des_Button = communications_Power
 		"tether":
-			chargingDestination = 0
+			chargingDestination = null
+			if charging_Des_Button:
+				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Des_Button = null
+			
+			chargingDestination = tetherPower
+			charging_Des_Button = tether_Power
 	pass
 
 func power_Origin_Change(location):
@@ -136,15 +170,45 @@ func power_Origin_Change(location):
 	
 	match location:
 		"systems":
-			chargingOrigin = 1
+			chargingOrigin = null
+			if charging_Org_Button:
+				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Org_Button = null
+			
+			chargingOrigin = systemsPower
+			charging_Org_Button = systems_Power
 		"collection":
-			chargingOrigin = 2
+			chargingOrigin = null
+			if charging_Org_Button:
+				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Org_Button = null
+			
+			chargingOrigin = collectionPower
+			charging_Org_Button = collection_Power
 		"security":
-			chargingOrigin = 3
+			chargingOrigin = null
+			if charging_Org_Button:
+				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Org_Button = null
+			
+			chargingOrigin = securityPower
+			charging_Org_Button = security_Power
 		"comms":
-			chargingOrigin = 4
+			chargingOrigin = null
+			if charging_Org_Button:
+				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Org_Button = null
+			
+			chargingOrigin = communicationsPower
+			charging_Org_Button = communications_Power
 		"tether":
-			chargingOrigin = 0
+			chargingOrigin = null
+			if charging_Org_Button:
+				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
+			charging_Org_Button = null
+			
+			chargingOrigin = tetherPower
+			charging_Org_Button = tether_Power
 	pass
 
 func change_Lerp_Positions():
@@ -178,9 +242,7 @@ func _on_power_drain_timer_timeout() -> void:
 	securityPower -= 0.1 * powerDrainMultipler
 	communicationsPower -= 0.1 * powerDrainMultipler
 	
-	if mitesActive == true:
-		tetherPower -= 0.025 * tetherDrainMultipler
-	
+	tetherPower -= 0.1 * powerDrainMultipler
 	
 	
 	pass # Replace with function body.
@@ -229,8 +291,10 @@ func _on_tether_power_pressed() -> void:
 # Transfer buttons
 func _on_transfer_power_button_down() -> void:
 	charging = true
+	print("pressed down")
 func _on_transfer_power_button_up() -> void:
 	charging = false
+	print("released")
 
 # Right Click Buttons (Origin)
 func _on_systems_r_pressed() -> void:
@@ -241,3 +305,9 @@ func _on_security_r_pressed() -> void:
 	power_Origin_Change("security")
 func _on_comms_r_pressed() -> void:
 	power_Origin_Change("comms")
+func _on_tether_right_pressed() -> void:
+	power_Origin_Change("tether")
+
+
+func _on_tether_p_drain_timeout() -> void:
+	pass # Replace with function body.

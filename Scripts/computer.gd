@@ -9,9 +9,11 @@ var last_event_pos2D = null
 var last_event_time: float = -1.0
 
 @onready var node_viewport = $SubViewport
+@onready var viewport_Control = $Control
 @onready var node_quad = $Quad
 @onready var node_area = $Quad/Area3D
-@onready var crtFilter = $"SubViewport/Control/CRT Filter"
+#@onready var crtFilter = $"SubViewport/Control/CRT Filter"
+@onready var crtFilter = $"Control/CRT Filter"
 
 @onready var tabs = $SubViewport/Control/TabContainer
 @onready var shipTab = $SubViewport/Control/TabContainer/Ship
@@ -24,7 +26,9 @@ func _ready():
 	node_area.mouse_exited.connect(_mouse_exited_area)
 	node_area.input_event.connect(_mouse_input_event)
 
-	crtFilter.visible = true
+	#viewport_Control.reparent(node_viewport)
+	#crtFilter.visible = true
+	
 
 	# If the material is NOT set to use billboard settings, then avoid running billboard specific code
 	#if node_quad.get_surface_override_material(0).billboard_mode == BaseMaterial3D.BillboardMode.BILLBOARD_DISABLED:
@@ -173,7 +177,3 @@ func callChangeTrueShipPosition():
 func click_Captcha_Finished():
 	game.call("clickCap_Computer_Game")
 	pass
-
-
-func _on_transfer_power_button_up() -> void:
-	pass # Replace with function body.

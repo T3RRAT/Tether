@@ -7,19 +7,11 @@ var flashing = false
 var monsterActive = false
 var captchaActive = false
 
+var computerButtonOrgPos = null
+var computerButtonLerpPos = null
+
 var tut = false
 
-var powerDrainMultipler = 1
-var powerDrainSpeed = 5
-var flashPowerDrain = 10
-
-var samplesCollected = 0
-
-var systemsPower = 100
-var collectionPower = 100
-var securityPower = 100
-var tetherPower = 100
-var communicationsPower = 100
 
 var tether_Power_Drain = 0
 var powerTransfering = false
@@ -67,16 +59,19 @@ var monsterAggroAmount = 0
 # 2D Objects
 @onready var buttonLeft = $"2D Overlay/Control/CanvasLayer/Left Button"
 @onready var buttonRight = $"2D Overlay/Control/CanvasLayer/Right Button"
+@onready var buttonComputer = $"2D Overlay/Control/CanvasLayer/ComputerButton"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	powerDrainTimer.start(powerDrainSpeed)
 	lightLeft.light_energy = 0
 	lightRight.light_energy = 0
 	
 	monsterOne.position = monsterPositionInactive.position
 	monsterActivityTimer.start()
 	
+	computerButtonOrgPos = buttonComputer.position
+	print(computerButtonOrgPos)
+	computerButtonLerpPos = computerButtonOrgPos + Vector2(0, 580)
 	
 	#print(rad_to_deg(1))
 	
@@ -125,6 +120,14 @@ func _process(delta: float) -> void:
 		buttonLeft.visible = true
 		buttonRight.visible = true
 	
+	if inUserInterface == true:
+		buttonLeft.visible = false
+		buttonRight.visible = false
+	else:
+		buttonLeft.visible = true
+		buttonRight.visible = true
+	
+	
 	# Handling Player Camera
 	cam.rotation.x = lerp_angle(cam.rotation.x, player.rotation.x, 0.2)
 	cam.rotation.y = lerp_angle(cam.rotation.y, player.rotation.y, 0.2)
@@ -148,7 +151,6 @@ func _process(delta: float) -> void:
 	# Handling Flashing Mechanic and Inputs
 	if Input.get_action_strength("Confirm Action") && (flashing == false) && (camLocation == 0):
 		if inCutscene == false && inUserInterface == false:
-			systemsPower = systemsPower - flashPowerDrain
 			lightLeft.light_energy = 40
 			lightRight.light_energy = 40
 			flashing = true
@@ -211,9 +213,11 @@ func _process(delta: float) -> void:
 	# Computer Functionality
 	if computerState == 1:
 		computer.position.y = lerp(computer.position.y, computerDownPos.position.y, delta * 6)
+		buttonComputer.position = lerp(buttonComputer.position, computerButtonLerpPos, delta * 6)
 		inUserInterface = true
 	else:
 		computer.position.y = lerp(computer.position.y, computerUpPos.position.y, delta * 6)
+		buttonComputer.position = lerp(buttonComputer.position, computerButtonOrgPos, delta * 6)
 		inUserInterface = false
 	
 	# Computer Tab Switching Using Number Keys
@@ -298,9 +302,6 @@ func updateCamera():
 func clickCap_Computer_Game():
 	called_To_Change = 0
 
-func tether_Power_Drain_Adjuster(num):
-	tether_Power_Drain = tetherPower + num
-	pass
 
 
 
@@ -367,48 +368,6 @@ func _on_monster_kill_timeout() -> void:
 			
 			pass
 	pass # Replace with function body.
-
-
-func _on_power_timer_timeout() -> void:
-	if collectionPower > 0:
-		samplesCollected += 1
-		collectionPower = collectionPower - 1 * powerDrainMultipler
-		print(samplesCollected)
-	
-	# Tether Power
-	# Power is generated and can be dispersed to other areas
-	# Constantly generates more but does drain under certain circumstances ie. when mites attach themself
-	if tetherPower > 0:
-		if powerTransfering == false:
-			tetherPower = tetherPower + 1 * powerDrainMultipler
-		elif powerTransfering == true:
-			tetherPower = tetherPower - tether_Power_Drain
-			
-		
-	
-	# Systems Power is lights, radar
-	if systemsPower > 0:
-		systemsPower = systemsPower - 1 * powerDrainMultipler
-		
-	
-	# Security Power
-	# Power is used when door is closed, or when the hull takes a lethal hit.
-	# Lethal hits subtracts 75% of the security power
-	if securityPower > 0:
-		# If hit, subtract power by 75
-		# else die
-		# only really becomes useful during the final normal night
-		# where you are given a freaking blaster
-		# shooting will reduce power by 5%
-		pass
-	
-	
-	powerDrainTimer.start(powerDrainSpeed)
-	#print("Collection Power: %d" % collectionPower)
-	#print("Systems Power: %d" % systemsPower)
-	
-	pass # Replace with function body.
-
 
 func _on_monster_disappear_timeout() -> void:
 	monsterOne.global_position = monsterPositionInactive.global_position

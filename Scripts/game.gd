@@ -10,6 +10,11 @@ var captchaActive = false
 var computerButtonOrgPos = null
 var computerButtonLerpPos = null
 
+var lButtonOrg
+var lButtonLerp
+var rButtonOrg
+var rButtonLerp
+
 var tut = false
 
 
@@ -73,6 +78,12 @@ func _ready() -> void:
 	print(computerButtonOrgPos)
 	computerButtonLerpPos = computerButtonOrgPos + Vector2(0, 580)
 	
+	lButtonOrg = buttonLeft.position
+	rButtonOrg = buttonRight.position
+	
+	lButtonLerp = buttonLeft.position + Vector2(-120, 0)
+	rButtonLerp = buttonRight.position + Vector2(120, 0)
+	
 	#print(rad_to_deg(1))
 	
 	pass # Replace with function body.
@@ -120,12 +131,6 @@ func _process(delta: float) -> void:
 		buttonLeft.visible = true
 		buttonRight.visible = true
 	
-	if inUserInterface == true:
-		buttonLeft.visible = false
-		buttonRight.visible = false
-	else:
-		buttonLeft.visible = true
-		buttonRight.visible = true
 	
 	
 	# Handling Player Camera
@@ -214,10 +219,18 @@ func _process(delta: float) -> void:
 	if computerState == 1:
 		computer.position.y = lerp(computer.position.y, computerDownPos.position.y, delta * 6)
 		buttonComputer.position = lerp(buttonComputer.position, computerButtonLerpPos, delta * 6)
+		
+		buttonLeft.position = lerp(buttonLeft.position, lButtonLerp, delta * 6)
+		buttonRight.position = lerp(buttonRight.position, rButtonLerp, delta * 6)
+		
 		inUserInterface = true
 	else:
 		computer.position.y = lerp(computer.position.y, computerUpPos.position.y, delta * 6)
 		buttonComputer.position = lerp(buttonComputer.position, computerButtonOrgPos, delta * 6)
+		
+		buttonLeft.position = lerp(buttonLeft.position, lButtonOrg, delta * 6)
+		buttonRight.position = lerp(buttonRight.position, rButtonOrg, delta * 6)
+		
 		inUserInterface = false
 	
 	# Computer Tab Switching Using Number Keys

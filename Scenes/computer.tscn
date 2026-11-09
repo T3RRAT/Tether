@@ -111,7 +111,7 @@ script = ExtResource("1_m1ujp")
 size = Vector3(1.6, 1, 0.1)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=316805959]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.06266138)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.06)
 operation = 2
 size = Vector3(1.4, 0.8, 0.1)
 
@@ -166,10 +166,12 @@ anchor_bottom = 0.5
 offset_left = -1052.0
 offset_top = -70.0
 offset_right = -687.0
-offset_bottom = -12.0
+offset_bottom = -11.999756
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 0
+mouse_default_cursor_shape = 7
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 50
 text = "Power Status:"
@@ -351,6 +353,9 @@ autostart = true
 [node name="Tether PDrain" type="Timer" parent="SubViewport/Control/TabContainer/Power" unique_id=1165373064]
 wait_time = 0.05
 autostart = true
+
+[node name="UI Timer" type="Timer" parent="SubViewport/Control/TabContainer/Power" unique_id=1090764986]
+wait_time = 0.1
 
 [node name="Ship" type="TextureRect" parent="SubViewport/Control/TabContainer" unique_id=1895162407]
 visible = false
@@ -962,6 +967,7 @@ mouse_filter = 2
 [connection signal="timeout" from="SubViewport/Control/TabContainer/Power/Power Drain Timer" to="SubViewport/Control/TabContainer/Power" method="_on_power_drain_timer_timeout"]
 [connection signal="timeout" from="SubViewport/Control/TabContainer/Power/Power Charge Timer" to="SubViewport/Control/TabContainer/Power" method="_on_power_charge_timer_timeout"]
 [connection signal="timeout" from="SubViewport/Control/TabContainer/Power/Tether PDrain" to="SubViewport/Control/TabContainer/Power" method="_on_tether_p_drain_timeout"]
+[connection signal="timeout" from="SubViewport/Control/TabContainer/Power/UI Timer" to="SubViewport/Control/TabContainer/Power" method="_on_ui_timer_timeout"]
 [connection signal="button_down" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_down"]
 [connection signal="button_up" from="SubViewport/Control/TabContainer/Ship/Ship" to="SubViewport/Control/TabContainer/Ship" method="_on_ship_button_up"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Ship/Confirm Button" to="SubViewport/Control/TabContainer/Ship" method="_on_confirm_button_pressed"]

@@ -4,9 +4,11 @@ var drop_Down_Menu_Active = false
 var mitesActive = false
 
 @onready var p_drain_Timer = $"Power Drain Timer"
+@onready var uiCount_Timer = $"UI Timer"
 
 @onready var inner_Menu = $"Drop Down/Inner Menu"
 @onready var computer = $"../../../.."
+@onready var dropDown_Button = $"Drop Down"
 
 @onready var systems_Power = $"Drop Down/Inner Menu/SystemsL"
 @onready var systems_Pr = $"Drop Down/Inner Menu/SystemsL/SystemsR"
@@ -24,19 +26,21 @@ var mitesActive = false
 @onready var tether_Pr = $"Drop Down/Inner Menu/Tether Left/Tether Right"
 @onready var tether_Text = $"Drop Down/Inner Menu/Tether Left/TetherText"
 
-var transferLerpPos = null
-var tetherLerpPos = null
-var systemsLerpPos = null
-var collectionLerpPos = null
-var securityLerpPos = null
-var commmsLerpPos = null
+@onready var transfer_Button = $"Drop Down/Inner Menu/Transfer Power"
 
-var transferOrigin = null
-var tetherOrigin = null
-var systemsOrigin = null
-var collectionOrigin = null
-var securityOrigin = null
-var commsOrigin = null
+var transferLerpPos
+var tetherLerpPos
+var systemsLerpPos
+var collectionLerpPos
+var securityLerpPos
+var commsLerpPos
+
+var transferOrigin
+var tetherOrigin
+var systemsOrigin
+var collectionOrigin
+var securityOrigin
+var commsOrigin
 
 
 var powerDrainMultipler = 1
@@ -66,6 +70,13 @@ var activeSelection = null
 
 
 
+var uiCounter = 0
+
+var dropDownOffPos = null
+var dropDownOnPos = null
+var dropDownOffSize = null
+var dropDownOnSize = null
+
 var trans = Color(1,1,1,0)
 var notTrans = Color(1,1,1,1)
 
@@ -75,15 +86,35 @@ var destinFontColour = Color("4664ff")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	dropDownOnPos = dropDown_Button.position
+	dropDownOffPos = dropDown_Button.position + Vector2(0, 100)
+	
+	dropDownOnSize = dropDown_Button.size
+	dropDownOffSize = Vector2(304, 58)
+	
+	
 	p_drain_Timer.wait_time = powerDrainSpeed
 	
 	
 	systemsLerpPos = systems_Power.position
 	collectionLerpPos = collection_Power.position
 	securityLerpPos = security_Power.position
-	commmsLerpPos = communications_Power.position
+	commsLerpPos = communications_Power.position
+	tetherLerpPos = tether_Power.position
+	transferLerpPos = transfer_Button.position
 	
 	systemsOrigin = systems_Power.position - Vector2(0, 36)
+	collectionOrigin = collection_Power.position - Vector2(0, 36*2)
+	securityOrigin = security_Power.position - Vector2(0, 36*3)
+	commsOrigin = communications_Power.position - Vector2(0, 36*4)
+	tetherOrigin = tether_Power.position - Vector2(69, 0)
+	transferOrigin = transfer_Button.position - Vector2(117, 0)
+	
+	
+	
+	inner_Menu.modulate = trans
+	
 	print("Systems Origin: ")
 	print(systemsOrigin)
 	pass # Replace with function body.
@@ -110,9 +141,109 @@ func _process(delta: float) -> void:
 	# If the Drop down menu is active, visibility will be turned on and begin lerping
 	if drop_Down_Menu_Active == true:
 		#systems_Power.position = lerp(sysystems_Power.position, systemsLerpPos)
-		pass
+		dropDown_Button.position = lerp(dropDown_Button.position, dropDownOnPos, delta * 5)
+		dropDown_Button.size = lerp(dropDown_Button.size, dropDownOnSize, delta * 5)
+		inner_Menu.modulate = notTrans
+		
+		if uiCounter == 0:
+			systems_Power.position = lerp(systems_Power.position, systemsLerpPos, delta * 5)
+			
+			systems_Power.modulate = lerp(systems_Power.modulate, notTrans, delta * 5)
+		elif uiCounter <= 1:
+			systems_Power.position = lerp(systems_Power.position, systemsLerpPos, delta * 5)
+			collection_Power.position = lerp(collection_Power.position, collectionLerpPos, delta * 5)
+			
+			systems_Power.modulate = lerp(systems_Power.modulate, notTrans, delta * 5)
+			collection_Power.modulate = lerp(collection_Power.modulate, notTrans, delta * 5)
+		elif uiCounter <= 2:
+			systems_Power.position = lerp(systems_Power.position, systemsLerpPos, delta * 5)
+			collection_Power.position = lerp(collection_Power.position, collectionLerpPos, delta * 5)
+			security_Power.position = lerp(security_Power.position, securityLerpPos, delta * 5)
+			
+			systems_Power.modulate = lerp(systems_Power.modulate, notTrans, delta * 5)
+			collection_Power.modulate = lerp(collection_Power.modulate, notTrans, delta * 5)
+			security_Power.modulate = lerp(security_Power.modulate, notTrans, delta * 5)
+		elif uiCounter <= 3:
+			systems_Power.position = lerp(systems_Power.position, systemsLerpPos, delta * 5)
+			collection_Power.position = lerp(collection_Power.position, collectionLerpPos, delta * 5)
+			security_Power.position = lerp(security_Power.position, securityLerpPos, delta * 5)
+			communications_Power.position = lerp(communications_Power.position, commsLerpPos, delta * 5)
+			tether_Power.position = lerp(tether_Power.position, tetherLerpPos, delta * 5)
+			
+			systems_Power.modulate = lerp(systems_Power.modulate, notTrans, delta * 5)
+			collection_Power.modulate = lerp(collection_Power.modulate, notTrans, delta * 5)
+			security_Power.modulate = lerp(security_Power.modulate, notTrans, delta * 5)
+			communications_Power.modulate = lerp(communications_Power.modulate, notTrans, delta * 5)
+			tether_Power.modulate = lerp(tether_Power.modulate, notTrans, delta * 5)
+		elif uiCounter <= 4:
+			systems_Power.position = lerp(systems_Power.position, systemsLerpPos, delta * 5)
+			collection_Power.position = lerp(collection_Power.position, collectionLerpPos, delta * 5)
+			security_Power.position = lerp(security_Power.position, securityLerpPos, delta * 5)
+			communications_Power.position = lerp(communications_Power.position, commsLerpPos, delta * 5)
+			tether_Power.position = lerp(tether_Power.position, tetherLerpPos, delta * 5)
+			transfer_Button.position = lerp(transfer_Button.position, transferLerpPos, delta * 5)
+			
+			systems_Power.modulate = lerp(systems_Power.modulate, notTrans, delta * 5)
+			collection_Power.modulate = lerp(collection_Power.modulate, notTrans, delta * 5)
+			security_Power.modulate = lerp(security_Power.modulate, notTrans, delta * 5)
+			tether_Power.modulate = lerp(tether_Power.modulate, notTrans, delta * 5)
+			transfer_Button.modulate = lerp(transfer_Button.modulate, notTrans, delta * 5)
+		
 	elif drop_Down_Menu_Active == false:
-		inner_Menu.self_modulate = trans
+		dropDown_Button.position = lerp(dropDown_Button.position, dropDownOffPos, delta * 5)
+		dropDown_Button.size = lerp(dropDown_Button.size, dropDownOffSize, delta * 5)
+		
+		
+		
+		if uiCounter == 4:
+			systems_Power.position = lerp(systems_Power.position, systemsOrigin, delta * 5)
+			collection_Power.position = lerp(collection_Power.position, collectionOrigin, delta * 5)
+			security_Power.position = lerp(security_Power.position, securityOrigin, delta * 5)
+			communications_Power.position = lerp(communications_Power.position, commsOrigin, delta * 5)
+			tether_Power.position = lerp(tether_Power.position, tetherOrigin, delta * 5)
+			transfer_Button.position = lerp(transfer_Button.position, transferOrigin, delta * 5)
+			inner_Menu.modulate = trans
+			
+			systems_Power.modulate = lerp(systems_Power.modulate, trans, delta * 5)
+			collection_Power.modulate = lerp(collection_Power.modulate, trans, delta * 5)
+			security_Power.modulate = lerp(security_Power.modulate, trans, delta * 5)
+			communications_Power.modulate = lerp(communications_Power.modulate, trans, delta * 5)
+			tether_Power.modulate = lerp(tether_Power.modulate, trans, delta * 5)
+			transfer_Button.modulate = lerp(transfer_Button.modulate, trans, delta * 5)
+		elif uiCounter == 3:
+			collection_Power.position = lerp(collection_Power.position, collectionOrigin, delta * 5)
+			security_Power.position = lerp(security_Power.position, securityOrigin, delta * 5)
+			communications_Power.position = lerp(communications_Power.position, commsOrigin, delta * 5)
+			tether_Power.position = lerp(tether_Power.position, tetherOrigin, delta * 5)
+			transfer_Button.position = lerp(transfer_Button.position, transferOrigin, delta * 5)
+			
+			collection_Power.modulate = lerp(collection_Power.modulate, trans, delta * 5)
+			security_Power.modulate = lerp(security_Power.modulate, trans, delta * 5)
+			communications_Power.modulate = lerp(communications_Power.modulate, trans, delta * 5)
+			tether_Power.modulate = lerp(tether_Power.modulate, trans, delta * 5)
+			transfer_Button.modulate = lerp(transfer_Button.modulate, trans, delta * 5)
+		elif uiCounter == 2:
+			security_Power.position = lerp(security_Power.position, securityOrigin, delta * 5)
+			communications_Power.position = lerp(communications_Power.position, commsOrigin, delta * 5)
+			tether_Power.position = lerp(tether_Power.position, tetherOrigin, delta * 5)
+			transfer_Button.position = lerp(transfer_Button.position, transferOrigin, delta * 5)
+			
+			security_Power.modulate = lerp(security_Power.modulate, trans, delta * 5)
+			communications_Power.modulate = lerp(communications_Power.modulate, trans, delta * 5)
+			tether_Power.modulate = lerp(tether_Power.modulate, trans, delta * 5)
+			transfer_Button.modulate = lerp(transfer_Button.modulate, trans, delta * 5)
+		elif uiCounter == 1:
+			communications_Power.position = lerp(communications_Power.position, commsOrigin, delta * 5)
+			tether_Power.position = lerp(tether_Power.position, tetherOrigin, delta * 5)
+			transfer_Button.position = lerp(transfer_Button.position, transferOrigin, delta * 5)
+			
+			communications_Power.modulate = lerp(communications_Power.modulate, trans, delta * 5)
+			tether_Power.modulate = lerp(tether_Power.modulate, trans, delta * 5)
+			transfer_Button.modulate = lerp(transfer_Button.modulate, trans, delta * 5)
+		elif uiCounter == 0:
+			transfer_Button.position = lerp(transfer_Button.position, transferOrigin, delta * 5)
+			
+			transfer_Button.modulate = lerp(transfer_Button.modulate, trans, delta * 5)
 
 
 
@@ -231,6 +362,8 @@ func mites_Activity_Changed():
 # Auto Functions
 func _on_drop_down_pressed() -> void:
 	# holy shit am i genius? this is like, better than 2 if statements
+	uiCounter = 0
+	uiCount_Timer.start()
 	drop_Down_Menu_Active  = !drop_Down_Menu_Active
 	print("pressed the button")
 	pass # Replace with function body.
@@ -310,4 +443,13 @@ func _on_tether_right_pressed() -> void:
 
 
 func _on_tether_p_drain_timeout() -> void:
+	pass # Replace with function body.
+
+
+func _on_ui_timer_timeout() -> void:
+	if uiCounter < 4:
+		uiCounter += 1
+	else:
+		uiCount_Timer.stop()
+	print(uiCounter)
 	pass # Replace with function body.

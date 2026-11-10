@@ -28,6 +28,10 @@ var mitesActive = false
 
 @onready var transfer_Button = $"Drop Down/Inner Menu/Transfer Power"
 
+@onready var wireOrg = $"Drop Down/WireOrigin"
+@onready var wire = $"Drop Down/WireOrigin/Wire"
+@onready var backShip = $"Ship Side Sprite/WireBackShip"
+
 var transferLerpPos
 var tetherLerpPos
 var systemsLerpPos
@@ -41,6 +45,10 @@ var systemsOrigin
 var collectionOrigin
 var securityOrigin
 var commsOrigin
+
+
+var wireOrgPos
+var wireLerpPos
 
 
 var powerDrainMultipler = 1
@@ -96,6 +104,9 @@ func _ready() -> void:
 	dropDownOnSize = dropDown_Button.size
 	dropDownOffSize = Vector2(304, 58)
 	
+	wireOrgPos = wireOrg.position
+	wireLerpPos = wireOrg.position - Vector2(58,0)
+	
 	
 	p_drain_Timer.wait_time = powerDrainSpeed
 	
@@ -127,6 +138,11 @@ func _ready() -> void:
 # wait a second I can use emojis? 👍😘😘👌😊😊😂🤣❤️😍😒🙌👌🤷‍♀️🤦‍♀️😉😉😎🤷‍♀️🤷‍♀️🤦‍♀️🤦‍♀️💖💖😜😜😢😢
 func _process(delta: float) -> void:
 	
+	
+	#wire.look_at(backShip.position)
+	wire.look_at(backShip.global_position)
+	
+	
 	# Power of each individual system
 	systems_Power.text = ("Systems : %d" % round(systemsPower))
 	collection_Power.text = ("Collect : %d" % round(collectionPower))
@@ -134,7 +150,7 @@ func _process(delta: float) -> void:
 	communications_Power.text = ("Comms   : %d" % round(communicationsPower))
 	tether_Text.text = str(snapped(tetherPower, 0.1))
 	
-	
+	# Scales button that is being hovered on. Else will just lerp them to 1,1 scale
 	if true:
 		systems_Power.scale = lerp(systems_Power.scale, Vector2(1,1), delta * 7)
 		collection_Power.scale = lerp(collection_Power.scale, Vector2(1,1), delta * 7)
@@ -142,10 +158,8 @@ func _process(delta: float) -> void:
 		communications_Power.scale = lerp(communications_Power.scale, Vector2(1,1), delta * 7)
 		tether_Power.scale = lerp(tether_Power.scale, Vector2(1,1), delta * 7)
 		transfer_Button.scale = lerp(transfer_Button.scale, Vector2(1,1), delta * 7)
-		pass
 	if hovering == true:
 		hoveringOver.scale = lerp(hoveringOver.scale, hoveringOver.scale + Vector2(0.1,0.1), delta * 7)
-		pass
 	
 	
 	# Colour if any item is selected as origin or destination
@@ -160,6 +174,8 @@ func _process(delta: float) -> void:
 		dropDown_Button.position = lerp(dropDown_Button.position, dropDownOnPos, delta * 5)
 		dropDown_Button.size = lerp(dropDown_Button.size, dropDownOnSize, delta * 5)
 		inner_Menu.modulate = notTrans
+		
+		wireOrg.position = lerp(wireOrg.position, wireOrgPos, delta * 5)
 		
 		if uiCounter == 0:
 			systems_Power.position = lerp(systems_Power.position, systemsLerpPos, delta * 5)
@@ -210,8 +226,8 @@ func _process(delta: float) -> void:
 		dropDown_Button.position = lerp(dropDown_Button.position, dropDownOffPos, delta * 5)
 		dropDown_Button.size = lerp(dropDown_Button.size, dropDownOffSize, delta * 5)
 		
-		
-		
+		wireOrg.position = lerp(wireOrg.position, wireLerpPos, delta * 5)
+		# Vector2(304, 58)
 		if uiCounter == 4:
 			systems_Power.position = lerp(systems_Power.position, systemsOrigin, delta * 5)
 			collection_Power.position = lerp(collection_Power.position, collectionOrigin, delta * 5)

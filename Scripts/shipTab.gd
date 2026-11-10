@@ -7,10 +7,10 @@ var posNumeric = 2
 
 @onready var shipHovering = $"Ship/Hovering Colour"
 @onready var ShipIcon = $Ship
-@onready var pos1 = $Pos1.position
-@onready var pos2 = $Pos2.position
-@onready var pos3 = $Pos3.position
-@onready var shipLerpPos = $Ship/ShipLerpPos.position
+@onready var pos1 = $Pos1.global_position
+@onready var pos2 = $Pos2.global_position
+@onready var pos3 = $Pos3.global_position
+@onready var shipLerpPos = $ShipLerpPos.position
 @onready var trueShipPos = $"True Ship Position".position
 
 

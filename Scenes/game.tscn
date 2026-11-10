@@ -31,6 +31,15 @@ func _process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_piu5q"]
+bg_color = Color(0.6, 0.6, 0.6, 0.27058825)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_461db"]
+bg_color = Color(0.6, 0.6, 0.6, 0.27058825)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tn5d3"]
+bg_color = Color(0.6, 0.6, 0.6, 0.27058825)
+
 [sub_resource type="Environment" id="Environment_g4v7s"]
 background_mode = 2
 background_energy_multiplier = 0.0
@@ -112,6 +121,7 @@ offset_right = 128.0
 grow_vertical = 2
 scale = Vector2(0.7, 0.8)
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_piu5q")
 
 [node name="Right Button" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=288830261]
 anchors_preset = 6
@@ -126,6 +136,7 @@ grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.7, 0.8)
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_461db")
 
 [node name="ComputerButton" type="Button" parent="2D Overlay/Control/CanvasLayer" unique_id=1433246067]
 anchors_preset = 5
@@ -136,6 +147,7 @@ offset_top = 30.0
 offset_right = 324.0
 offset_bottom = 104.0
 grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tn5d3")
 
 [node name="FlashLightLeft" type="SpotLight3D" parent="." unique_id=1914040452]
 unique_name_in_owner = true

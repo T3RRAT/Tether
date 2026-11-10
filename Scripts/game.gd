@@ -8,7 +8,8 @@ var monsterActive = false
 var captchaActive = false
 
 var computerButtonOrgPos = null
-var computerButtonLerpPos = null
+var computerButtonLerpIn = null
+var computerButtonLerpOut = null
 
 var lButtonOrg
 var lButtonLerp
@@ -75,8 +76,8 @@ func _ready() -> void:
 	#monsterActivityTimer.start()
 	
 	computerButtonOrgPos = buttonComputer.position
-	print(computerButtonOrgPos)
-	computerButtonLerpPos = computerButtonOrgPos + Vector2(0, 580)
+	computerButtonLerpIn = computerButtonOrgPos + Vector2(0, 580)
+	computerButtonLerpOut =computerButtonOrgPos - Vector2(0, 300)
 	
 	lButtonOrg = buttonLeft.position
 	rButtonOrg = buttonRight.position
@@ -127,8 +128,12 @@ func _process(delta: float) -> void:
 	# Handle Camera Buttons
 	if inRight == true:
 		buttonRight.position = lerp(buttonRight.position, rButtonLerp, delta * 6)
+		if computerState != 1:
+			buttonComputer.position = lerp(buttonComputer.position, computerButtonLerpOut, delta * 6)
 	if inLeft == true:
 		buttonLeft.position = lerp(buttonLeft.position, lButtonLerp, delta * 6)
+		if computerState != 1:
+			buttonComputer.position = lerp(buttonComputer.position, computerButtonLerpOut, delta * 6)
 	if not inLeft and not inRight:
 		buttonLeft.position = lerp(buttonLeft.position, lButtonOrg, delta * 6)
 		buttonRight.position = lerp(buttonRight.position, rButtonOrg, delta * 6)
@@ -220,7 +225,7 @@ func _process(delta: float) -> void:
 	# Computer Functionality
 	if computerState == 1:
 		computer.position.y = lerp(computer.position.y, computerDownPos.position.y, delta * 6)
-		buttonComputer.position = lerp(buttonComputer.position, computerButtonLerpPos, delta * 6)
+		buttonComputer.position = lerp(buttonComputer.position, computerButtonLerpIn, delta * 6)
 		
 		#buttonLeft.position = lerp(buttonLeft.position, lButtonLerp, delta * 6)
 		#buttonRight.position = lerp(buttonRight.position, rButtonLerp, delta * 6)

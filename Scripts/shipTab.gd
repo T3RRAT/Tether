@@ -7,10 +7,10 @@ var posNumeric = 2
 
 @onready var shipHovering = $"Ship/Hovering Colour"
 @onready var ShipIcon = $Ship
-@onready var pos1 = $Pos1.global_position
-@onready var pos2 = $Pos2.global_position
-@onready var pos3 = $Pos3.global_position
-@onready var shipLerpPos = $ShipLerpPos.position
+var pos1 = null #$Pos1.position
+var pos2 = null #$Pos2.position
+var pos3 = null #$Pos3.position
+@onready var shipLerpPos = $ShipLerpPos
 @onready var trueShipPos = $"True Ship Position".position
 
 
@@ -24,6 +24,9 @@ var posNumeric = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	pos1 = $Pos1.position
+	pos2 = $Pos2.position
+	pos3 = $Pos3.position
 	pass # Replace with function body.
 
 
@@ -37,35 +40,35 @@ func _process(delta: float) -> void:
 		
 		if abs(ShipIcon.position.x - pos1.x) < abs(ShipIcon.position.x - pos2.x):
 			# Lerp Draggable Ship to position 1
-			shipLerpPos = pos1
+			shipLerpPos.position = pos1
 		# Else If Draggable Ship is closer to position 3 compared to position 2
 		elif abs(ShipIcon.position.x - pos3.x) < abs(ShipIcon.position.x - pos2.x):
 			# Lerp Draggable Ship to position 3
-			shipLerpPos = pos3
+			shipLerpPos.position = pos3
 		# Else If Draggable Ship isn't closer to pos 1 or pos 3 compared to pos 2
 		else:
 			# Lerp shipLerpPos obj to pos2
-			shipLerpPos = pos2
+			shipLerpPos.position = pos2
 	else:
 		# If the Draggable Ship is closer to position 1 compared to position 2
-		if abs(shipLerpPos.x - pos1.x) < abs(shipLerpPos.x - pos2.x):
+		if abs(shipLerpPos.position.x - pos1.x) < abs(shipLerpPos.position.x - pos2.x):
 			# Lerp Draggable Ship to position 1
-			ShipIcon.position = lerp(ShipIcon.position, shipLerpPos, delta * 6)
+			ShipIcon.position = lerp(ShipIcon.position, shipLerpPos.position, delta * 6)
 			posNumeric = 1
 		# Else If Draggable Ship is closer to position 3 compared to position 2
-		elif abs(shipLerpPos.x - pos3.x) < abs(shipLerpPos.x - pos2.x):
+		elif abs(shipLerpPos.position.x - pos3.x) < abs(shipLerpPos.position.x - pos2.x):
 			# Lerp Draggable Ship to position 3
-			ShipIcon.position = lerp(ShipIcon.position, shipLerpPos, delta * 6)
+			ShipIcon.position = lerp(ShipIcon.position, shipLerpPos.position, delta * 6)
 			posNumeric = 3
 		# Else If Draggable Ship isn't closer to pos 1 or pos 3 compared to pos 2
 		else:
 			# Lerp Draggable Ship to position 2
-			ShipIcon.position = lerp(ShipIcon.position, shipLerpPos, delta * 6)
+			ShipIcon.position = lerp(ShipIcon.position, shipLerpPos.position, delta * 6)
 			posNumeric = 2
 		
 		
 		#shipHovering.color = Color(shipHovering.color, 0)
-		if shipLerpPos == trueShipPos:
+		if shipLerpPos.position == trueShipPos:
 			ShipIcon.self_modulate = Color.WHITE
 			confirmButton.text = ("Current Position: %d" % posNumeric)
 			confirmButton.z_index = -1
@@ -149,14 +152,14 @@ func changeTrueShipPosition(location):
 	pass
 
 func confirmPosition():
-	trueShipPos = shipLerpPos
+	trueShipPos = shipLerpPos.position
 	pass
 
 
 func _on_confirm_button_pressed() -> void:
-	if trueShipPos == shipLerpPos:
+	if trueShipPos == shipLerpPos.position:
 		print("What are you doing bozo")
-	elif trueShipPos != shipLerpPos:
+	elif trueShipPos != shipLerpPos.position:
 		print("Good answer nephew")
 		changeTrueShipPosition(null)
 	pass # Replace with function body.

@@ -59,6 +59,9 @@ var charging_Des_Button = null
 var chargingDestination = null
 # Charge destination/origin based on #. 0 = tether, 1 = system, 2 = collection, 3 = security, 4 = comms
 
+var hoveringOver = null
+var hovering = false
+
 var samplesCollected = 0
 
 var tetherPower = 100
@@ -132,6 +135,19 @@ func _process(delta: float) -> void:
 	tether_Text.text = str(snapped(tetherPower, 0.1))
 	
 	
+	if true:
+		systems_Power.scale = lerp(systems_Power.scale, Vector2(1,1), delta * 7)
+		collection_Power.scale = lerp(collection_Power.scale, Vector2(1,1), delta * 7)
+		security_Power.scale = lerp(security_Power.scale, Vector2(1,1), delta * 7)
+		communications_Power.scale = lerp(communications_Power.scale, Vector2(1,1), delta * 7)
+		tether_Power.scale = lerp(tether_Power.scale, Vector2(1,1), delta * 7)
+		transfer_Button.scale = lerp(transfer_Button.scale, Vector2(1,1), delta * 7)
+		pass
+	if hovering == true:
+		hoveringOver.scale = lerp(hoveringOver.scale, hoveringOver.scale + Vector2(0.1,0.1), delta * 7)
+		pass
+	
+	
 	# Colour if any item is selected as origin or destination
 	if chargingOrigin != null:
 		charging_Org_Button.add_theme_color_override("font_color", originFontColour)
@@ -186,6 +202,7 @@ func _process(delta: float) -> void:
 			systems_Power.modulate = lerp(systems_Power.modulate, notTrans, delta * 5)
 			collection_Power.modulate = lerp(collection_Power.modulate, notTrans, delta * 5)
 			security_Power.modulate = lerp(security_Power.modulate, notTrans, delta * 5)
+			communications_Power.modulate = lerp(communications_Power.modulate, notTrans, delta * 5)
 			tether_Power.modulate = lerp(tether_Power.modulate, notTrans, delta * 5)
 			transfer_Button.modulate = lerp(transfer_Button.modulate, notTrans, delta * 5)
 		
@@ -452,4 +469,54 @@ func _on_ui_timer_timeout() -> void:
 	else:
 		uiCount_Timer.stop()
 	print(uiCounter)
+	pass # Replace with function body.
+
+
+func _on_systems_l_mouse_entered() -> void:
+	hovering = true
+	hoveringOver = systems_Power
+	pass # Replace with function body.
+func _on_systems_l_mouse_exited() -> void:
+	hovering = false
+	hoveringOver = null
+	pass # Replace with function body.
+func _on_collection_l_mouse_entered() -> void:
+	hovering = true
+	hoveringOver = collection_Power
+	pass # Replace with function body.
+func _on_collection_l_mouse_exited() -> void:
+	hovering = false
+	hoveringOver = null
+	pass # Replace with function body.
+func _on_security_l_mouse_entered() -> void:
+	hovering = true
+	hoveringOver = security_Power
+	pass # Replace with function body.
+func _on_security_l_mouse_exited() -> void:
+	hovering = false
+	hoveringOver = null
+	pass # Replace with function body.
+func _on_comms_l_mouse_entered() -> void:
+	hovering = true
+	hoveringOver = communications_Power
+	pass # Replace with function body.
+func _on_comms_l_mouse_exited() -> void:
+	hovering = false
+	hoveringOver = null
+	pass # Replace with function body.
+func _on_tether_left_mouse_entered() -> void:
+	hovering = true
+	hoveringOver = tether_Power
+	pass # Replace with function body.
+func _on_tether_left_mouse_exited() -> void:
+	hovering = false
+	hoveringOver = null
+	pass # Replace with function body.
+func _on_transfer_power_mouse_entered() -> void:
+	hovering = true
+	hoveringOver = transfer_Button
+	pass # Replace with function body.
+func _on_transfer_power_mouse_exited() -> void:
+	hovering = false
+	hoveringOver = null
 	pass # Replace with function body.

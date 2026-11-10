@@ -186,7 +186,9 @@ position = Vector2(0, 60)
 [node name="SystemsL" type="Button" parent="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu" unique_id=2026889750]
 offset_right = 175.0
 offset_bottom = 36.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
 text = "Systems : 100"
@@ -208,6 +210,8 @@ alignment = 0
 offset_top = 40.0
 offset_right = 175.0
 offset_bottom = 76.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
 text = "Collect : 100"
@@ -230,6 +234,8 @@ alignment = 0
 offset_top = 80.0
 offset_right = 175.0
 offset_bottom = 116.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
 text = "Security: 100"
@@ -240,6 +246,7 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 175.0
 offset_bottom = 36.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
@@ -251,6 +258,8 @@ autowrap_trim_flags = 0
 offset_top = 120.0
 offset_right = 175.0
 offset_bottom = 156.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
 text = "Comms   : 100"
@@ -271,6 +280,8 @@ alignment = 0
 offset_left = 182.0
 offset_right = 244.0
 offset_bottom = 156.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 0.27058825)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 20
@@ -310,6 +321,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("3_piu5q")
 theme_override_font_sizes/normal_font_size = 38
@@ -321,6 +333,7 @@ vertical_alignment = 1
 offset_left = 248.0
 offset_right = 365.0
 offset_bottom = 156.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_pressed_color = Color(0.8317727, 0.6573231, 0.9705575, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 20
@@ -925,7 +938,6 @@ texture = ExtResource("1_4xga7")
 metadata/_tab_index = 2
 
 [node name="CRT Filter" type="ColorRect" parent="SubViewport/Control" unique_id=1582421659]
-visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_g4v7s")
 layout_mode = 1
@@ -952,18 +964,30 @@ grow_vertical = 2
 mouse_filter = 2
 
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down" to="SubViewport/Control/TabContainer/Power" method="_on_drop_down_pressed"]
+[connection signal="mouse_entered" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/Control/TabContainer/Power" method="_on_systems_l_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/Control/TabContainer/Power" method="_on_systems_l_mouse_exited"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/Control/TabContainer/Power" method="_on_systems_pressed"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/SystemsL/SystemsR" to="SubViewport/Control/TabContainer/Power" method="_on_systems_r_pressed"]
+[connection signal="mouse_entered" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="SubViewport/Control/TabContainer/Power" method="_on_collection_l_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="SubViewport/Control/TabContainer/Power" method="_on_collection_l_mouse_exited"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="SubViewport/Control/TabContainer/Power" method="_on_collection_pressed"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/CollectionL/CollectionR" to="SubViewport/Control/TabContainer/Power" method="_on_collection_r_pressed"]
+[connection signal="mouse_entered" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="SubViewport/Control/TabContainer/Power" method="_on_security_l_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="SubViewport/Control/TabContainer/Power" method="_on_security_l_mouse_exited"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="SubViewport/Control/TabContainer/Power" method="_on_security_pressed"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/SecurityL/SecurityR" to="SubViewport/Control/TabContainer/Power" method="_on_security_r_pressed"]
+[connection signal="mouse_entered" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/CommsL" to="SubViewport/Control/TabContainer/Power" method="_on_comms_l_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/CommsL" to="SubViewport/Control/TabContainer/Power" method="_on_comms_l_mouse_exited"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/CommsL" to="SubViewport/Control/TabContainer/Power" method="_on_communications_pressed"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/CommsL/CommsR" to="SubViewport/Control/TabContainer/Power" method="_on_comms_r_pressed"]
+[connection signal="mouse_entered" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="SubViewport/Control/TabContainer/Power" method="_on_tether_left_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="SubViewport/Control/TabContainer/Power" method="_on_tether_left_mouse_exited"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="SubViewport/Control/TabContainer/Power" method="_on_tether_power_pressed"]
 [connection signal="pressed" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/Tether Left/Tether Right" to="SubViewport/Control/TabContainer/Power" method="_on_tether_right_pressed"]
 [connection signal="button_down" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="SubViewport/Control/TabContainer/Power" method="_on_transfer_power_button_down"]
 [connection signal="button_up" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="SubViewport/Control/TabContainer/Power" method="_on_transfer_power_button_up"]
+[connection signal="mouse_entered" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="SubViewport/Control/TabContainer/Power" method="_on_transfer_power_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/Control/TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="SubViewport/Control/TabContainer/Power" method="_on_transfer_power_mouse_exited"]
 [connection signal="timeout" from="SubViewport/Control/TabContainer/Power/Power Drain Timer" to="SubViewport/Control/TabContainer/Power" method="_on_power_drain_timer_timeout"]
 [connection signal="timeout" from="SubViewport/Control/TabContainer/Power/Power Charge Timer" to="SubViewport/Control/TabContainer/Power" method="_on_power_charge_timer_timeout"]
 [connection signal="timeout" from="SubViewport/Control/TabContainer/Power/Tether PDrain" to="SubViewport/Control/TabContainer/Power" method="_on_tether_p_drain_timeout"]

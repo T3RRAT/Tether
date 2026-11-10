@@ -72,7 +72,7 @@ func _ready() -> void:
 	lightRight.light_energy = 0
 	
 	monsterOne.position = monsterPositionInactive.position
-	monsterActivityTimer.start()
+	#monsterActivityTimer.start()
 	
 	computerButtonOrgPos = buttonComputer.position
 	print(computerButtonOrgPos)
@@ -108,7 +108,9 @@ func _process(delta: float) -> void:
 		inLeft = true
 		inRight = true
 		playerRotationSetter(2)
-		pass
+	elif camLocation == 10: # In Computer
+		inLeft = true
+		inRight = true
 	
 	
 	#while inLeft == true:
@@ -124,12 +126,12 @@ func _process(delta: float) -> void:
 	
 	# Handle Camera Buttons
 	if inRight == true:
-		buttonRight.visible = false
+		buttonRight.position = lerp(buttonRight.position, rButtonLerp, delta * 6)
 	if inLeft == true:
-		buttonLeft.visible = false
+		buttonLeft.position = lerp(buttonLeft.position, lButtonLerp, delta * 6)
 	if not inLeft and not inRight:
-		buttonLeft.visible = true
-		buttonRight.visible = true
+		buttonLeft.position = lerp(buttonLeft.position, lButtonOrg, delta * 6)
+		buttonRight.position = lerp(buttonRight.position, rButtonOrg, delta * 6)
 	
 	
 	
@@ -201,7 +203,7 @@ func _process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("Flip Computer"):
-		if camLocation == 0 && buttonInteract == false:
+		if (camLocation == 0 || camLocation == 10) && buttonInteract == false:
 			computerState = computerState * -1
 			if inLeft == false:
 				inLeft = true
@@ -220,16 +222,20 @@ func _process(delta: float) -> void:
 		computer.position.y = lerp(computer.position.y, computerDownPos.position.y, delta * 6)
 		buttonComputer.position = lerp(buttonComputer.position, computerButtonLerpPos, delta * 6)
 		
-		buttonLeft.position = lerp(buttonLeft.position, lButtonLerp, delta * 6)
-		buttonRight.position = lerp(buttonRight.position, rButtonLerp, delta * 6)
+		#buttonLeft.position = lerp(buttonLeft.position, lButtonLerp, delta * 6)
+		#buttonRight.position = lerp(buttonRight.position, rButtonLerp, delta * 6)
 		
+		camLocation = 10
 		inUserInterface = true
 	else:
 		computer.position.y = lerp(computer.position.y, computerUpPos.position.y, delta * 6)
 		buttonComputer.position = lerp(buttonComputer.position, computerButtonOrgPos, delta * 6)
 		
-		buttonLeft.position = lerp(buttonLeft.position, lButtonOrg, delta * 6)
-		buttonRight.position = lerp(buttonRight.position, rButtonOrg, delta * 6)
+		if camLocation == 10:
+				camLocation = 0
+		#buttonLeft.position = lerp(buttonLeft.position, lButtonOrg, delta * 6)
+		#buttonRight.position = lerp(buttonRight.position, rButtonOrg, delta * 6)
+		
 		
 		inUserInterface = false
 	
@@ -389,7 +395,9 @@ func _on_monster_disappear_timeout() -> void:
 
 
 func _on_up_button_mouse_entered() -> void:
-	if camLocation == 0 && buttonInteract == false:
+	if (camLocation == 0 || camLocation == 10) && buttonInteract == false:
 			computerState = computerState * -1
+			if computerState == -1:
+				camLocation = 0
 			interactionMade()
 	pass # Replace with function body.

@@ -97,6 +97,7 @@ var destinFontColour = Color("4664ff")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	disable_Or_Enable_All()
 	
 	dropDownOnPos = dropDown_Button.position
 	dropDownOffPos = dropDown_Button.position + Vector2(0, 100)
@@ -129,8 +130,13 @@ func _ready() -> void:
 	
 	inner_Menu.modulate = trans
 	
-	print("Systems Origin: ")
-	print(systemsOrigin)
+	
+	
+	systems_Power.position = systemsOrigin
+	collection_Power.position = collectionOrigin
+	security_Power.position = securityOrigin
+	communications_Power.position = commsOrigin
+	
 	pass # Replace with function body.
 
 
@@ -243,6 +249,7 @@ func _process(delta: float) -> void:
 			communications_Power.modulate = lerp(communications_Power.modulate, trans, delta * 5)
 			tether_Power.modulate = lerp(tether_Power.modulate, trans, delta * 5)
 			transfer_Button.modulate = lerp(transfer_Button.modulate, trans, delta * 5)
+			
 		elif uiCounter == 3:
 			collection_Power.position = lerp(collection_Power.position, collectionOrigin, delta * 5)
 			security_Power.position = lerp(security_Power.position, securityOrigin, delta * 5)
@@ -383,6 +390,21 @@ func change_Lerp_Positions():
 	
 	pass
 
+func disable_Or_Enable_All():
+	if systems_Power.disabled == false:
+		systems_Power.disabled = true
+		collection_Power.disabled = true
+		security_Power.disabled = true
+		communications_Power.disabled = true
+		tether_Power.disabled = true
+		transfer_Button.disabled = true
+	elif systems_Power.disabled == true:
+		systems_Power.disabled = false
+		collection_Power.disabled = false
+		security_Power.disabled = false
+		communications_Power.disabled = false
+		tether_Power.disabled = false
+		transfer_Button.disabled = false
 
 # Functions Called by other scenes
 func mites_Activity_Changed():
@@ -398,6 +420,7 @@ func _on_drop_down_pressed() -> void:
 	uiCounter = 0
 	uiCount_Timer.start()
 	drop_Down_Menu_Active  = !drop_Down_Menu_Active
+	disable_Or_Enable_All()
 	print("pressed the button")
 	pass # Replace with function body.
 

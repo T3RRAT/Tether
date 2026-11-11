@@ -39,7 +39,6 @@ func _process(delta: float) -> void:
 
 
 
-
 # Things to do
 # Fix Computer A and D navigation
 # Fix Computer UI bug. (Scale and position seem to be acting really weird) (I think its working)

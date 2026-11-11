@@ -38,6 +38,21 @@ data = PackedVector3Array(0.705, -0.405, 0, -0.705, -0.405, 0, 0.705, 0.405, 0, 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_461db"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tn5d3"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fbd4"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8p3nl"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bfw6"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adnlo"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+
 [sub_resource type="Gradient" id="Gradient_piu5q"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yf5fn"]
@@ -801,6 +816,7 @@ alignment = 0
 autowrap_trim_flags = 0
 
 [node name="SystemsR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/SystemsL" unique_id=84836363]
+modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 175.0
@@ -819,10 +835,12 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tn5d3")
 text = "Collect : 100"
 alignment = 0
 
 [node name="CollectionR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=792052080]
+modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 175.0
@@ -843,10 +861,12 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fbd4")
 text = "Security: 100"
 alignment = 0
 
 [node name="SecurityR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/SecurityL" unique_id=1581327950]
+modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 175.0
@@ -867,10 +887,12 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8p3nl")
 text = "Comms   : 100"
 alignment = 0
 
 [node name="CommsR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/CommsL" unique_id=667499315]
+modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 175.0
@@ -890,6 +912,7 @@ theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 0.27058825)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/disabled = SubResource("StyleBoxFlat_1bfw6")
 text = "Tether
 
 
@@ -913,6 +936,7 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/disabled = SubResource("StyleBoxFlat_adnlo")
 button_mask = 2
 autowrap_mode = 1
 autowrap_trim_flags = 0

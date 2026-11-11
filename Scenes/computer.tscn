@@ -130,6 +130,10 @@ gradient = SubResource("Gradient_5fbd4")
 width = 32
 height = 32
 
+[sub_resource type="Theme" id="Theme_g4v7s"]
+default_font = ExtResource("3_piu5q")
+default_font_size = 32
+
 [node name="Computer ingame" type="Node3D" unique_id=129153883]
 script = ExtResource("1_m1ujp")
 
@@ -1054,6 +1058,43 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 34.0
 grow_horizontal = 2
+
+[node name="TB BG Colour" type="ColorRect" parent="Control/TabContainerMimic/Top Bar" unique_id=703318727]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.36078432)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TabContainerMimic/Top Bar" unique_id=930060858]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Control/TabContainerMimic/Top Bar/HBoxContainer" unique_id=905936934]
+layout_mode = 2
+text = "Power"
+
+[node name="Button2" type="Button" parent="Control/TabContainerMimic/Top Bar/HBoxContainer" unique_id=342657060]
+layout_mode = 2
+theme = SubResource("Theme_g4v7s")
+text = "Ship"
+
+[node name="Button3" type="Button" parent="Control/TabContainerMimic/Top Bar/HBoxContainer" unique_id=955707941]
+layout_mode = 2
+text = "Tab3"
 
 [connection signal="button_down" from="Control/TabContainerMimic/Ship/Ship" to="Control/TabContainerMimic/Ship" method="_on_ship_button_down"]
 [connection signal="button_up" from="Control/TabContainerMimic/Ship/Ship" to="Control/TabContainerMimic/Ship" method="_on_ship_button_up"]

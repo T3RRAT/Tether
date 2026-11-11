@@ -58,7 +58,7 @@ var tetherDrainMultipler = 1
 
 var flashPowerDrain = 10
 
-var charging = true
+var charging = false
 
 var charging_Org_Button = null
 var chargingOrigin = null
@@ -295,7 +295,6 @@ func power_Destination_Change(location):
 	
 	match location:
 		"systems":
-			chargingDestination = null
 			if charging_Des_Button:
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
@@ -303,7 +302,6 @@ func power_Destination_Change(location):
 			chargingDestination = systemsPower
 			charging_Des_Button = systems_Power
 		"collection":
-			chargingDestination = null
 			if charging_Des_Button:
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
@@ -311,7 +309,6 @@ func power_Destination_Change(location):
 			chargingDestination = collectionPower
 			charging_Des_Button = collection_Power
 		"security":
-			chargingDestination = null
 			if charging_Des_Button:
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
@@ -319,7 +316,6 @@ func power_Destination_Change(location):
 			chargingDestination = securityPower
 			charging_Des_Button = security_Power
 		"comms":
-			chargingDestination = null
 			if charging_Des_Button:
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
@@ -327,7 +323,6 @@ func power_Destination_Change(location):
 			chargingDestination = communicationsPower
 			charging_Des_Button = communications_Power
 		"tether":
-			chargingDestination = null
 			if charging_Des_Button:
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
@@ -341,7 +336,6 @@ func power_Origin_Change(location):
 	
 	match location:
 		"systems":
-			chargingOrigin = null
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
@@ -349,7 +343,6 @@ func power_Origin_Change(location):
 			chargingOrigin = systemsPower
 			charging_Org_Button = systems_Power
 		"collection":
-			chargingOrigin = null
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
@@ -357,7 +350,6 @@ func power_Origin_Change(location):
 			chargingOrigin = collectionPower
 			charging_Org_Button = collection_Power
 		"security":
-			chargingOrigin = null
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
@@ -365,7 +357,6 @@ func power_Origin_Change(location):
 			chargingOrigin = securityPower
 			charging_Org_Button = security_Power
 		"comms":
-			chargingOrigin = null
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
@@ -373,7 +364,6 @@ func power_Origin_Change(location):
 			chargingOrigin = communicationsPower
 			charging_Org_Button = communications_Power
 		"tether":
-			chargingOrigin = null
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
@@ -398,6 +388,14 @@ func disable_Or_Enable_All():
 		communications_Power.disabled = true
 		tether_Power.disabled = true
 		transfer_Button.disabled = true
+		
+		systems_Power.mouse_filter = MOUSE_FILTER_IGNORE
+		collection_Power.mouse_filter = MOUSE_FILTER_IGNORE
+		security_Power.mouse_filter = MOUSE_FILTER_IGNORE
+		communications_Power.mouse_filter = MOUSE_FILTER_IGNORE
+		tether_Power.mouse_filter = MOUSE_FILTER_IGNORE
+		transfer_Button.mouse_filter = MOUSE_FILTER_IGNORE
+		
 	elif systems_Power.disabled == true:
 		systems_Power.disabled = false
 		collection_Power.disabled = false
@@ -405,6 +403,13 @@ func disable_Or_Enable_All():
 		communications_Power.disabled = false
 		tether_Power.disabled = false
 		transfer_Button.disabled = false
+		
+		systems_Power.mouse_filter = MOUSE_FILTER_STOP
+		collection_Power.mouse_filter = MOUSE_FILTER_STOP
+		security_Power.mouse_filter = MOUSE_FILTER_STOP
+		communications_Power.mouse_filter = MOUSE_FILTER_STOP
+		tether_Power.mouse_filter = MOUSE_FILTER_STOP
+		transfer_Button.mouse_filter = MOUSE_FILTER_STOP
 
 # Functions Called by other scenes
 func mites_Activity_Changed():
@@ -431,7 +436,7 @@ func _on_power_drain_timer_timeout() -> void:
 	securityPower -= 0.1 * powerDrainMultipler
 	communicationsPower -= 0.1 * powerDrainMultipler
 	
-	tetherPower -= 0.1 * powerDrainMultipler
+	#tetherPower -= 0.1 * powerDrainMultipler
 	
 	
 	pass # Replace with function body.
@@ -440,28 +445,29 @@ func _on_power_drain_timer_timeout() -> void:
 func _on_power_charge_timer_timeout() -> void:
 	if charging == true:
 		match chargingDestination:
-			0:
+			tetherPower:
 				# Tether
-				tetherPower += 0.2 * tetherDrainMultipler
-				activeSelection -= 0.2 * tetherDrainMultipler
-			1:
+				chargingDestination += 0.2 * tetherDrainMultipler
+				chargingOrigin -= 0.2 * tetherDrainMultipler
+			systemsPower:
 				# Systems
-				tetherPower -= 0.2 * tetherDrainMultipler
-				activeSelection -= 0.2 * tetherDrainMultipler
-			2:
+				#tetherPower -= 0.2 * tetherDrainMultipler
+				#activeSelection -= 0.2 * tetherDrainMultipler
+				chargingDestination += 0.2
+				chargingOrigin -= 0.2
+			collectionPower:
 				# Collection
-				tetherPower -= 0.2 * tetherDrainMultipler
-				activeSelection -= 0.2 * tetherDrainMultipler
-			3:
+				chargingDestination += 0.2
+				chargingOrigin -= 0.2
+			securityPower:
 				# Security
-				tetherPower -= 0.2 * tetherDrainMultipler
-				activeSelection -= 0.2 * tetherDrainMultipler
-			4:
+				chargingDestination += 0.2
+				chargingOrigin -= 0.2
+			communicationsPower:
 				# Comms
-				tetherPower -= 0.2 * tetherDrainMultipler
-				activeSelection -= 0.2 * tetherDrainMultipler
-		pass
-	pass # Replace with function body.
+				chargingDestination += 0.2
+				chargingOrigin -= 0.2
+				print(charging_Des_Button)
 
 
 

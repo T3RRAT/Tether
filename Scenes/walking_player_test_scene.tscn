@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://5yr8r832bmam"]
+
+[ext_resource type="PackedScene" uid="uid://cfl8x18pi761j" path="res://Scenes/walking_player.tscn" id="1_lrsoa"]
+[ext_resource type="Texture2D" uid="uid://bp4x00b2fdvim" path="res://Assets/bear5.webp" id="2_akjt8"]
+[ext_resource type="Environment" uid="uid://ci7vducpik12p" path="res://Scenes/test enviorment.tres" id="3_akjt8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akjt8"]
+albedo_texture = ExtResource("2_akjt8")
+
+[node name="walking player test scene" type="Node3D" unique_id=1568625544]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=699621395]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Walking Player" parent="." unique_id=982668511 instance=ExtResource("1_lrsoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2088528508]
+environment = ExtResource("3_akjt8")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1360845473]
+material_override = SubResource("StandardMaterial3D_akjt8")
+use_collision = true
+size = Vector3(15, 0.5, 15)

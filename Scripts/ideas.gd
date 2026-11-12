@@ -40,8 +40,8 @@ func _process(delta: float) -> void:
 
 
 # Things to do
-# Fix Computer A and D navigation (or rather, completely reimpliment a and d navigation)
 # Fix Computer UI bug. (Scale and position seem to be acting really weird) (I think its working)
 # Power Tab transfer button functionality
-#
+# 
+# 
 # Stand Up and walking section

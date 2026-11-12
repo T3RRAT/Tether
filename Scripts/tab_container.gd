@@ -66,6 +66,7 @@ func change_Tab_Outside(direction):
 		currentTab = tabMax
 	else:
 		currentTab = currentTab + direction
+	
 
 
 

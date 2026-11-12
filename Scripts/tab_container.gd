@@ -7,6 +7,8 @@ extends Control
 @onready var ship_Tab = $Ship
 @onready var tab3 = $Tab3
 
+var currentTab = 0
+var tabMax = 2
 
 var hoveringTop = false
 
@@ -37,7 +39,34 @@ func _process(delta: float) -> void:
 		top_Bar.size = lerp(top_Bar.size, topBarOrgHeight, delta * 5)
 		tab_Button_Container.scale = lerp(tab_Button_Container.scale, tabButContainerOrgSize, delta * 5)
 		pass
-	pass
+	
+	
+	if currentTab == 0:
+		#print("Current tab is 1 chat")
+		power_Tab.visible = true
+		ship_Tab.visible = false
+		tab3.visible = false
+	elif currentTab == 1:
+		#print("yoollooooo")
+		ship_Tab.visible = true
+		power_Tab.visible = false
+		tab3.visible = false
+	elif currentTab == 2:
+		#print("chat is this coding fire?")
+		tab3.visible = true
+		ship_Tab.visible = false
+		power_Tab.visible = false
+	
+
+# Custom Funcs
+func change_Tab_Outside(direction):
+	if currentTab == tabMax && direction == 1:
+		currentTab = 0
+	elif currentTab == 0 && direction == -1:
+		currentTab = tabMax
+	else:
+		currentTab = currentTab + direction
+
 
 
 func _on_top_bar_mouse_entered() -> void:
@@ -47,20 +76,8 @@ func _on_top_bar_mouse_exited() -> void:
 
 
 func _on_power_tab_button_pressed() -> void:
-	power_Tab.visible = true
-	ship_Tab.visible = false
-	tab3.visible = false
-
-
+	currentTab = 0
 func _on_ship_tab_button_pressed() -> void:
-	ship_Tab.visible = true
-	power_Tab.visible = false
-	tab3.visible = false
-	pass # Replace with function body.
-
-
+	currentTab = 1
 func _on_tab_3_pressed() -> void:
-	tab3.visible = true
-	ship_Tab.visible = false
-	power_Tab.visible = false
-	pass # Replace with function body.
+	currentTab = 2

@@ -54,9 +54,9 @@ var wireLerpPos
 var powerDrainMultipler = 1
 var powerDrainSpeed = 0.1
 
-var tetherDrainMultipler = 1
+var tetherDrainMultipler = 10
 
-var flashPowerDrain = 10
+var flashPowerDrain = 1
 
 var charging = false
 
@@ -229,6 +229,7 @@ func _process(delta: float) -> void:
 			transfer_Button.modulate = lerp(transfer_Button.modulate, notTrans, delta * 5)
 		
 	elif drop_Down_Menu_Active == false:
+		
 		dropDown_Button.position = lerp(dropDown_Button.position, dropDownOffPos, delta * 5)
 		dropDown_Button.size = lerp(dropDown_Button.size, dropDownOffSize, delta * 5)
 		
@@ -284,6 +285,12 @@ func _process(delta: float) -> void:
 			transfer_Button.position = lerp(transfer_Button.position, transferOrigin, delta * 5)
 			
 			transfer_Button.modulate = lerp(transfer_Button.modulate, trans, delta * 5)
+	
+	if charging == true:
+		chargingDestination = chargingDestination + 0.2
+		chargingOrigin = chargingOrigin - 0.2
+		await get_tree().create_timer(0.05)
+		print("working prob")
 
 
 
@@ -329,6 +336,7 @@ func power_Destination_Change(location):
 			
 			chargingDestination = tetherPower
 			charging_Des_Button = tether_Power
+			print("stuff????")
 	pass
 
 func power_Origin_Change(location):
@@ -439,35 +447,36 @@ func _on_power_drain_timer_timeout() -> void:
 	#tetherPower -= 0.1 * powerDrainMultipler
 	
 	
-	pass # Replace with function body.
 
 
 func _on_power_charge_timer_timeout() -> void:
 	if charging == true:
-		match chargingDestination:
-			tetherPower:
-				# Tether
-				chargingDestination += 0.2 * tetherDrainMultipler
-				chargingOrigin -= 0.2 * tetherDrainMultipler
-			systemsPower:
-				# Systems
-				#tetherPower -= 0.2 * tetherDrainMultipler
-				#activeSelection -= 0.2 * tetherDrainMultipler
-				chargingDestination += 0.2
-				chargingOrigin -= 0.2
-			collectionPower:
-				# Collection
-				chargingDestination += 0.2
-				chargingOrigin -= 0.2
-			securityPower:
-				# Security
-				chargingDestination += 0.2
-				chargingOrigin -= 0.2
-			communicationsPower:
-				# Comms
-				chargingDestination += 0.2
-				chargingOrigin -= 0.2
-				print(charging_Des_Button)
+		chargingDestination += 0.2 * tetherDrainMultipler
+		chargingOrigin -= 0.2 * tetherDrainMultipler
+		#match chargingDestination:
+			#tetherPower:
+				## Tether
+				#chargingDestination += 0.2 * tetherDrainMultipler
+				#chargingOrigin -= 0.2 * tetherDrainMultipler
+			#systemsPower:
+				## Systems
+				##tetherPower -= 0.2 * tetherDrainMultipler
+				##activeSelection -= 0.2 * tetherDrainMultipler
+				#chargingDestination += 0.2
+				#chargingOrigin -= 0.2
+			#collectionPower:
+				## Collection
+				#chargingDestination += 0.2
+				#chargingOrigin -= 0.2
+			#securityPower:
+				## Security
+				#chargingDestination += 0.2
+				#chargingOrigin -= 0.2
+			#communicationsPower:
+				## Comms
+				#chargingDestination += 0.2
+				#chargingOrigin -= 0.2
+				#print(charging_Des_Button)
 
 
 

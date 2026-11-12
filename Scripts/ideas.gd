@@ -40,10 +40,8 @@ func _process(delta: float) -> void:
 
 
 # Things to do
-# Fix Computer A and D navigation
+# Fix Computer A and D navigation (or rather, completely reimpliment a and d navigation)
 # Fix Computer UI bug. (Scale and position seem to be acting really weird) (I think its working)
-# Power Tab Button Functionality
+# Power Tab transfer button functionality
 #
 # Stand Up and walking section
-# Player should be able to interact with a few things in the enviorment
-# Should it be a completly free roam as in movment or should it be like a point and click thing

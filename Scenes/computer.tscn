@@ -114,7 +114,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TabContainer/Blur Filter:material:shader_parameter/lod")
+tracks/0/path = NodePath("SubViewport/TabContainer/Blur Filter:material:shader_parameter/lod")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -129,7 +129,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TabContainer/Blur Filter:material:shader_parameter/lod")
+tracks/0/path = NodePath("SubViewport/TabContainer/Blur Filter:material:shader_parameter/lod")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -174,7 +174,7 @@ shape = SubResource("ConcavePolygonShape3D_3cxpa")
 [node name="SubViewport" type="SubViewport" parent="." unique_id=778372070]
 size = Vector2i(1152, 648)
 
-[node name="TabContainer" type="Control" parent="." unique_id=433158865]
+[node name="TabContainer" type="Control" parent="SubViewport" unique_id=433158865]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -184,15 +184,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_tn5d3")
 
-[node name="Ship" type="TextureRect" parent="TabContainer" unique_id=1895162407]
-visible = false
+[node name="Ship" type="TextureRect" parent="SubViewport/TabContainer" unique_id=1895162407]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 34.0
 script = ExtResource("3_3cxpa")
 
-[node name="Ship" type="Button" parent="TabContainer/Ship" unique_id=877691258]
+[node name="Ship" type="Button" parent="SubViewport/TabContainer/Ship" unique_id=877691258]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -209,7 +208,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("1_4xga7")
 autowrap_trim_flags = 192
 
-[node name="ShipLerpPos3" type="Button" parent="TabContainer/Ship/Ship" unique_id=995597633]
+[node name="ShipLerpPos3" type="Button" parent="SubViewport/TabContainer/Ship/Ship" unique_id=995597633]
 self_modulate = Color(0.36265963, 0.15309086, 0.9556498, 1)
 top_level = true
 z_index = -1
@@ -230,7 +229,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
-[node name="Hovering Colour" type="ColorRect" parent="TabContainer/Ship/Ship" unique_id=815774289]
+[node name="Hovering Colour" type="ColorRect" parent="SubViewport/TabContainer/Ship/Ship" unique_id=815774289]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -241,7 +240,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 color = Color(0.83137256, 0.89411765, 0.92941177, 0)
 
-[node name="Pos1" type="Button" parent="TabContainer/Ship" unique_id=1842611306]
+[node name="Pos1" type="Button" parent="SubViewport/TabContainer/Ship" unique_id=1842611306]
 z_index = -1
 layout_mode = 1
 anchors_preset = 4
@@ -257,7 +256,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
-[node name="Pos2" type="Button" parent="TabContainer/Ship" unique_id=1491902193]
+[node name="Pos2" type="Button" parent="SubViewport/TabContainer/Ship" unique_id=1491902193]
 z_index = -1
 layout_mode = 1
 anchors_preset = 8
@@ -276,7 +275,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
-[node name="Pos3" type="Button" parent="TabContainer/Ship" unique_id=1349207961]
+[node name="Pos3" type="Button" parent="SubViewport/TabContainer/Ship" unique_id=1349207961]
 z_index = -1
 layout_mode = 1
 anchors_preset = 6
@@ -295,7 +294,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
-[node name="True Ship Position" type="Button" parent="TabContainer/Ship" unique_id=1780437102]
+[node name="True Ship Position" type="Button" parent="SubViewport/TabContainer/Ship" unique_id=1780437102]
 modulate = Color(0, 0, 0, 1)
 z_index = -1
 layout_mode = 1
@@ -315,7 +314,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 icon = ExtResource("1_4xga7")
 
-[node name="Confirm Button" type="Button" parent="TabContainer/Ship" unique_id=1196104405]
+[node name="Confirm Button" type="Button" parent="SubViewport/TabContainer/Ship" unique_id=1196104405]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -332,7 +331,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 text = "Confirm Position: "
 icon = ExtResource("1_4xga7")
 
-[node name="Minigames" type="Control" parent="TabContainer/Ship" unique_id=2113248723]
+[node name="Minigames" type="Control" parent="SubViewport/TabContainer/Ship" unique_id=2113248723]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -342,7 +341,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Minesweeper" type="GridContainer" parent="TabContainer/Ship/Minigames" unique_id=2144897839]
+[node name="Minesweeper" type="GridContainer" parent="SubViewport/TabContainer/Ship/Minigames" unique_id=2144897839]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -360,11 +359,11 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 columns = 4
 script = ExtResource("4_8u73g")
 
-[node name="1,1" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=1691177709]
+[node name="1,1" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=1691177709]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/1,1" unique_id=1714131099]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/1,1" unique_id=1714131099]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -384,11 +383,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2,1" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=2066883407]
+[node name="2,1" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=2066883407]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/2,1" unique_id=303347290]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/2,1" unique_id=303347290]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -408,11 +407,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="3,1" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=807329083]
+[node name="3,1" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=807329083]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/3,1" unique_id=296048890]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/3,1" unique_id=296048890]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -432,11 +431,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="4,1" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=458200583]
+[node name="4,1" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=458200583]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/4,1" unique_id=653766019]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/4,1" unique_id=653766019]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -456,11 +455,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="1,2" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=920650554]
+[node name="1,2" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=920650554]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/1,2" unique_id=2101190839]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/1,2" unique_id=2101190839]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -480,11 +479,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2,2" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=1917230698]
+[node name="2,2" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=1917230698]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/2,2" unique_id=663570828]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/2,2" unique_id=663570828]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -504,11 +503,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="3,2" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=1483811844]
+[node name="3,2" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=1483811844]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/3,2" unique_id=442273383]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/3,2" unique_id=442273383]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -528,11 +527,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="4,2" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=1465582764]
+[node name="4,2" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=1465582764]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/4,2" unique_id=1452513361]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/4,2" unique_id=1452513361]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -552,11 +551,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="1,3" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=649504899]
+[node name="1,3" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=649504899]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/1,3" unique_id=861191689]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/1,3" unique_id=861191689]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -576,11 +575,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2,3" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=638331337]
+[node name="2,3" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=638331337]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/2,3" unique_id=316192524]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/2,3" unique_id=316192524]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -600,11 +599,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="3,3" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=956264251]
+[node name="3,3" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=956264251]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/3,3" unique_id=130743116]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/3,3" unique_id=130743116]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -624,11 +623,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="4,3" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=145753869]
+[node name="4,3" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=145753869]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/4,3" unique_id=125706540]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/4,3" unique_id=125706540]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -648,11 +647,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="1,4" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=663197535]
+[node name="1,4" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=663197535]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/1,4" unique_id=910520919]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/1,4" unique_id=910520919]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -672,11 +671,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2,4" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=1710263797]
+[node name="2,4" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=1710263797]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/2,4" unique_id=1893006658]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/2,4" unique_id=1893006658]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -696,11 +695,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="3,4" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=967683739]
+[node name="3,4" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=967683739]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/3,4" unique_id=980064029]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/3,4" unique_id=980064029]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -720,11 +719,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="4,4" type="ColorRect" parent="TabContainer/Ship/Minigames/Minesweeper" unique_id=1110461523]
+[node name="4,4" type="ColorRect" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper" unique_id=1110461523]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="TabContainer/Ship/Minigames/Minesweeper/4,4" unique_id=898061499]
+[node name="Label" type="RichTextLabel" parent="SubViewport/TabContainer/Ship/Minigames/Minesweeper/4,4" unique_id=898061499]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -744,11 +743,11 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Click Captcha" parent="TabContainer/Ship/Minigames" unique_id=1953865121 instance=ExtResource("6_iofu4")]
+[node name="Click Captcha" parent="SubViewport/TabContainer/Ship/Minigames" unique_id=1953865121 instance=ExtResource("6_iofu4")]
 visible = false
 layout_mode = 1
 
-[node name="ShipLerpPos" type="Button" parent="TabContainer/Ship" unique_id=1212604839]
+[node name="ShipLerpPos" type="Button" parent="SubViewport/TabContainer/Ship" unique_id=1212604839]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -768,7 +767,8 @@ button_mask = 0
 text = "Lerping So Hard
 I live laugh lerp"
 
-[node name="Power" type="TextureRect" parent="TabContainer" unique_id=678326908]
+[node name="Power" type="TextureRect" parent="SubViewport/TabContainer" unique_id=678326908]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -777,7 +777,7 @@ offset_top = 34.0
 mouse_filter = 2
 script = ExtResource("2_i500x")
 
-[node name="Drop Down" type="Button" parent="TabContainer/Power" unique_id=1105241422]
+[node name="Drop Down" type="Button" parent="SubViewport/TabContainer/Power" unique_id=1105241422]
 z_index = 1
 layout_mode = 1
 anchors_preset = 6
@@ -803,10 +803,10 @@ alignment = 0
 icon_alignment = 2
 expand_icon = true
 
-[node name="Inner Menu" type="Node2D" parent="TabContainer/Power/Drop Down" unique_id=917676672]
+[node name="Inner Menu" type="Node2D" parent="SubViewport/TabContainer/Power/Drop Down" unique_id=917676672]
 position = Vector2(0, 60)
 
-[node name="SystemsL" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=2026889750]
+[node name="SystemsL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=2026889750]
 offset_top = 15.5
 offset_right = 175.0
 offset_bottom = 51.5
@@ -821,7 +821,7 @@ text = "Systems : 100"
 alignment = 0
 autowrap_trim_flags = 0
 
-[node name="SystemsR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/SystemsL" unique_id=84836363]
+[node name="SystemsR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" unique_id=84836363]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -833,7 +833,7 @@ theme_override_font_sizes/font_size = 34
 button_mask = 2
 alignment = 0
 
-[node name="CollectionL" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=1261451041]
+[node name="CollectionL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=1261451041]
 offset_top = 55.5
 offset_right = 175.0
 offset_bottom = 91.5
@@ -846,7 +846,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_tn5d3")
 text = "Collect : 100"
 alignment = 0
 
-[node name="CollectionR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=792052080]
+[node name="CollectionR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=792052080]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -860,7 +860,7 @@ text = "
 "
 alignment = 0
 
-[node name="SecurityL" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=537701327]
+[node name="SecurityL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=537701327]
 offset_top = 95.5
 offset_right = 175.0
 offset_bottom = 131.5
@@ -873,7 +873,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_5fbd4")
 text = "Security: 100"
 alignment = 0
 
-[node name="SecurityR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/SecurityL" unique_id=1581327950]
+[node name="SecurityR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SecurityL" unique_id=1581327950]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -887,7 +887,7 @@ button_mask = 2
 alignment = 0
 autowrap_trim_flags = 0
 
-[node name="CommsL" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=160367644]
+[node name="CommsL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=160367644]
 offset_top = 135.5
 offset_right = 175.0
 offset_bottom = 171.5
@@ -900,7 +900,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_8p3nl")
 text = "Comms   : 100"
 alignment = 0
 
-[node name="CommsR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/CommsL" unique_id=667499315]
+[node name="CommsR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CommsL" unique_id=667499315]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -912,7 +912,7 @@ theme_override_font_sizes/font_size = 34
 button_mask = 2
 alignment = 0
 
-[node name="Tether Left" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=1098040798]
+[node name="Tether Left" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=1098040798]
 offset_left = 182.0
 offset_top = 15.5
 offset_right = 244.0
@@ -938,7 +938,7 @@ autowrap_trim_flags = 0
 icon_alignment = 1
 expand_icon = true
 
-[node name="Tether Right" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/Tether Left" unique_id=1575561231]
+[node name="Tether Right" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left" unique_id=1575561231]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 62.0
@@ -954,7 +954,7 @@ autowrap_trim_flags = 0
 icon_alignment = 1
 expand_icon = true
 
-[node name="TetherText" type="RichTextLabel" parent="TabContainer/Power/Drop Down/Inner Menu/Tether Left" unique_id=33496976]
+[node name="TetherText" type="RichTextLabel" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left" unique_id=33496976]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -969,7 +969,7 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Transfer Power" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=2062863818]
+[node name="Transfer Power" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=2062863818]
 offset_left = 248.0
 offset_top = 15.5
 offset_right = 365.0
@@ -994,41 +994,41 @@ autowrap_trim_flags = 0
 icon_alignment = 1
 expand_icon = true
 
-[node name="WireOrigin" type="Sprite2D" parent="TabContainer/Power/Drop Down" unique_id=1766656392]
+[node name="WireOrigin" type="Sprite2D" parent="SubViewport/TabContainer/Power/Drop Down" unique_id=1766656392]
 z_index = -1
 position = Vector2(365, 29)
 texture = SubResource("GradientTexture2D_yf5fn")
 
-[node name="Wire" type="Sprite2D" parent="TabContainer/Power/Drop Down/WireOrigin" unique_id=1364852416]
+[node name="Wire" type="Sprite2D" parent="SubViewport/TabContainer/Power/Drop Down/WireOrigin" unique_id=1364852416]
 scale = Vector2(20, 1)
 texture = SubResource("GradientTexture2D_3gngh")
 offset = Vector2(5, 0)
 
-[node name="Power Drain Timer" type="Timer" parent="TabContainer/Power" unique_id=1324947469]
+[node name="Power Drain Timer" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1324947469]
 wait_time = 0.2
 autostart = true
 
-[node name="Power Charge Timer" type="Timer" parent="TabContainer/Power" unique_id=1648483263]
+[node name="Power Charge Timer" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1648483263]
 wait_time = 0.1
 autostart = true
 
-[node name="Tether PDrain" type="Timer" parent="TabContainer/Power" unique_id=1165373064]
+[node name="Tether PDrain" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1165373064]
 wait_time = 0.05
 
-[node name="UI Timer" type="Timer" parent="TabContainer/Power" unique_id=1090764986]
+[node name="UI Timer" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1090764986]
 wait_time = 0.1
 
-[node name="Ship Side Sprite" type="Sprite2D" parent="TabContainer/Power" unique_id=1793469316]
+[node name="Ship Side Sprite" type="Sprite2D" parent="SubViewport/TabContainer/Power" unique_id=1793469316]
 z_index = 1
 position = Vector2(839, 328)
 texture = SubResource("GradientTexture2D_g4v7s")
 
-[node name="WireBackShip" type="Sprite2D" parent="TabContainer/Power/Ship Side Sprite" unique_id=1328756762]
+[node name="WireBackShip" type="Sprite2D" parent="SubViewport/TabContainer/Power/Ship Side Sprite" unique_id=1328756762]
 z_index = -1
 position = Vector2(-248, -21)
 texture = SubResource("GradientTexture2D_57qmd")
 
-[node name="Tab3" type="TextureRect" parent="TabContainer" unique_id=1568788166]
+[node name="Tab3" type="TextureRect" parent="SubViewport/TabContainer" unique_id=1568788166]
 visible = false
 modulate = Color(0.3230459, 0.7567149, 0.09408315, 1)
 layout_mode = 0
@@ -1037,7 +1037,7 @@ anchor_bottom = 1.0
 offset_top = 34.0
 texture = ExtResource("1_4xga7")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Tab3" unique_id=1499424717]
+[node name="RichTextLabel" type="RichTextLabel" parent="SubViewport/TabContainer/Tab3" unique_id=1499424717]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1047,7 +1047,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 80
 text = "if a tab is called tab 3, do you really think there would be anything finished to look at?"
 
-[node name="Top Bar" type="Control" parent="TabContainer" unique_id=1491460754]
+[node name="Top Bar" type="Control" parent="SubViewport/TabContainer" unique_id=1491460754]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -1055,7 +1055,7 @@ offset_bottom = 40.0
 grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 0)
 
-[node name="TB BG Colour" type="ColorRect" parent="TabContainer/Top Bar" unique_id=703318727]
+[node name="TB BG Colour" type="ColorRect" parent="SubViewport/TabContainer/Top Bar" unique_id=703318727]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1065,7 +1065,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.36078432)
 
-[node name="TabButtonContainer" type="HBoxContainer" parent="TabContainer/Top Bar" unique_id=930060858]
+[node name="TabButtonContainer" type="HBoxContainer" parent="SubViewport/TabContainer/Top Bar" unique_id=930060858]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1081,28 +1081,28 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 alignment = 1
 
-[node name="PowerTabButton" type="Button" parent="TabContainer/Top Bar/TabButtonContainer" unique_id=905936934]
+[node name="PowerTabButton" type="Button" parent="SubViewport/TabContainer/Top Bar/TabButtonContainer" unique_id=905936934]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 32
 text = "Power"
 
-[node name="ShipTabButton" type="Button" parent="TabContainer/Top Bar/TabButtonContainer" unique_id=342657060]
+[node name="ShipTabButton" type="Button" parent="SubViewport/TabContainer/Top Bar/TabButtonContainer" unique_id=342657060]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 32
 text = "Ship"
 
-[node name="Tab3" type="Button" parent="TabContainer/Top Bar/TabButtonContainer" unique_id=955707941]
+[node name="Tab3" type="Button" parent="SubViewport/TabContainer/Top Bar/TabButtonContainer" unique_id=955707941]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 32
 text = "Tab3"
 
-[node name="CRT Filter" type="ColorRect" parent="TabContainer" unique_id=1582421659]
+[node name="CRT Filter" type="ColorRect" parent="SubViewport/TabContainer" unique_id=1582421659]
 visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_g4v7s")
@@ -1114,11 +1114,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer" unique_id=841538324]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/TabContainer" unique_id=841538324]
+root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_m7p0i")
 
-[node name="Blur Filter" type="ColorRect" parent="TabContainer" unique_id=782609685]
+[node name="Blur Filter" type="ColorRect" parent="SubViewport/TabContainer" unique_id=782609685]
 visible = false
 material = SubResource("ShaderMaterial_yf5fn")
 layout_mode = 1
@@ -1129,40 +1129,40 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="button_down" from="TabContainer/Ship/Ship" to="TabContainer/Ship" method="_on_ship_button_down"]
-[connection signal="button_up" from="TabContainer/Ship/Ship" to="TabContainer/Ship" method="_on_ship_button_up"]
-[connection signal="pressed" from="TabContainer/Ship/Confirm Button" to="TabContainer/Ship" method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down" to="TabContainer/Power" method="_on_drop_down_pressed"]
-[connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="TabContainer/Power" method="_on_systems_l_mouse_entered"]
-[connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="TabContainer/Power" method="_on_systems_l_mouse_exited"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="TabContainer/Power" method="_on_systems_pressed"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/SystemsL/SystemsR" to="TabContainer/Power" method="_on_systems_r_pressed"]
-[connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="TabContainer/Power" method="_on_collection_l_mouse_entered"]
-[connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="TabContainer/Power" method="_on_collection_l_mouse_exited"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="TabContainer/Power" method="_on_collection_pressed"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL/CollectionR" to="TabContainer/Power" method="_on_collection_r_pressed"]
-[connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="TabContainer/Power" method="_on_security_l_mouse_entered"]
-[connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="TabContainer/Power" method="_on_security_l_mouse_exited"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="TabContainer/Power" method="_on_security_pressed"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/SecurityL/SecurityR" to="TabContainer/Power" method="_on_security_r_pressed"]
-[connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/CommsL" to="TabContainer/Power" method="_on_comms_l_mouse_entered"]
-[connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/CommsL" to="TabContainer/Power" method="_on_comms_l_mouse_exited"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CommsL" to="TabContainer/Power" method="_on_communications_pressed"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CommsL/CommsR" to="TabContainer/Power" method="_on_comms_r_pressed"]
-[connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="TabContainer/Power" method="_on_tether_left_mouse_entered"]
-[connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="TabContainer/Power" method="_on_tether_left_mouse_exited"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="TabContainer/Power" method="_on_tether_power_pressed"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/Tether Left/Tether Right" to="TabContainer/Power" method="_on_tether_right_pressed"]
-[connection signal="button_down" from="TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="TabContainer/Power" method="_on_transfer_power_button_down"]
-[connection signal="button_up" from="TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="TabContainer/Power" method="_on_transfer_power_button_up"]
-[connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="TabContainer/Power" method="_on_transfer_power_mouse_entered"]
-[connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="TabContainer/Power" method="_on_transfer_power_mouse_exited"]
-[connection signal="timeout" from="TabContainer/Power/Power Drain Timer" to="TabContainer/Power" method="_on_power_drain_timer_timeout"]
-[connection signal="timeout" from="TabContainer/Power/Power Charge Timer" to="TabContainer/Power" method="_on_power_charge_timer_timeout"]
-[connection signal="timeout" from="TabContainer/Power/Tether PDrain" to="TabContainer/Power" method="_on_tether_p_drain_timeout"]
-[connection signal="timeout" from="TabContainer/Power/UI Timer" to="TabContainer/Power" method="_on_ui_timer_timeout"]
-[connection signal="mouse_entered" from="TabContainer/Top Bar" to="TabContainer" method="_on_top_bar_mouse_entered"]
-[connection signal="mouse_exited" from="TabContainer/Top Bar" to="TabContainer" method="_on_top_bar_mouse_exited"]
-[connection signal="pressed" from="TabContainer/Top Bar/TabButtonContainer/PowerTabButton" to="TabContainer" method="_on_power_tab_button_pressed"]
-[connection signal="pressed" from="TabContainer/Top Bar/TabButtonContainer/ShipTabButton" to="TabContainer" method="_on_ship_tab_button_pressed"]
-[connection signal="pressed" from="TabContainer/Top Bar/TabButtonContainer/Tab3" to="TabContainer" method="_on_tab_3_pressed"]
+[connection signal="button_down" from="SubViewport/TabContainer/Ship/Ship" to="SubViewport/TabContainer/Ship" method="_on_ship_button_down"]
+[connection signal="button_up" from="SubViewport/TabContainer/Ship/Ship" to="SubViewport/TabContainer/Ship" method="_on_ship_button_up"]
+[connection signal="pressed" from="SubViewport/TabContainer/Ship/Confirm Button" to="SubViewport/TabContainer/Ship" method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down" to="SubViewport/TabContainer/Power" method="_on_drop_down_pressed"]
+[connection signal="mouse_entered" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/TabContainer/Power" method="_on_systems_l_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/TabContainer/Power" method="_on_systems_l_mouse_exited"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/TabContainer/Power" method="_on_systems_pressed"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL/SystemsR" to="SubViewport/TabContainer/Power" method="_on_systems_r_pressed"]
+[connection signal="mouse_entered" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="SubViewport/TabContainer/Power" method="_on_collection_l_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="SubViewport/TabContainer/Power" method="_on_collection_l_mouse_exited"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="SubViewport/TabContainer/Power" method="_on_collection_pressed"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CollectionL/CollectionR" to="SubViewport/TabContainer/Power" method="_on_collection_r_pressed"]
+[connection signal="mouse_entered" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="SubViewport/TabContainer/Power" method="_on_security_l_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="SubViewport/TabContainer/Power" method="_on_security_l_mouse_exited"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="SubViewport/TabContainer/Power" method="_on_security_pressed"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SecurityL/SecurityR" to="SubViewport/TabContainer/Power" method="_on_security_r_pressed"]
+[connection signal="mouse_entered" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CommsL" to="SubViewport/TabContainer/Power" method="_on_comms_l_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CommsL" to="SubViewport/TabContainer/Power" method="_on_comms_l_mouse_exited"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CommsL" to="SubViewport/TabContainer/Power" method="_on_communications_pressed"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CommsL/CommsR" to="SubViewport/TabContainer/Power" method="_on_comms_r_pressed"]
+[connection signal="mouse_entered" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="SubViewport/TabContainer/Power" method="_on_tether_left_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="SubViewport/TabContainer/Power" method="_on_tether_left_mouse_exited"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="SubViewport/TabContainer/Power" method="_on_tether_power_pressed"]
+[connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left/Tether Right" to="SubViewport/TabContainer/Power" method="_on_tether_right_pressed"]
+[connection signal="button_down" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="SubViewport/TabContainer/Power" method="_on_transfer_power_button_down"]
+[connection signal="button_up" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="SubViewport/TabContainer/Power" method="_on_transfer_power_button_up"]
+[connection signal="mouse_entered" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="SubViewport/TabContainer/Power" method="_on_transfer_power_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Transfer Power" to="SubViewport/TabContainer/Power" method="_on_transfer_power_mouse_exited"]
+[connection signal="timeout" from="SubViewport/TabContainer/Power/Power Drain Timer" to="SubViewport/TabContainer/Power" method="_on_power_drain_timer_timeout"]
+[connection signal="timeout" from="SubViewport/TabContainer/Power/Power Charge Timer" to="SubViewport/TabContainer/Power" method="_on_power_charge_timer_timeout"]
+[connection signal="timeout" from="SubViewport/TabContainer/Power/Tether PDrain" to="SubViewport/TabContainer/Power" method="_on_tether_p_drain_timeout"]
+[connection signal="timeout" from="SubViewport/TabContainer/Power/UI Timer" to="SubViewport/TabContainer/Power" method="_on_ui_timer_timeout"]
+[connection signal="mouse_entered" from="SubViewport/TabContainer/Top Bar" to="SubViewport/TabContainer" method="_on_top_bar_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewport/TabContainer/Top Bar" to="SubViewport/TabContainer" method="_on_top_bar_mouse_exited"]
+[connection signal="pressed" from="SubViewport/TabContainer/Top Bar/TabButtonContainer/PowerTabButton" to="SubViewport/TabContainer" method="_on_power_tab_button_pressed"]
+[connection signal="pressed" from="SubViewport/TabContainer/Top Bar/TabButtonContainer/ShipTabButton" to="SubViewport/TabContainer" method="_on_ship_tab_button_pressed"]
+[connection signal="pressed" from="SubViewport/TabContainer/Top Bar/TabButtonContainer/Tab3" to="SubViewport/TabContainer" method="_on_tab_3_pressed"]

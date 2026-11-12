@@ -15,7 +15,7 @@ var last_event_time: float = -1.0
 #@onready var crtFilter = $"SubViewport/Control/CRT Filter"
 @onready var crtFilter = $"Control/CRT Filter"
 
-@onready var tabs = $SubViewport/Control/TabContainer
+@onready var tabs = $SubViewport/TabContainer
 @onready var shipTab = $SubViewport/Control/TabContainer/Ship
 @onready var click_Captcha = $"SubViewport/Control/TabContainer/Ship/Minigames/Click Captcha"
 @onready var game = $"../.."
@@ -159,7 +159,8 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 
 # Custom Functionality
 func changeComputerTab(direction):
-	tabs.current_tab = tabs.current_tab + direction
+	#tabs.current_tab = tabs.current_tab + direction
+	tabs.call("change_Tab_Outside", direction)
 	pass
 
 

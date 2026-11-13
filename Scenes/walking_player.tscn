@@ -88,6 +88,7 @@ script = SubResource("GDScript_qyywi")
 shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="Player Mesh" type="MeshInstance3D" parent="." unique_id=1420521125]
+visible = false
 mesh = SubResource("CapsuleMesh_g4v7s")
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=156694285]

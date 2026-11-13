@@ -774,6 +774,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_i500x")
 
@@ -1103,7 +1105,6 @@ theme_override_font_sizes/font_size = 32
 text = "Tab3"
 
 [node name="CRT Filter" type="ColorRect" parent="SubViewport/TabContainer" unique_id=1582421659]
-visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_g4v7s")
 layout_mode = 1

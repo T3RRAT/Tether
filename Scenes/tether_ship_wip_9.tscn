@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ccpul2arf6dn3"]
+
+[ext_resource type="PackedScene" uid="uid://dhonij8qnx4re" path="res://Assets/Tether Ship wip9.fbx" id="1_m6326"]
+
+[node name="Tether Ship wip9" unique_id=1559811814 instance=ExtResource("1_m6326")]
+
+[node name="Computer" parent="." index="6" unique_id=1378388127]
+visible = false
+
+[node name="Player Ref" parent="." index="13" unique_id=2001588674]
+visible = false
+
+[node name="Window Front" parent="." index="17" unique_id=14218854]
+visible = false

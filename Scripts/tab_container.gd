@@ -7,6 +7,15 @@ extends Control
 @onready var ship_Tab = $Ship
 @onready var tab3 = $Tab3
 
+@onready var power_Button = $"Top Bar/TabButtonContainer/PowerTabButton"
+@onready var ship_Button = $"Top Bar/TabButtonContainer/ShipTabButton"
+@onready var tab_3 = $"Top Bar/TabButtonContainer/Tab3"
+# Put Tab 3 Name here
+
+@onready var panel = $"Top Bar/TabButtonContainer/PowerTabButton/Panel"
+@onready var panel_Rect = $"Top Bar/TabButtonContainer/PowerTabButton/Panel/ColorRect"
+
+var current_Tab_Button
 var currentTab = 0
 var tabMax = 2
 
@@ -27,6 +36,8 @@ func _ready() -> void:
 	
 	tabButContainerOrgSize = tab_Button_Container.scale
 	tabButContainerLerpSize = tab_Button_Container.scale + Vector2(0.3,0.3)
+	
+	current_Tab_Button = power_Button
 	pass # Replace with function body.
 
 
@@ -46,16 +57,34 @@ func _process(delta: float) -> void:
 		power_Tab.visible = true
 		ship_Tab.visible = false
 		tab3.visible = false
+		
+		current_Tab_Button = power_Button
+		panel.reparent(current_Tab_Button)
+		panel.global_position = power_Button.global_position
+		panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+		panel_Rect.set_anchors_preset(Control.PRESET_FULL_RECT)
 	elif currentTab == 1:
 		#print("yoollooooo")
 		ship_Tab.visible = true
 		power_Tab.visible = false
 		tab3.visible = false
+		
+		current_Tab_Button = ship_Button
+		panel.reparent(current_Tab_Button)
+		panel.global_position = ship_Button.global_position
+		panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+		panel_Rect.set_anchors_preset(Control.PRESET_FULL_RECT)
 	elif currentTab == 2:
 		#print("chat is this coding fire?")
 		tab3.visible = true
 		ship_Tab.visible = false
 		power_Tab.visible = false
+		
+		current_Tab_Button = tab_3
+		panel.reparent(current_Tab_Button)
+		panel.global_position = tab_3.global_position
+		panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+		panel_Rect.set_anchors_preset(Control.PRESET_FULL_RECT)
 	
 
 # Custom Funcs

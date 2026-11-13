@@ -184,7 +184,270 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_tn5d3")
 
+[node name="Power" type="TextureRect" parent="SubViewport/TabContainer" unique_id=678326908]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_i500x")
+
+[node name="Drop Down" type="Button" parent="SubViewport/TabContainer/Power" unique_id=1105241422]
+z_index = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1076.0
+offset_top = -119.5
+offset_right = -711.0
+offset_bottom = -61.499756
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 0
+mouse_behavior_recursive = 2
+mouse_default_cursor_shape = 7
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 50
+text = "Power Status:"
+icon = ExtResource("3_myaep")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Inner Menu" type="Node2D" parent="SubViewport/TabContainer/Power/Drop Down" unique_id=917676672]
+position = Vector2(0, 60)
+
+[node name="SystemsL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=2026889750]
+offset_top = 15.5
+offset_right = 175.0
+offset_bottom = 51.5
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("StyleBoxFlat_461db")
+text = "Systems : 100"
+alignment = 0
+autowrap_trim_flags = 0
+
+[node name="SystemsR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" unique_id=84836363]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 175.0
+offset_bottom = 36.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+button_mask = 2
+alignment = 0
+
+[node name="CollectionL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=1261451041]
+offset_top = 55.5
+offset_right = 175.0
+offset_bottom = 91.5
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tn5d3")
+text = "Collect : 100"
+alignment = 0
+
+[node name="CollectionR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=792052080]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 175.0
+offset_bottom = 36.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+button_mask = 2
+text = "
+"
+alignment = 0
+
+[node name="SecurityL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=537701327]
+offset_top = 95.5
+offset_right = 175.0
+offset_bottom = 131.5
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5fbd4")
+text = "Security: 100"
+alignment = 0
+
+[node name="SecurityR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SecurityL" unique_id=1581327950]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 175.0
+offset_bottom = 36.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+button_mask = 2
+alignment = 0
+autowrap_trim_flags = 0
+
+[node name="CommsL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=160367644]
+offset_top = 135.5
+offset_right = 175.0
+offset_bottom = 171.5
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8p3nl")
+text = "Comms   : 100"
+alignment = 0
+
+[node name="CommsR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CommsL" unique_id=667499315]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 175.0
+offset_bottom = 36.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+button_mask = 2
+alignment = 0
+
+[node name="Tether Left" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=1098040798]
+offset_left = 182.0
+offset_top = 15.5
+offset_right = 244.0
+offset_bottom = 171.5
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0.27058825)
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/disabled = SubResource("StyleBoxFlat_1bfw6")
+text = "Tether
+
+
+
+
+
+
+Power"
+icon = ExtResource("5_piu5q")
+autowrap_mode = 1
+autowrap_trim_flags = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Tether Right" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left" unique_id=1575561231]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 156.0
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/disabled = SubResource("StyleBoxFlat_adnlo")
+button_mask = 2
+autowrap_mode = 1
+autowrap_trim_flags = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="TetherText" type="RichTextLabel" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left" unique_id=33496976]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_piu5q")
+theme_override_font_sizes/normal_font_size = 38
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Transfer Power" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=2062863818]
+offset_left = 248.0
+offset_top = 15.5
+offset_right = 365.0
+offset_bottom = 171.5
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+theme_override_colors/font_pressed_color = Color(0.8317727, 0.6573231, 0.9705575, 1)
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/disabled = SubResource("StyleBoxFlat_01tuk")
+text = "Transfer
+
+
+
+
+
+
+Power"
+icon = ExtResource("1_4xga7")
+autowrap_mode = 1
+autowrap_trim_flags = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="WireOrigin" type="Sprite2D" parent="SubViewport/TabContainer/Power/Drop Down" unique_id=1766656392]
+z_index = -1
+position = Vector2(365, 29)
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="Wire" type="Sprite2D" parent="SubViewport/TabContainer/Power/Drop Down/WireOrigin" unique_id=1364852416]
+scale = Vector2(20, 1)
+texture = SubResource("GradientTexture2D_3gngh")
+offset = Vector2(5, 0)
+
+[node name="Power Drain Timer" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1324947469]
+wait_time = 0.2
+autostart = true
+
+[node name="Power Charge Timer" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1648483263]
+wait_time = 0.1
+autostart = true
+
+[node name="Tether PDrain" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1165373064]
+wait_time = 0.05
+
+[node name="UI Timer" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1090764986]
+wait_time = 0.1
+
+[node name="Ship Side Sprite" type="Sprite2D" parent="SubViewport/TabContainer/Power" unique_id=1793469316]
+z_index = 1
+position = Vector2(839, 328)
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="WireBackShip" type="Sprite2D" parent="SubViewport/TabContainer/Power/Ship Side Sprite" unique_id=1328756762]
+z_index = -1
+position = Vector2(-248, -21)
+texture = SubResource("GradientTexture2D_57qmd")
+
 [node name="Ship" type="TextureRect" parent="SubViewport/TabContainer" unique_id=1895162407]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -767,269 +1030,6 @@ button_mask = 0
 text = "Lerping So Hard
 I live laugh lerp"
 
-[node name="Power" type="TextureRect" parent="SubViewport/TabContainer" unique_id=678326908]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("2_i500x")
-
-[node name="Drop Down" type="Button" parent="SubViewport/TabContainer/Power" unique_id=1105241422]
-z_index = 1
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1076.0
-offset_top = -119.5
-offset_right = -711.0
-offset_bottom = -61.499756
-grow_horizontal = 0
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-focus_mode = 0
-mouse_behavior_recursive = 2
-mouse_default_cursor_shape = 7
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 50
-text = "Power Status:"
-icon = ExtResource("3_myaep")
-alignment = 0
-icon_alignment = 2
-expand_icon = true
-
-[node name="Inner Menu" type="Node2D" parent="SubViewport/TabContainer/Power/Drop Down" unique_id=917676672]
-position = Vector2(0, 60)
-
-[node name="SystemsL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=2026889750]
-offset_top = 15.5
-offset_right = 175.0
-offset_bottom = 51.5
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
-theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-theme_override_styles/disabled = SubResource("StyleBoxFlat_461db")
-text = "Systems : 100"
-alignment = 0
-autowrap_trim_flags = 0
-
-[node name="SystemsR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" unique_id=84836363]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 175.0
-offset_bottom = 36.0
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-button_mask = 2
-alignment = 0
-
-[node name="CollectionL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=1261451041]
-offset_top = 55.5
-offset_right = 175.0
-offset_bottom = 91.5
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 1
-theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-theme_override_styles/disabled = SubResource("StyleBoxFlat_tn5d3")
-text = "Collect : 100"
-alignment = 0
-
-[node name="CollectionR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=792052080]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 175.0
-offset_bottom = 36.0
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-button_mask = 2
-text = "
-"
-alignment = 0
-
-[node name="SecurityL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=537701327]
-offset_top = 95.5
-offset_right = 175.0
-offset_bottom = 131.5
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 1
-theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-theme_override_styles/disabled = SubResource("StyleBoxFlat_5fbd4")
-text = "Security: 100"
-alignment = 0
-
-[node name="SecurityR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SecurityL" unique_id=1581327950]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 175.0
-offset_bottom = 36.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-button_mask = 2
-alignment = 0
-autowrap_trim_flags = 0
-
-[node name="CommsL" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=160367644]
-offset_top = 135.5
-offset_right = 175.0
-offset_bottom = 171.5
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 1
-theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-theme_override_styles/disabled = SubResource("StyleBoxFlat_8p3nl")
-text = "Comms   : 100"
-alignment = 0
-
-[node name="CommsR" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/CommsL" unique_id=667499315]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 175.0
-offset_bottom = 36.0
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-button_mask = 2
-alignment = 0
-
-[node name="Tether Left" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=1098040798]
-offset_left = 182.0
-offset_top = 15.5
-offset_right = 244.0
-offset_bottom = 171.5
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 1
-theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 0.27058825)
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/disabled = SubResource("StyleBoxFlat_1bfw6")
-text = "Tether
-
-
-
-
-
-
-Power"
-icon = ExtResource("5_piu5q")
-autowrap_mode = 1
-autowrap_trim_flags = 0
-icon_alignment = 1
-expand_icon = true
-
-[node name="Tether Right" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left" unique_id=1575561231]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 62.0
-offset_bottom = 156.0
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/disabled = SubResource("StyleBoxFlat_adnlo")
-button_mask = 2
-autowrap_mode = 1
-autowrap_trim_flags = 0
-icon_alignment = 1
-expand_icon = true
-
-[node name="TetherText" type="RichTextLabel" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu/Tether Left" unique_id=33496976]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("3_piu5q")
-theme_override_font_sizes/normal_font_size = 38
-text = "100%"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Transfer Power" type="Button" parent="SubViewport/TabContainer/Power/Drop Down/Inner Menu" unique_id=2062863818]
-offset_left = 248.0
-offset_top = 15.5
-offset_right = 365.0
-offset_bottom = 171.5
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0.8317727, 0.6573231, 0.9705575, 1)
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/disabled = SubResource("StyleBoxFlat_01tuk")
-text = "Transfer
-
-
-
-
-
-
-Power"
-icon = ExtResource("1_4xga7")
-autowrap_mode = 1
-autowrap_trim_flags = 0
-icon_alignment = 1
-expand_icon = true
-
-[node name="WireOrigin" type="Sprite2D" parent="SubViewport/TabContainer/Power/Drop Down" unique_id=1766656392]
-z_index = -1
-position = Vector2(365, 29)
-texture = SubResource("GradientTexture2D_yf5fn")
-
-[node name="Wire" type="Sprite2D" parent="SubViewport/TabContainer/Power/Drop Down/WireOrigin" unique_id=1364852416]
-scale = Vector2(20, 1)
-texture = SubResource("GradientTexture2D_3gngh")
-offset = Vector2(5, 0)
-
-[node name="Power Drain Timer" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1324947469]
-wait_time = 0.2
-autostart = true
-
-[node name="Power Charge Timer" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1648483263]
-wait_time = 0.1
-autostart = true
-
-[node name="Tether PDrain" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1165373064]
-wait_time = 0.05
-
-[node name="UI Timer" type="Timer" parent="SubViewport/TabContainer/Power" unique_id=1090764986]
-wait_time = 0.1
-
-[node name="Ship Side Sprite" type="Sprite2D" parent="SubViewport/TabContainer/Power" unique_id=1793469316]
-z_index = 1
-position = Vector2(839, 328)
-texture = SubResource("GradientTexture2D_g4v7s")
-
-[node name="WireBackShip" type="Sprite2D" parent="SubViewport/TabContainer/Power/Ship Side Sprite" unique_id=1328756762]
-z_index = -1
-position = Vector2(-248, -21)
-texture = SubResource("GradientTexture2D_57qmd")
-
 [node name="Tab3" type="TextureRect" parent="SubViewport/TabContainer" unique_id=1568788166]
 visible = false
 modulate = Color(0.3230459, 0.7567149, 0.09408315, 1)
@@ -1065,7 +1065,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 1, 1, 0.36078432)
+color = Color(0, 0, 0, 0.36078432)
 
 [node name="TabButtonContainer" type="HBoxContainer" parent="SubViewport/TabContainer/Top Bar" unique_id=930060858]
 layout_mode = 1
@@ -1090,6 +1090,26 @@ theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 32
 text = "Power"
 
+[node name="Panel" type="Panel" parent="SubViewport/TabContainer/Top Bar/TabButtonContainer/PowerTabButton" unique_id=714283897]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/TabContainer/Top Bar/TabButtonContainer/PowerTabButton/Panel" unique_id=918503836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.39607844)
+
 [node name="ShipTabButton" type="Button" parent="SubViewport/TabContainer/Top Bar/TabButtonContainer" unique_id=342657060]
 layout_mode = 2
 mouse_filter = 1
@@ -1105,6 +1125,7 @@ theme_override_font_sizes/font_size = 32
 text = "Tab3"
 
 [node name="CRT Filter" type="ColorRect" parent="SubViewport/TabContainer" unique_id=1582421659]
+visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_g4v7s")
 layout_mode = 1
@@ -1130,9 +1151,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="button_down" from="SubViewport/TabContainer/Ship/Ship" to="SubViewport/TabContainer/Ship" method="_on_ship_button_down"]
-[connection signal="button_up" from="SubViewport/TabContainer/Ship/Ship" to="SubViewport/TabContainer/Ship" method="_on_ship_button_up"]
-[connection signal="pressed" from="SubViewport/TabContainer/Ship/Confirm Button" to="SubViewport/TabContainer/Ship" method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down" to="SubViewport/TabContainer/Power" method="_on_drop_down_pressed"]
 [connection signal="mouse_entered" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/TabContainer/Power" method="_on_systems_l_mouse_entered"]
 [connection signal="mouse_exited" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/TabContainer/Power" method="_on_systems_l_mouse_exited"]
@@ -1162,6 +1180,9 @@ mouse_filter = 2
 [connection signal="timeout" from="SubViewport/TabContainer/Power/Power Charge Timer" to="SubViewport/TabContainer/Power" method="_on_power_charge_timer_timeout"]
 [connection signal="timeout" from="SubViewport/TabContainer/Power/Tether PDrain" to="SubViewport/TabContainer/Power" method="_on_tether_p_drain_timeout"]
 [connection signal="timeout" from="SubViewport/TabContainer/Power/UI Timer" to="SubViewport/TabContainer/Power" method="_on_ui_timer_timeout"]
+[connection signal="button_down" from="SubViewport/TabContainer/Ship/Ship" to="SubViewport/TabContainer/Ship" method="_on_ship_button_down"]
+[connection signal="button_up" from="SubViewport/TabContainer/Ship/Ship" to="SubViewport/TabContainer/Ship" method="_on_ship_button_up"]
+[connection signal="pressed" from="SubViewport/TabContainer/Ship/Confirm Button" to="SubViewport/TabContainer/Ship" method="_on_confirm_button_pressed"]
 [connection signal="mouse_entered" from="SubViewport/TabContainer/Top Bar" to="SubViewport/TabContainer" method="_on_top_bar_mouse_entered"]
 [connection signal="mouse_exited" from="SubViewport/TabContainer/Top Bar" to="SubViewport/TabContainer" method="_on_top_bar_mouse_exited"]
 [connection signal="pressed" from="SubViewport/TabContainer/Top Bar/TabButtonContainer/PowerTabButton" to="SubViewport/TabContainer" method="_on_power_tab_button_pressed"]

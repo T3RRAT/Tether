@@ -10,8 +10,8 @@ var last_event_time: float = -1.0
 
 @onready var node_viewport = $SubViewport
 @onready var viewport_Control = $Control
-@onready var node_quad = $Quad
-@onready var node_area = $Quad/Area3D
+@onready var node_quad = $"Quad Front Comp"
+@onready var node_area = $"Quad Front Comp/Area3D"
 #@onready var crtFilter = $"SubViewport/Control/CRT Filter"
 @onready var crtFilter = $"Control/CRT Filter"
 
@@ -19,6 +19,7 @@ var last_event_time: float = -1.0
 @onready var shipTab = $SubViewport/Control/TabContainer/Ship
 @onready var click_Captcha = $"SubViewport/Control/TabContainer/Ship/Minigames/Click Captcha"
 @onready var game = $"../.."
+@onready var comp_Glow = $"Computer Glow"
 @onready var redirectPower = 's'
 
 func _ready():
@@ -40,6 +41,12 @@ func _process(_delta):
 	# rotate_area_to_billboard()
 	
 	# game.collectionPower = 
+	
+	
+	
+	#comp_Glow.area_texture = node_viewport.get_texture()
+	
+	#comp_Glow.area_texture = node_viewport.get
 	
 	pass
 

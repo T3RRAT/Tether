@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dl8ce566j56om"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ktn3w"]
+viewport_path = NodePath("Cam3d view")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2jd1k"]
+viewport_path = NodePath("Cam3d view")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_461db"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_ktn3w")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_2jd1k")
+rim_texture = SubResource("ViewportTexture_461db")
+proximity_fade_distance = 0.01
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_g4v7s")
+size = Vector2(1.41, 0.81)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3cxpa"]
+data = PackedVector3Array(0.705, -0.405, 0, -0.705, -0.405, 0, 0.705, 0.405, 0, -0.705, -0.405, 0, -0.705, 0.405, 0, 0.705, 0.405, 0)
+
+[node name="Computer Tether Cam" type="Node3D" unique_id=129153883]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1590787459]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1772993787]
+size = Vector3(1.6, 1, 0.1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=316805959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.06)
+operation = 2
+size = Vector3(1.4, 0.8, 0.1)
+
+[node name="Quad" type="MeshInstance3D" parent="." unique_id=359092796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.013243794)
+mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="Area3D" type="Area3D" parent="Quad" unique_id=186926410]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D" unique_id=1803618872]
+shape = SubResource("ConcavePolygonShape3D_3cxpa")
+
+[node name="Cam3d view" type="SubViewport" parent="." unique_id=778372070]
+size = Vector2i(1152, 648)
+
+[node name="Camera3D" type="Camera3D" parent="Cam3d view" unique_id=345043405]
+transform = Transform3D(-1, -4.371139e-08, 7.5710346e-08, 0, 0.8660254, 0.5, -8.742278e-08, 0.5, -0.8660254, 0, 1.8, 5.3)
+top_level = true
+fov = 90.0

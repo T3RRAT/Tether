@@ -4,7 +4,16 @@
 
 [node name="Tether Ship wip9" unique_id=1559811814 instance=ExtResource("1_m6326")]
 
+[node name="Chair Seat" parent="." index="4" unique_id=1156382724]
+visible = false
+
+[node name="Chair Swivel" parent="." index="5" unique_id=1599843428]
+visible = false
+
 [node name="Computer" parent="." index="6" unique_id=1378388127]
+visible = false
+
+[node name="Door" parent="." index="7" unique_id=1057427125]
 visible = false
 
 [node name="Player Ref" parent="." index="13" unique_id=2001588674]

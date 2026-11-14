@@ -306,7 +306,7 @@ func playerRotationSetter(location):
 	elif location == -1:
 		player.rotation_degrees = Vector3(7.5, 90, 0)
 	elif location == 1:
-		player.rotation_degrees = Vector3(7.5, -90, 0)
+		player.rotation_degrees = Vector3(7.5, -110, 0)
 	elif location == 2:
 		player.rotation_degrees = Vector3(0, 180, 0)
 	else: # yo what even is this shipPosition times location even for

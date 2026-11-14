@@ -8,7 +8,7 @@ var posNumeric = 2
 @onready var shipHovering = $"Ship/Hovering Colour"
 @onready var ShipIcon = $Ship
 var pos1 = null #$Pos1.position
-var pos2 = null #$Pos2.position
+@onready var pos2 = $Pos2.position
 var pos3 = null #$Pos3.position
 @onready var shipLerpPos = $ShipLerpPos
 @onready var trueShipPos = $"True Ship Position".position
@@ -25,8 +25,8 @@ var pos3 = null #$Pos3.position
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pos1 = $Pos1.position
-	pos2 = $Pos2.position
 	pos3 = $Pos3.position
+	shipLerpPos.position = pos2
 	pass # Replace with function body.
 
 
@@ -72,10 +72,14 @@ func _process(delta: float) -> void:
 			ShipIcon.self_modulate = Color.WHITE
 			confirmButton.text = ("Current Position: %d" % posNumeric)
 			confirmButton.z_index = -1
+			
+			confirmButton.disabled = true
 		else:
 			ShipIcon.self_modulate = Color.BLUE_VIOLET
 			confirmButton.text = ("Confirm Position: %d" % posNumeric)
 			confirmButton.z_index = 0
+			
+			confirmButton.disabled = false
 		
 	
 	

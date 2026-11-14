@@ -2,18 +2,18 @@
 
 [ext_resource type="Shader" uid="uid://btfykxbl42d8l" path="res://Scripts/computer.gdshader" id="1_reooy"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_reooy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8p3nl"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_d116u"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_461db"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abhh1"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_reooy")
+albedo_texture = SubResource("ViewportTexture_8p3nl")
 emission_enabled = true
 emission = Color(0.23031491, 0.23031494, 0.23031488, 1)
-emission_texture = SubResource("ViewportTexture_d116u")
+emission_texture = SubResource("ViewportTexture_461db")
 
 [sub_resource type="QuadMesh" id="QuadMesh_3sihf"]
 resource_local_to_scene = true

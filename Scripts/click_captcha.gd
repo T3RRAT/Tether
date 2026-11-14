@@ -1,7 +1,7 @@
 extends Button
 
 
-@onready var computer = $"../../../../../.."
+@onready var computer = $"../../../../.."
 @onready var shipTab = $"../.."
 
 @onready var button = $"."

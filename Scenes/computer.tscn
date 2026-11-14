@@ -10,26 +10,24 @@
 [ext_resource type="FontFile" uid="uid://dxy3j6qv3juoa" path="res://Assets/monogram.ttf" id="3_piu5q"]
 [ext_resource type="Script" uid="uid://dhvdrssnwfs2a" path="res://Scripts/minesweeper.gd" id="4_8u73g"]
 [ext_resource type="FontFile" uid="uid://dpkc5p4heusbr" path="res://Assets/augiepixel.ttf" id="4_m7p0i"]
-[ext_resource type="Shader" uid="uid://ccsqya2nbhx2y" path="res://Scripts/blur.gdshader" id="5_3cxpa"]
 [ext_resource type="Texture2D" uid="uid://chopwcmyvuo11" path="res://Assets/Loading circle plain.png" id="5_piu5q"]
 [ext_resource type="PackedScene" uid="uid://c58gjyc8rg4fi" path="res://Scenes/click_captcha.tscn" id="6_iofu4"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_i500x"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5fbd4"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_m1ujp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8p3nl"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_461db"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_i500x")
+albedo_texture = SubResource("ViewportTexture_5fbd4")
 emission_enabled = true
-emission = Color(0.23031491, 0.23031494, 0.23031488, 1)
-emission_texture = SubResource("ViewportTexture_m1ujp")
+emission_texture = SubResource("ViewportTexture_8p3nl")
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_g4v7s")
+material = SubResource("StandardMaterial3D_461db")
 size = Vector2(1.41, 0.81)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3cxpa"]
@@ -111,33 +109,9 @@ shader_parameter/vignette_opacity = 0.32400001539
 [sub_resource type="Animation" id="Animation_3cxpa"]
 resource_name = "Blur Animation"
 length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/TabContainer/Blur Filter:material:shader_parameter/lod")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 5.0]
-}
 
 [sub_resource type="Animation" id="Animation_m7p0i"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/TabContainer/Blur Filter:material:shader_parameter/lod")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m7p0i"]
 _data = {
@@ -145,9 +119,17 @@ _data = {
 &"RESET": SubResource("Animation_m7p0i")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
-shader = ExtResource("5_3cxpa")
-shader_parameter/lod = 0.0
+[sub_resource type="Environment" id="Environment_piu5q"]
+background_mode = 2
+background_energy_multiplier = 0.0
+glow_enabled = true
+glow_blend_mode = 0
+fog_light_energy = 0.01
+fog_density = 0.0
+fog_height_density = 0.5
+volumetric_fog_density = 0.5
+volumetric_fog_emission_energy = 0.1
+volumetric_fog_length = 10.0
 
 [node name="Computer ingame" type="Node3D" unique_id=129153883]
 script = ExtResource("1_m1ujp")
@@ -162,13 +144,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.06)
 operation = 2
 size = Vector3(1.4, 0.8, 0.1)
 
-[node name="Quad" type="MeshInstance3D" parent="." unique_id=359092796]
+[node name="Quad Front Comp" type="MeshInstance3D" parent="." unique_id=359092796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.013243794)
 mesh = SubResource("QuadMesh_g4v7s")
 
-[node name="Area3D" type="Area3D" parent="Quad" unique_id=186926410]
+[node name="Area3D" type="Area3D" parent="Quad Front Comp" unique_id=186926410]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D" unique_id=1803618872]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad Front Comp/Area3D" unique_id=1803618872]
 shape = SubResource("ConcavePolygonShape3D_3cxpa")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=778372070]
@@ -185,6 +167,7 @@ grow_vertical = 2
 script = ExtResource("2_tn5d3")
 
 [node name="Power" type="TextureRect" parent="SubViewport/TabContainer" unique_id=678326908]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -447,7 +430,6 @@ position = Vector2(-248, -21)
 texture = SubResource("GradientTexture2D_57qmd")
 
 [node name="Ship" type="TextureRect" parent="SubViewport/TabContainer" unique_id=1895162407]
-visible = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -591,6 +573,8 @@ offset_bottom = 233.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 20
 text = "Confirm Position: "
 icon = ExtResource("1_4xga7")
 
@@ -1047,7 +1031,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 80
-text = "if a tab is called tab 3, do you really think there would be anything finished to look at?"
+text = "thoughts on how good at gamedeg i am?"
 
 [node name="Top Bar" type="Control" parent="SubViewport/TabContainer" unique_id=1491460754]
 layout_mode = 1
@@ -1140,16 +1124,16 @@ mouse_filter = 2
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_m7p0i")
 
-[node name="Blur Filter" type="ColorRect" parent="SubViewport/TabContainer" unique_id=782609685]
-visible = false
-material = SubResource("ShaderMaterial_yf5fn")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="Computer Glow" type="AreaLight3D" parent="." unique_id=4207594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15957811)
+light_energy = 0.2
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+area_range = 0.209
+area_size = Vector2(1.3374095, 0.735)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1456903583]
+environment = SubResource("Environment_piu5q")
 
 [connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down" to="SubViewport/TabContainer/Power" method="_on_drop_down_pressed"]
 [connection signal="mouse_entered" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/TabContainer/Power" method="_on_systems_l_mouse_entered"]

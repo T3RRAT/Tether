@@ -185,6 +185,7 @@ light_color = Color(0.36862746, 0, 0.62352943, 1)
 
 [node name="Yellow Light" type="OmniLight3D" parent="Ship" unique_id=16834530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 1)
+visible = false
 light_color = Color(0.902198, 0.8014088, 0.52845573, 1)
 
 [node name="Flash Sound" type="AudioStreamPlayer3D" parent="Ship" unique_id=826372398]
@@ -200,6 +201,20 @@ current = true
 [node name="Purple Light2" type="OmniLight3D" parent="Ship" unique_id=655640410]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7011389, 8.006902)
 light_color = Color(0.36862746, 0, 0.62352943, 1)
+
+[node name="Light Front" type="AreaLight3D" parent="Ship" unique_id=986365459]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.966663, 1.727072)
+light_color = Color(0.60807794, 0.59392583, 1, 1)
+light_bake_mode = 0
+shadow_enabled = true
+area_range = 3.051
+
+[node name="Light Front2" type="AreaLight3D" parent="Ship" unique_id=145910651]
+transform = Transform3D(1, 0, 0, 0, 0.12998958, 0.99151534, 0, -0.99151534, 0.12998958, 0, 1.808503, 3.1534212)
+light_color = Color(0.87025595, 0.6218875, 0.96399003, 1)
+light_bake_mode = 1
+shadow_enabled = true
+area_range = 3.0
 
 [node name="Computer Items" type="Node3D" parent="." unique_id=1150376009]
 transform = Transform3D(1, 0, 0, 0, 0.96592575, -0.258819, 0, 0.258819, 0.96592575, 0, 0, 0.745)

@@ -119,18 +119,6 @@ _data = {
 &"RESET": SubResource("Animation_m7p0i")
 }
 
-[sub_resource type="Environment" id="Environment_piu5q"]
-background_mode = 2
-background_energy_multiplier = 0.0
-glow_enabled = true
-glow_blend_mode = 0
-fog_light_energy = 0.01
-fog_density = 0.0
-fog_height_density = 0.5
-volumetric_fog_density = 0.5
-volumetric_fog_emission_energy = 0.1
-volumetric_fog_length = 10.0
-
 [node name="Computer ingame" type="Node3D" unique_id=129153883]
 script = ExtResource("1_m1ujp")
 
@@ -1126,14 +1114,11 @@ libraries/ = SubResource("AnimationLibrary_m7p0i")
 
 [node name="Computer Glow" type="AreaLight3D" parent="." unique_id=4207594]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15957811)
-light_energy = 0.2
+light_energy = 0.5
 light_volumetric_fog_energy = 0.0
 light_specular = 0.0
 area_range = 0.209
 area_size = Vector2(1.3374095, 0.735)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1456903583]
-environment = SubResource("Environment_piu5q")
 
 [connection signal="pressed" from="SubViewport/TabContainer/Power/Drop Down" to="SubViewport/TabContainer/Power" method="_on_drop_down_pressed"]
 [connection signal="mouse_entered" from="SubViewport/TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="SubViewport/TabContainer/Power" method="_on_systems_l_mouse_entered"]

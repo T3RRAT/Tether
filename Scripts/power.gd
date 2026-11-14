@@ -287,6 +287,31 @@ func _process(delta: float) -> void:
 			transfer_Button.modulate = lerp(transfer_Button.modulate, trans, delta * 5)
 	
 	
+	# i think this should work
+	if charging == true:
+		if chargingDestination == systemsPower:
+			systemsPower += 0.2
+		elif chargingDestination == collectionPower:
+			collectionPower += 0.2
+		elif chargingDestination == securityPower:
+			securityPower += 0.2
+		elif chargingDestination == communicationsPower:
+			communicationsPower += 0.2
+		elif chargingDestination == tetherPower:
+			tetherPower += 0.2
+		
+		if chargingOrigin == systemsPower:
+			systemsPower -= 0.2
+		elif chargingOrigin == collectionPower:
+			collectionPower -= 0.2
+		elif chargingOrigin == securityPower:
+			securityPower -= 0.2
+		elif chargingOrigin == communicationsPower:
+			communicationsPower -= 0.2
+		elif chargingOrigin == tetherPower:
+			tetherPower -= 0.2
+		
+		
 
 
 
@@ -492,15 +517,9 @@ func _on_tether_power_pressed() -> void:
 func _on_transfer_power_button_down() -> void:
 	charging = true
 	print("pressed down")
-	chargingDestination = chargingDestination + 0.2
-	chargingOrigin = chargingOrigin - 0.2
-	await get_tree().create_timer(0.05)
 func _on_transfer_power_button_up() -> void:
 	charging = false
 	print("released")
-	chargingDestination = chargingDestination + 0.2
-	chargingOrigin = chargingOrigin - 0.2
-	await get_tree().create_timer(0.05)
 
 # Right Click Buttons (Origin)
 func _on_systems_r_pressed() -> void:

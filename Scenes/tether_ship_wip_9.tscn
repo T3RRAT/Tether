@@ -19,5 +19,8 @@ visible = false
 [node name="Player Ref" parent="." index="13" unique_id=2001588674]
 visible = false
 
+[node name="Ship dupe before applying mirrir" parent="." index="15" unique_id=1854664097]
+visible = false
+
 [node name="Window Front" parent="." index="17" unique_id=14218854]
 visible = false

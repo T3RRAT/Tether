@@ -289,26 +289,26 @@ func _process(delta: float) -> void:
 	
 	# i think this should work
 	if charging == true:
-		if chargingDestination == systemsPower:
+		if chargingDestination == "systems":
 			systemsPower += 0.2
-		elif chargingDestination == collectionPower:
+		elif chargingDestination == "collection":
 			collectionPower += 0.2
-		elif chargingDestination == securityPower:
+		elif chargingDestination == "security":
 			securityPower += 0.2
-		elif chargingDestination == communicationsPower:
+		elif chargingDestination == "comms":
 			communicationsPower += 0.2
-		elif chargingDestination == tetherPower:
+		elif chargingDestination == "tether":
 			tetherPower += 0.2
 		
-		if chargingOrigin == systemsPower:
+		if chargingOrigin == "systems":
 			systemsPower -= 0.2
-		elif chargingOrigin == collectionPower:
+		elif chargingOrigin == "collection":
 			collectionPower -= 0.2
-		elif chargingOrigin == securityPower:
+		elif chargingOrigin == "security":
 			securityPower -= 0.2
-		elif chargingOrigin == communicationsPower:
+		elif chargingOrigin == "comms":
 			communicationsPower -= 0.2
-		elif chargingOrigin == tetherPower:
+		elif chargingOrigin == "tether":
 			tetherPower -= 0.2
 		
 		
@@ -327,35 +327,35 @@ func power_Destination_Change(location):
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
 			
-			chargingDestination = systemsPower
+			chargingDestination = "systems"
 			charging_Des_Button = systems_Power
 		"collection":
 			if charging_Des_Button:
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
 			
-			chargingDestination = collectionPower
+			chargingDestination = "collection"
 			charging_Des_Button = collection_Power
 		"security":
 			if charging_Des_Button:
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
 			
-			chargingDestination = securityPower
+			chargingDestination = "security"
 			charging_Des_Button = security_Power
 		"comms":
 			if charging_Des_Button:
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
 			
-			chargingDestination = communicationsPower
+			chargingDestination = "comms"
 			charging_Des_Button = communications_Power
 		"tether":
 			if charging_Des_Button:
 				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Des_Button = null
 			
-			chargingDestination = tetherPower
+			chargingDestination = "tether"
 			charging_Des_Button = tether_Power
 			print("stuff????")
 	pass
@@ -369,35 +369,35 @@ func power_Origin_Change(location):
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
 			
-			chargingOrigin = systemsPower
+			chargingOrigin = "systems"
 			charging_Org_Button = systems_Power
 		"collection":
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
 			
-			chargingOrigin = collectionPower
+			chargingOrigin = "collection"
 			charging_Org_Button = collection_Power
 		"security":
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
 			
-			chargingOrigin = securityPower
+			chargingOrigin = "security"
 			charging_Org_Button = security_Power
 		"comms":
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
 			
-			chargingOrigin = communicationsPower
+			chargingOrigin = "comms"
 			charging_Org_Button = communications_Power
 		"tether":
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)
 			charging_Org_Button = null
 			
-			chargingOrigin = tetherPower
+			chargingOrigin = "tether"
 			charging_Org_Button = tether_Power
 	pass
 
@@ -472,8 +472,9 @@ func _on_power_drain_timer_timeout() -> void:
 
 func _on_power_charge_timer_timeout() -> void:
 	if charging == true:
-		chargingDestination += 0.2 * tetherDrainMultipler
-		chargingOrigin -= 0.2 * tetherDrainMultipler
+		#chargingDestination += 0.2 * tetherDrainMultipler
+		#chargingOrigin -= 0.2 * tetherDrainMultipler
+		pass
 		#match chargingDestination:
 			#tetherPower:
 				## Tether

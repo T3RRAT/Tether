@@ -44,6 +44,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0.27058825)
 [sub_resource type="Environment" id="Environment_g4v7s"]
 background_mode = 2
 background_energy_multiplier = 0.0
+sdfgi_use_occlusion = true
 glow_levels/1 = 0.8
 glow_intensity = 0.8
 glow_strength = 1.3
@@ -180,12 +181,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 
 [node name="Purple Light" type="OmniLight3D" parent="Ship" unique_id=348939154]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8673491, 0.94401395)
-visible = false
 light_color = Color(0.36862746, 0, 0.62352943, 1)
+omni_attenuation = 2.0
 
 [node name="Yellow Light" type="OmniLight3D" parent="Ship" unique_id=16834530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 1)
-visible = false
 light_color = Color(0.902198, 0.8014088, 0.52845573, 1)
 
 [node name="Flash Sound" type="AudioStreamPlayer3D" parent="Ship" unique_id=826372398]
@@ -204,17 +204,21 @@ light_color = Color(0.36862746, 0, 0.62352943, 1)
 
 [node name="Light Front" type="AreaLight3D" parent="Ship" unique_id=986365459]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.966663, 1.727072)
+visible = false
 light_color = Color(0.60807794, 0.59392583, 1, 1)
-light_bake_mode = 0
+light_bake_mode = 1
 shadow_enabled = true
 area_range = 3.051
 
 [node name="Light Front2" type="AreaLight3D" parent="Ship" unique_id=145910651]
 transform = Transform3D(1, 0, 0, 0, 0.12998958, 0.99151534, 0, -0.99151534, 0.12998958, 0, 1.808503, 3.1534212)
+visible = false
 light_color = Color(0.87025595, 0.6218875, 0.96399003, 1)
 light_bake_mode = 1
 shadow_enabled = true
 area_range = 3.0
+
+[node name="LightmapGI" type="LightmapGI" parent="Ship" unique_id=1425842620]
 
 [node name="Computer Items" type="Node3D" parent="." unique_id=1150376009]
 transform = Transform3D(1, 0, 0, 0, 0.96592575, -0.258819, 0, 0.258819, 0.96592575, 0, 0, 0.745)
@@ -280,6 +284,9 @@ mesh = SubResource("BoxMesh_5s0fj")
 
 [node name="Computer Tether Cam" parent="." unique_id=2107467460 instance=ExtResource("8_v158k")]
 transform = Transform3D(-0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881907, 1.6138719, 0.43520796, 0.66975665)
+
+[node name="LightmapGI" type="LightmapGI" parent="." unique_id=1689104051]
+generate_probes_subdiv = 1
 
 [connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Left Button" to="." method="_on_left_button_mouse_entered"]

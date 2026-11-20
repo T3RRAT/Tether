@@ -40,8 +40,17 @@ func _process(delta: float) -> void:
 
 
 # Things to do
-# Fix Computer UI bug. (Scale and position seem to be acting really weird) (I think its working)
-# Power Tab transfer button functionality
-# 
+# Mites functionality
+# Computer Power Functionality
+# Tab3
+# Door functionality (Behind)
+# Start Screen
+# Death Screen
+# Music
+# Computer Polish
+# Sound Effects
+# Lighting
+# Reworked Flash System
+#
 # 
 # Stand Up and walking section

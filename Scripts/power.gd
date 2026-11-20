@@ -59,6 +59,7 @@ var tetherDrainMultipler = 10
 var flashPowerDrain = 1
 
 var charging = false
+var hasPower = true
 
 var charging_Org_Button = null
 var chargingOrigin = null
@@ -287,32 +288,38 @@ func _process(delta: float) -> void:
 			transfer_Button.modulate = lerp(transfer_Button.modulate, trans, delta * 5)
 	
 	
-	# i think this should work
+	# Game checks if we are charging, if so we check destination and origin to subtract and add power
 	if charging == true:
-		if chargingDestination == "systems":
+		if chargingDestination == "systems" && hasPower == true:
 			systemsPower += 0.2
-		elif chargingDestination == "collection":
+		elif chargingDestination == "collection" && hasPower == true:
 			collectionPower += 0.2
-		elif chargingDestination == "security":
+		elif chargingDestination == "security" && hasPower == true:
 			securityPower += 0.2
-		elif chargingDestination == "comms":
+		elif chargingDestination == "comms" && hasPower == true:
 			communicationsPower += 0.2
-		elif chargingDestination == "tether":
+		elif chargingDestination == "tether" && hasPower == true:
 			tetherPower += 0.2
 		
-		if chargingOrigin == "systems":
+		# as long as power is above 0, we subtract, else we do nothing and say that we dont have power though var
+		if chargingOrigin == "systems" && systemsPower >= 0:
 			systemsPower -= 0.2
-		elif chargingOrigin == "collection":
+			hasPower = true
+		elif chargingOrigin == "collection" && collectionPower >= 0:
 			collectionPower -= 0.2
-		elif chargingOrigin == "security":
+			hasPower = true
+		elif chargingOrigin == "security" && securityPower >=0:
 			securityPower -= 0.2
-		elif chargingOrigin == "comms":
+			hasPower = true
+		elif chargingOrigin == "comms" && communicationsPower >= 0:
 			communicationsPower -= 0.2
-		elif chargingOrigin == "tether":
+			hasPower = true
+		elif chargingOrigin == "tether" && tetherPower >= 0:
 			tetherPower -= 0.2
+			hasPower = true
+		else:
+			hasPower = false
 		
-		
-
 
 
 # Custom Functions
@@ -460,10 +467,27 @@ func _on_drop_down_pressed() -> void:
 
 
 func _on_power_drain_timer_timeout() -> void:
-	systemsPower -= 0.1 * powerDrainMultipler
-	collectionPower -= 0.1 * powerDrainMultipler
-	securityPower -= 0.1 * powerDrainMultipler
-	communicationsPower -= 0.1 * powerDrainMultipler
+	
+	if systemsPower <= 100 && systemsPower > 0:
+		systemsPower -= 0.1
+	elif systemsPower > 100:
+		systemsPower -= 0.2
+	
+	if collectionPower <= 100 && collectionPower > 0:
+		collectionPower -= 0.5
+	elif collectionPower > 100:
+		collectionPower -= 1
+	
+	
+	if securityPower <= 100 && securityPower > 0:
+		securityPower -= 0.1
+	elif securityPower > 100:
+		securityPower -= 0.2
+	
+	if communicationsPower <= 100 && communicationsPower > 0:
+		communicationsPower -= 0.1
+	elif communicationsPower > 100:
+		communicationsPower -= 0.2
 	
 	#tetherPower -= 0.1 * powerDrainMultipler
 	
@@ -536,6 +560,11 @@ func _on_tether_right_pressed() -> void:
 
 
 func _on_tether_p_drain_timeout() -> void:
+	if tetherPower < 100 && charging == false:
+		tetherPower += 0.1
+	elif tetherPower > 100 && charging == false:
+		tetherPower -= 0.2
+	
 	pass # Replace with function body.
 
 

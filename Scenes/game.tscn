@@ -2,18 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c0ai2ccmfn65p" path="res://Scripts/game.gd" id="1_ebmjs"]
 [ext_resource type="AudioStream" uid="uid://3j7r724r0f5" path="res://flash-beacon.mp3" id="2_qxrlw"]
-[ext_resource type="Script" uid="uid://b56q2vd6u7y1w" path="res://Scripts/ideas.gd" id="2_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://ccpul2arf6dn3" path="res://Scenes/tether_ship_wip_9.tscn" id="4_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://uigs3q6cxjtu" path="res://Scenes/computer.tscn" id="4_wowpa"]
 [ext_resource type="PackedScene" uid="uid://c6xdf2q1e7la5" path="res://Scenes/monster.tscn" id="5_wowpa"]
 [ext_resource type="AudioStream" uid="uid://dmtpgoksgrl0k" path="res://Assets/Landing.wav" id="6_i6g32"]
+[ext_resource type="ArrayMesh" uid="uid://25d155j71ng3" path="res://Assets/another one.obj" id="8_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://dl8ce566j56om" path="res://Scenes/computer_tether_cam.tscn" id="8_v158k"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
-size = Vector3(10, 10, 10)
-
-[sub_resource type="PrismMesh" id="PrismMesh_g4v7s"]
-size = Vector3(0.275, 0.275, 20)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 rings = 6
@@ -56,6 +50,9 @@ volumetric_fog_density = 0.5
 volumetric_fog_emission_energy = 0.1
 volumetric_fog_length = 10.0
 
+[sub_resource type="PrismMesh" id="PrismMesh_g4v7s"]
+size = Vector3(0.275, 0.275, 20)
+
 [sub_resource type="SphereMesh" id="SphereMesh_yf5fn"]
 radius = 0.05
 height = 0.1
@@ -79,26 +76,13 @@ script = ExtResource("1_ebmjs")
 unique_name_in_owner = true
 wait_time = 0.3
 
-[node name="Node3D" type="Node3D" parent="." unique_id=212646375]
-script = ExtResource("2_wrm1d")
-
-[node name="Cube" type="MeshInstance3D" parent="Node3D" unique_id=1666532331]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
-visible = false
-mesh = SubResource("BoxMesh_g4v7s")
-
-[node name="Prism" type="MeshInstance3D" parent="Node3D" unique_id=451739118]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.495396)
-mesh = SubResource("PrismMesh_g4v7s")
+[node name="Pulse Timer" type="Timer" parent="Player Timers" unique_id=2049504237]
+wait_time = 5.0
 
 [node name="Player Lerp Position" type="MeshInstance3D" parent="." unique_id=1867483037]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_g4v7s")
-
-[node name="Tether Camera" type="Camera3D" parent="." unique_id=752433570]
-transform = Transform3D(-1, 4.371139e-08, -7.5710346e-08, 0, 0.8660254, 0.5, 8.742278e-08, 0.5, -0.8660254, 0, 1.8031205, 5.219)
-fov = 50.0
 
 [node name="Player Camera" type="Camera3D" parent="." unique_id=952425825]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30869603, 0)
@@ -156,6 +140,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tn5d3")
 [node name="FlashLightLeft" type="SpotLight3D" parent="." unique_id=1914040452]
 unique_name_in_owner = true
 transform = Transform3D(0.9975641, 0, 0.06975647, 0, 1, 0, -0.06975647, 0, 0.9975641, -0.4, -0.869, -2.165)
+visible = false
 light_color = Color(1, 1, 0.7647059, 1)
 light_energy = 30.0
 light_volumetric_fog_energy = 4.0
@@ -166,6 +151,7 @@ spot_angle = 10.0
 [node name="FlashLightRight" type="SpotLight3D" parent="." unique_id=1755514085]
 unique_name_in_owner = true
 transform = Transform3D(0.9975641, 0, -0.06975647, 0, 1, 0, 0.06975647, 0, 0.9975641, 0.4, -0.869, -2.165)
+visible = false
 light_color = Color(1, 1, 0.7647059, 1)
 light_energy = 30.0
 light_volumetric_fog_energy = 2.0
@@ -218,7 +204,9 @@ light_bake_mode = 1
 shadow_enabled = true
 area_range = 3.0
 
-[node name="LightmapGI" type="LightmapGI" parent="Ship" unique_id=1425842620]
+[node name="Prism" type="MeshInstance3D" parent="Ship" unique_id=451739118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.195396)
+mesh = SubResource("PrismMesh_g4v7s")
 
 [node name="Computer Items" type="Node3D" parent="." unique_id=1150376009]
 transform = Transform3D(1, 0, 0, 0, 0.96592575, -0.258819, 0, 0.258819, 0.96592575, 0, 0, 0.745)
@@ -285,10 +273,22 @@ mesh = SubResource("BoxMesh_5s0fj")
 [node name="Computer Tether Cam" parent="." unique_id=2107467460 instance=ExtResource("8_v158k")]
 transform = Transform3D(-0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881907, 1.6138719, 0.43520796, 0.66975665)
 
-[node name="LightmapGI" type="LightmapGI" parent="." unique_id=1689104051]
-generate_probes_subdiv = 1
+[node name="Pulse Items" type="CSGCombiner3D" parent="." unique_id=118815876]
+
+[node name="Cosmic Spaghetti" type="CSGMesh3D" parent="Pulse Items" unique_id=1439055535]
+transform = Transform3D(-1.3113416e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113416e-07, 0, 0, 0)
+mesh = ExtResource("8_h4fw4")
+
+[node name="OuterBound" type="CSGSphere3D" parent="Pulse Items" unique_id=1634346344]
+operation = 1
+radius = 5.0
+
+[node name="InnerBound" type="CSGSphere3D" parent="Pulse Items/OuterBound" unique_id=852240356]
+operation = 2
+radius = 3.0
 
 [connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
+[connection signal="timeout" from="Player Timers/Pulse Timer" to="." method="_on_pulse_timer_timeout"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Left Button" to="." method="_on_left_button_mouse_entered"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Right Button" to="." method="_on_right_button_mouse_entered"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/ComputerButton" to="." method="_on_up_button_mouse_entered"]

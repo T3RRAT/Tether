@@ -3,7 +3,7 @@ extends Node3D
 var buttonInteract = false
 var inRight = false
 var inLeft = false
-var flashing = false
+var pulsing = false
 var monsterActive = false
 var captchaActive = false
 
@@ -55,6 +55,13 @@ var monsterAggroAmount = 0
 # Gameplay Important Objects
 @onready var camMoveTimer = %"Cam Move Timer"
 @onready var powerDrainTimer = %"Power Timer"
+
+# CSG Items
+@onready var out_Bound = $"Pulse Items/OuterBound"
+@onready var in_Bound = $"Pulse Items/OuterBound/InnerBound"
+@onready var cosmic_Sphaghetti = $"Pulse Items/Cosmic Spaghetti"
+@onready var pulse_Timer = $"Player Timers/Pulse Timer"
+
 
 
 # Computer Objects
@@ -155,18 +162,23 @@ func _process(delta: float) -> void:
 		
 	
 	
-	# Handle Power. 
+	# Handle Pulsing Functionality
+	if pulsing == true:
+		out_Bound.radius = lerp(out_Bound.radius, 40, delta * 3)
+		in_Bound.radius = lerp(in_Bound.radius, out_Bound.radius, delta * 1)
+	
 	
 	
 	
 	
 	# Handling Flashing Mechanic and Inputs
-	if Input.get_action_strength("Confirm Action") && (flashing == false) && (camLocation == 0):
+	if Input.get_action_strength("Confirm Action") && (pulsing == false) && (camLocation == 0):
 		if inCutscene == false && inUserInterface == false:
 			lightLeft.light_energy = 40
 			lightRight.light_energy = 40
-			flashing = true
+			pulsing = true
 			flashSound.play(0.38) # Number is here to make sure flash sound isnt delayed
+			pulse_Timer.start()
 			checkMonster()
 		elif inUserInterface == true && called_To_Change <= 0:
 			called_To_Change = called_To_Change + 1
@@ -366,11 +378,6 @@ func _on_cam_move_timer_timeout() -> void:
 	pass # Replace with function body.
 
 
-func _on_flash_sound_finished() -> void:
-	flashing = false
-	pass # Replace with function body.
-
-
 func _on_monster_timer_timeout() -> void:
 	monsterAggroAmount += randi_range(10, monsterAI)
 	if monsterAggroAmount > 20:
@@ -406,3 +413,9 @@ func _on_up_button_mouse_entered() -> void:
 				camLocation = 0
 			interactionMade()
 	pass # Replace with function body.
+
+
+func _on_pulse_timer_timeout() -> void:
+	pulsing = false
+	out_Bound.radius = 0
+	in_Bound.radius = 0

@@ -62,7 +62,16 @@ var monsterAggroAmount = 0
 @onready var cosmic_Sphaghetti = $"Pulse Items/Cosmic Spaghetti"
 @onready var pulse_Timer = $"Player Timers/Pulse Timer"
 @onready var cosmic_Sphagetti_Mult = $Texture/ColorRect
+var m1 = preload("res://Assets/Cosmic Mesh/Cosmic Web 1.obj")
+var m2 = preload("res://Assets/Cosmic Mesh/Cosmic Web 2.obj")
+var m3 = preload("res://Assets/Cosmic Mesh/Cosmic Web 3.obj")
+var m4 = preload("res://Assets/Cosmic Mesh/Cosmic Web 4.obj")
+var m5 = preload("res://Assets/Cosmic Mesh/Cosmic Web 5.obj")
+var m6 = preload("res://Assets/Cosmic Mesh/Cosmic Web 6.obj")
+var m7 = preload("res://Assets/Cosmic Mesh/Cosmic Web 7.obj")
+var m8 = preload("res://Assets/Cosmic Mesh/Cosmic Web 8.obj")
 
+var meshArray
 
 # Computer Objects
 @onready var computer = $"Computer Items/Computer"
@@ -73,6 +82,10 @@ var monsterAggroAmount = 0
 @onready var buttonLeft = $"2D Overlay/Control/CanvasLayer/Left Button"
 @onready var buttonRight = $"2D Overlay/Control/CanvasLayer/Right Button"
 @onready var buttonComputer = $"2D Overlay/Control/CanvasLayer/ComputerButton"
+
+
+@onready var cosmic_web = $"Cosmic Web Full"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -93,7 +106,16 @@ func _ready() -> void:
 	rButtonLerp = buttonRight.position + Vector2(120, 0)
 	
 	
-	
+	meshArray = {
+		"m1": m1,
+		"m2": m2,
+		"m3": m3,
+		"m4": m4, 
+		"m5": m5,
+		"m6": m6,
+		"m7": m7,
+		"m8": m8
+	}
 	
 	#print(rad_to_deg(1))
 	
@@ -102,6 +124,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	# Use later for maybe a final stage bg
+	#cosmic_web.rotation = lerp_angle(cosmic_web.rotation, )
 	
 	
 	# Camera Locations
@@ -423,6 +448,12 @@ func _on_pulse_timer_timeout() -> void:
 	pulsing = false
 	out_Bound.radius = 0.01
 	in_Bound.radius = 0.01
-	print("finished pulse")
+	
+	var meshNumber = randi_range(1,8)
+	var key = "m" + str(meshNumber)
+	
+	cosmic_Sphaghetti.mesh = meshArray[key]
+	
 	pulse_Timer.stop()
+	print(key)
 	

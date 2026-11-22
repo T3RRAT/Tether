@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://uigs3q6cxjtu" path="res://Scenes/computer.tscn" id="4_wowpa"]
 [ext_resource type="PackedScene" uid="uid://c6xdf2q1e7la5" path="res://Scenes/monster.tscn" id="5_wowpa"]
 [ext_resource type="AudioStream" uid="uid://dmtpgoksgrl0k" path="res://Assets/Landing.wav" id="6_i6g32"]
-[ext_resource type="ArrayMesh" uid="uid://25d155j71ng3" path="res://Assets/another one.obj" id="8_h4fw4"]
+[ext_resource type="ArrayMesh" uid="uid://ccaobqs6xmod8" path="res://Assets/Cosmic Mesh/Cosmic Web 7.obj" id="8_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://dl8ce566j56om" path="res://Scenes/computer_tether_cam.tscn" id="8_v158k"]
+[ext_resource type="ArrayMesh" uid="uid://co6iu308w4lmd" path="res://Assets/Cosmic Mesh/Cosmic Web Full.obj" id="9_h4fw4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 rings = 6
@@ -77,6 +78,10 @@ emission = Color(1, 1, 1, 1)
 emission_operator = 1
 emission_texture = SubResource("ViewportTexture_57qmd")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xdn5"]
+emission_enabled = true
+emission = Color(0.38170326, 0.38170323, 0.38170323, 1)
+
 [node name="Game" type="Node3D" unique_id=314259388]
 script = ExtResource("1_ebmjs")
 
@@ -87,7 +92,6 @@ unique_name_in_owner = true
 wait_time = 0.3
 
 [node name="Pulse Timer" type="Timer" parent="Player Timers" unique_id=2049504237]
-wait_time = 5.0
 
 [node name="Player Lerp Position" type="MeshInstance3D" parent="." unique_id=1867483037]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0)
@@ -186,6 +190,7 @@ light_color = Color(0.902198, 0.8014088, 0.52845573, 1)
 
 [node name="Flash Sound" type="AudioStreamPlayer3D" parent="Ship" unique_id=826372398]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6191205, -1.637995)
+visible = false
 stream = ExtResource("2_qxrlw")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="Ship" unique_id=1179562327]
@@ -286,7 +291,7 @@ transform = Transform3D(-0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25
 [node name="Pulse Items" type="CSGCombiner3D" parent="." unique_id=118815876]
 
 [node name="Cosmic Spaghetti" type="CSGMesh3D" parent="Pulse Items" unique_id=1439055535]
-transform = Transform3D(-1.3113416e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113416e-07, 0, 0, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 mesh = ExtResource("8_h4fw4")
 material = SubResource("StandardMaterial3D_ldgsr")
 
@@ -306,6 +311,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Cosmic Web Full" type="MeshInstance3D" parent="." unique_id=696241645]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_7xdn5")
+mesh = ExtResource("9_h4fw4")
 
 [connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
 [connection signal="timeout" from="Player Timers/Pulse Timer" to="." method="_on_pulse_timer_timeout"]

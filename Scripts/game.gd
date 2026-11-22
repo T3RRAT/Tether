@@ -167,9 +167,9 @@ func _process(delta: float) -> void:
 	
 	# Handle Pulsing Functionality
 	if pulsing == true:
-		out_Bound.radius = lerp(out_Bound.radius, 65.0, delta * 3)
-		in_Bound.radius = lerp(in_Bound.radius, out_Bound.radius, delta * 1)
-		cosmic_Sphagetti_Mult.color = lerp(cosmic_Sphagetti_Mult.color, Color.BLACK, delta * 1.1)
+		out_Bound.radius = lerp(out_Bound.radius, 130.0, delta * 6)
+		in_Bound.radius = lerp(in_Bound.radius, out_Bound.radius, delta * 4)
+		cosmic_Sphagetti_Mult.color = lerp(cosmic_Sphagetti_Mult.color, Color.BLACK, delta * 4)
 	else:
 		pass
 	

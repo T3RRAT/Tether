@@ -6,6 +6,7 @@ var inLeft = false
 var pulsing = false
 var monsterActive = false
 var captchaActive = false
+var doorClose = false
 
 var computerButtonOrgPos = null
 var computerButtonLerpIn = null
@@ -51,6 +52,9 @@ var monsterAggroAmount = 0
 @onready var lightLeft = %FlashLightLeft
 @onready var player = $"Player Lerp Position"
 @onready var flashSound = $"Ship/Flash Sound"
+@onready var door = $Ship/Door
+var doorClosePos = null
+var doorOpenPos = Vector3(-2,0,2.6)
 
 # Gameplay Important Objects
 @onready var camMoveTimer = %"Cam Move Timer"
@@ -62,6 +66,8 @@ var monsterAggroAmount = 0
 @onready var cosmic_Sphaghetti = $"Pulse Items/Cosmic Spaghetti"
 @onready var pulse_Timer = $"Player Timers/Pulse Timer"
 @onready var cosmic_Sphagetti_Mult = $Texture/ColorRect
+
+# Mesh crazy, these are put into an array or directory in godot stuff and accessed through it
 var m1 = preload("res://Assets/Cosmic Mesh/Cosmic Web 1.obj")
 var m2 = preload("res://Assets/Cosmic Mesh/Cosmic Web 2.obj")
 var m3 = preload("res://Assets/Cosmic Mesh/Cosmic Web 3.obj")
@@ -105,7 +111,7 @@ func _ready() -> void:
 	lButtonLerp = buttonLeft.position + Vector2(-120, 0)
 	rButtonLerp = buttonRight.position + Vector2(120, 0)
 	
-	
+	# used later for accessing a new mesh every pulse
 	meshArray = {
 		"m1": m1,
 		"m2": m2,
@@ -116,6 +122,10 @@ func _ready() -> void:
 		"m7": m7,
 		"m8": m8
 	}
+	
+	
+	doorClosePos = door.global_position
+	doorOpenPos = doorClosePos - Vector3(1.5, 0, 0)
 	
 	#print(rad_to_deg(1))
 	
@@ -199,23 +209,37 @@ func _process(delta: float) -> void:
 		pass
 	
 	
+	# Handles Door Closing and Openning
+	if doorClose == true:
+		door.global_position = lerp(door.global_position, doorClosePos, 0.2)
+	elif doorClose == false:
+		door.global_position = lerp(door.global_position, doorOpenPos, 0.2)
 	
 	
 	
-	# Handling Flashing Mechanic and Inputs
-	if Input.get_action_strength("Confirm Action") && (pulsing == false) && (camLocation == 0):
-		if inCutscene == false && inUserInterface == false:
-			lightLeft.light_energy = 40
-			lightRight.light_energy = 40
-			pulsing = true
-			cosmic_Sphagetti_Mult.color = Color.WHITE_SMOKE
-			flashSound.play(0.38) # Number is here to make sure flash sound isnt delayed
-			pulse_Timer.start()
-			checkMonster()
+	# Handling Pulse Mechanic and Inputs
+	if Input.get_action_strength("Confirm Action"):
+		if camLocation == 0 && (pulsing == false):
+			if inCutscene == false && inUserInterface == false:
+				lightLeft.light_energy = 40
+				lightRight.light_energy = 40
+				pulsing = true
+				cosmic_Sphagetti_Mult.color = Color.WHITE_SMOKE
+				flashSound.play(0.38) # Number is here to make sure flash sound isnt delayed
+				pulse_Timer.start()
+				checkMonster()
 		elif inUserInterface == true && called_To_Change <= 0:
 			called_To_Change = called_To_Change + 1
 			computer.call("callChangeTrueShipPosition")
 			captchaActive = true
+		# If we facing the back, we shall close da door
+		# not sure why this isnt working
+		elif camLocation == 2 && buttonInteract == false:
+			# alternate door location and activate a variable saying that security power is draining from dis
+			doorClose = !doorClose
+			interactionMade()
+			print(doorClose)
+			
 	else:
 		lightLeft.light_energy = lerp(lightLeft.light_energy, 0.0, delta * 6)
 		lightRight.light_energy = lerp(lightRight.light_energy, 0.0, delta * 6)
@@ -355,7 +379,6 @@ func playerRotationSetter(location):
 		player.rotation_degrees = Vector3(0, 180, 0)
 	else: # yo what even is this shipPosition times location even for
 		player.rotation_degrees = Vector3(0, 0, shipPosition * location)
-		pass
 
 func interactionMade():
 	buttonInteract = true
@@ -433,7 +456,7 @@ func _on_monster_kill_timeout() -> void:
 
 func _on_monster_disappear_timeout() -> void:
 	monsterOne.global_position = monsterPositionInactive.global_position
-	print("Should return to original position")
+	print("back to original position")
 
 
 func _on_up_button_mouse_entered() -> void:

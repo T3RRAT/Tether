@@ -45,12 +45,12 @@ func _process(delta: float) -> void:
 # Tab3 (communications panel, closing door, ship status, radar, its basically will be the repair panel from fnaf 3)
 # Door functionality (Behind closing, opening, etc)
 # Start Screen (All buttons, lighting, transition between scenes)
-# Death Screen ()
+# Death Screen (Polish basically. also change fonts)
 # Music (Bandlab training arc coming up. or learn lmss)
 # Computer Polish (bgs, sounds, highlights, assets)
 # Sound Effects (background sfx, pulse, monster attacks, radar)
 # Lighting (inside ship, flickering, screens)
-# Reworked Flash System (working on it rn)
+# Reworked Flash System (Could be better but its basically finished. Ill need to figure out a better way to go about it)
 #
 # 
 # Stand Up and walking section (maybe just a click and move section)

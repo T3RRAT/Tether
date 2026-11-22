@@ -61,7 +61,7 @@ var monsterAggroAmount = 0
 @onready var in_Bound = $"Pulse Items/OuterBound/InnerBound"
 @onready var cosmic_Sphaghetti = $"Pulse Items/Cosmic Spaghetti"
 @onready var pulse_Timer = $"Player Timers/Pulse Timer"
-
+@onready var cosmic_Sphagetti_Mult = $Texture/ColorRect
 
 
 # Computer Objects
@@ -92,6 +92,9 @@ func _ready() -> void:
 	lButtonLerp = buttonLeft.position + Vector2(-120, 0)
 	rButtonLerp = buttonRight.position + Vector2(120, 0)
 	
+	
+	
+	
 	#print(rad_to_deg(1))
 	
 	pass # Replace with function body.
@@ -100,8 +103,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	# Camera Locations
 	
+	# Camera Locations
 	if camLocation == 0:
 		playerRotationSetter(0)
 		inLeft = false
@@ -164,8 +167,11 @@ func _process(delta: float) -> void:
 	
 	# Handle Pulsing Functionality
 	if pulsing == true:
-		out_Bound.radius = lerp(out_Bound.radius, 40, delta * 3)
+		out_Bound.radius = lerp(out_Bound.radius, 65.0, delta * 3)
 		in_Bound.radius = lerp(in_Bound.radius, out_Bound.radius, delta * 1)
+		cosmic_Sphagetti_Mult.color = lerp(cosmic_Sphagetti_Mult.color, Color.BLACK, delta * 1.1)
+	else:
+		pass
 	
 	
 	
@@ -177,6 +183,7 @@ func _process(delta: float) -> void:
 			lightLeft.light_energy = 40
 			lightRight.light_energy = 40
 			pulsing = true
+			cosmic_Sphagetti_Mult.color = Color.WHITE_SMOKE
 			flashSound.play(0.38) # Number is here to make sure flash sound isnt delayed
 			pulse_Timer.start()
 			checkMonster()
@@ -391,7 +398,6 @@ func _on_monster_kill_timeout() -> void:
 	if monsterActive == true:
 		if lvStatus.begins_with("n"):
 			get_tree().change_scene_to_file("res://Scenes/game_over_normal.tscn")
-			pass
 		elif lvStatus.begins_with("s"):
 			
 			pass
@@ -403,7 +409,6 @@ func _on_monster_kill_timeout() -> void:
 func _on_monster_disappear_timeout() -> void:
 	monsterOne.global_position = monsterPositionInactive.global_position
 	print("Should return to original position")
-	pass # Replace with function body.
 
 
 func _on_up_button_mouse_entered() -> void:
@@ -412,10 +417,12 @@ func _on_up_button_mouse_entered() -> void:
 			if computerState == -1:
 				camLocation = 0
 			interactionMade()
-	pass # Replace with function body.
 
 
 func _on_pulse_timer_timeout() -> void:
 	pulsing = false
-	out_Bound.radius = 0
-	in_Bound.radius = 0
+	out_Bound.radius = 0.01
+	in_Bound.radius = 0.01
+	print("finished pulse")
+	pulse_Timer.stop()
+	

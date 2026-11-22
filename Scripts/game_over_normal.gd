@@ -17,8 +17,6 @@ func _process(delta: float) -> void:
 	spL1.look_at(focus.position)
 	spL2.look_at(focus.position)
 	spL3.look_at(focus.position)
-	
-	pass
 
 
 func _on_button_pressed() -> void:

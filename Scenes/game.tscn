@@ -67,6 +67,16 @@ height = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_5s0fj"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_57qmd"]
+viewport_path = NodePath("Texture")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldgsr"]
+resource_local_to_scene = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = SubResource("ViewportTexture_57qmd")
+
 [node name="Game" type="Node3D" unique_id=314259388]
 script = ExtResource("1_ebmjs")
 
@@ -278,6 +288,7 @@ transform = Transform3D(-0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25
 [node name="Cosmic Spaghetti" type="CSGMesh3D" parent="Pulse Items" unique_id=1439055535]
 transform = Transform3D(-1.3113416e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113416e-07, 0, 0, 0)
 mesh = ExtResource("8_h4fw4")
+material = SubResource("StandardMaterial3D_ldgsr")
 
 [node name="OuterBound" type="CSGSphere3D" parent="Pulse Items" unique_id=1634346344]
 operation = 1
@@ -286,6 +297,15 @@ radius = 5.0
 [node name="InnerBound" type="CSGSphere3D" parent="Pulse Items/OuterBound" unique_id=852240356]
 operation = 2
 radius = 3.0
+
+[node name="Texture" type="SubViewport" parent="." unique_id=462445044]
+
+[node name="ColorRect" type="ColorRect" parent="Texture" unique_id=754261484]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
 [connection signal="timeout" from="Player Timers/Pulse Timer" to="." method="_on_pulse_timer_timeout"]

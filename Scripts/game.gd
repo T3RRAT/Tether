@@ -198,6 +198,7 @@ func _process(delta: float) -> void:
 		#print(cam.rotation.y)
 		print("Cam location = %d" % camLocation)
 		
+		
 	
 	
 	# Handle Pulsing Functionality
@@ -205,8 +206,6 @@ func _process(delta: float) -> void:
 		out_Bound.radius = lerp(out_Bound.radius, 130.0, delta * 6)
 		in_Bound.radius = lerp(in_Bound.radius, out_Bound.radius, delta * 4)
 		cosmic_Sphagetti_Mult.color = lerp(cosmic_Sphagetti_Mult.color, Color.BLACK, delta * 4)
-	else:
-		pass
 	
 	
 	# Handles Door Closing and Openning

@@ -21,6 +21,7 @@ var mitesActive = false
 
 @onready var communications_Power = $"Drop Down/Inner Menu/CommsL"
 @onready var communications_Pr = $"Drop Down/Inner Menu/CommsL/CommsR"
+@onready var percent_overlay = $"Drop Down/Inner Menu/CollectionL/Panel/ColorRect"
 
 @onready var tether_Power = $"Drop Down/Inner Menu/Tether Left"
 @onready var tether_Pr = $"Drop Down/Inner Menu/Tether Left/Tether Right"
@@ -78,6 +79,7 @@ var systemsPower = 100
 var collectionPower = 100
 var securityPower = 100
 var communicationsPower = 100
+var commOverlaySize
 var activeSelection = null
 
 
@@ -145,9 +147,12 @@ func _ready() -> void:
 # wait a second I can use emojis? 👍😘😘👌😊😊😂🤣❤️😍😒🙌👌🤷‍♀️🤦‍♀️😉😉😎🤷‍♀️🤷‍♀️🤦‍♀️🤦‍♀️💖💖😜😜😢😢
 func _process(delta: float) -> void:
 	
+	commOverlaySize = Vector2(communicationsPower / 365, 36)
+	percent_overlay.size = commOverlaySize
 	
 	#wire.look_at(backShip.position)
 	wire.look_at(backShip.global_position)
+	
 	
 	
 	# Power of each individual system

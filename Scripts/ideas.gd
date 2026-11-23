@@ -40,17 +40,17 @@ func _process(delta: float) -> void:
 
 
 # Things to do
-# Mites functionality (constantly draining tether power till 0)
+# Mites functionality (constantly draining tether power till 0. make tether abd mites model first)
 # Computer Power Functionality (upon a power source besides the collection power reaching 0, it cant be charged)
 # Tab3 (communications panel, closing door, ship status, radar, its basically will be the repair panel from fnaf 3)
-# Door functionality (Behind closing, opening, etc)
+# Door functionality (FINISHED)
 # Start Screen (All buttons, lighting, transition between scenes)
 # Death Screen (Polish basically. also change fonts)
 # Music (Bandlab training arc coming up. or learn lmss)
 # Computer Polish (bgs, sounds, highlights, assets)
 # Sound Effects (background sfx, pulse, monster attacks, radar)
 # Lighting (inside ship, flickering, screens)
-# Reworked Flash System (Could be better but its basically finished. Ill need to figure out a better way to go about it)
+# Reworked Flash System (done but could be better. improve later)
 #
 # 
 # Stand Up and walking section (maybe just a click and move section)

@@ -4,6 +4,7 @@ extends Node3D
 @onready var Elements_Control_Position = $"2D Overlay/Elements Control".position
 @onready var cam2d_Offset = null
 @onready var CRT_Filter = $"2D Overlay/CanvasLayer/CRT Filter Adjusred"
+@onready var cursor = $"2D Overlay/Cursor Sprite"
 
 @onready var spotlight_For_Ship = $"Camera Pivot Point/Camera/SpotLight3D"
 @onready var light_Pointer = $"Background Meshes/Ship/Light Pointer"
@@ -32,6 +33,8 @@ var flash_Ship_Power = null
 var ship_Lerp_Position = null
 var ship_Init_Position = null
 
+# 0 = new player, 1 = played first night, 2 = last night, 3 = completion,
+var titleScreenVersion = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -43,6 +46,7 @@ func _ready() -> void:
 	
 	ship_Init_Position = ship.position
 	ship_Lerp_Position = ship.position
+	
 	pass # Replace with function body.
 
 
@@ -55,6 +59,8 @@ func _process(delta: float) -> void:
 	#camera.position = lerp(camera.position, originalPosition.position + cam_Offset, delta * 1)
 	
 	
+	
+	# will constantly point towards the show regardless of its position
 	spotlight_For_Ship.look_at(light_Pointer.global_position)
 	
 	#Elements_Control_Position = lerp(center_Vision, target_Vision + get_viewport().get_mouse_position(), delta * 2)

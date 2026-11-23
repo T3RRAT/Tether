@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://chggar40wg145"]
 
-[ext_resource type="FontFile" uid="uid://dpkc5p4heusbr" path="res://Assets/augiepixel.ttf" id="1_klylv"]
 [ext_resource type="Script" uid="uid://bp6d02fghalij" path="res://Scripts/title_screen.gd" id="1_p3fck"]
+[ext_resource type="Script" uid="uid://kh5yp38gnc0g" path="res://Scripts/2d_overlay.gd" id="2_6vd4x"]
 [ext_resource type="Script" uid="uid://m7lmqnqypji8" path="res://Scripts/camera_2d.gd" id="2_twnyg"]
 [ext_resource type="Script" uid="uid://drjyqvmhdoelm" path="res://Scripts/camera_pivot_point.gd" id="3_4gxqj"]
 [ext_resource type="Texture2D" uid="uid://d3l85sost4ouf" path="res://Assets/Jame Gam Yay but png.png" id="3_55kwv"]
 [ext_resource type="FontFile" uid="uid://dxy3j6qv3juoa" path="res://Assets/monogram.ttf" id="5_6vd4x"]
 [ext_resource type="Shader" uid="uid://cvltpilpbwy8h" path="res://Scripts/title_screen.gdshader" id="5_12m1t"]
+[ext_resource type="Texture2D" uid="uid://jlmvgft400h0" path="res://Assets/cursor placeholder.png" id="7_n82rj"]
 
 [sub_resource type="Environment" id="Environment_p3fck"]
 background_mode = 2
@@ -14,14 +15,10 @@ background_energy_multiplier = 0.0
 fog_height_density = 0.5
 volumetric_fog_density = 0.47
 
-[sub_resource type="Theme" id="Theme_g4v7s"]
-default_base_scale = 2.0
-default_font = ExtResource("1_klylv")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("5_12m1t")
 shader_parameter/overlay = false
-shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/resolution = Vector2(1152, 648)
 shader_parameter/brightness = 1.4
 shader_parameter/scanlines_opacity = 0.0
 shader_parameter/scanlines_width = 0.25
@@ -123,6 +120,7 @@ environment = SubResource("Environment_p3fck")
 
 [node name="2D Overlay" type="Node2D" parent="." unique_id=2021004530]
 top_level = true
+script = ExtResource("2_6vd4x")
 
 [node name="Center Point" type="Sprite2D" parent="2D Overlay" unique_id=777072339]
 visible = false
@@ -135,21 +133,19 @@ script = ExtResource("2_twnyg")
 
 [node name="Elements Control" type="Node2D" parent="2D Overlay" unique_id=1129326246]
 
-[node name="Control" type="Control" parent="2D Overlay" unique_id=1556280215]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Node2D" type="Node2D" parent="2D Overlay" unique_id=601206160]
+[node name="2D Elements" type="Node2D" parent="2D Overlay" unique_id=601206160]
 position = Vector2(-576, -324)
 
-[node name="Play Button" type="TextureButton" parent="2D Overlay/Node2D" unique_id=78656321]
-offset_right = 40.0
-offset_bottom = 40.0
-theme = SubResource("Theme_g4v7s")
+[node name="Label" type="Label" parent="2D Overlay/2D Elements" unique_id=2039814493]
+offset_left = 662.0
+offset_top = 183.0
+offset_right = 1026.0
+offset_bottom = 307.0
+theme_override_fonts/font = ExtResource("5_6vd4x")
+theme_override_font_sizes/font_size = 128
+text = "Tether"
 
-[node name="Button" type="Button" parent="2D Overlay/Node2D" unique_id=1441553469]
+[node name="Play" type="Button" parent="2D Overlay/2D Elements" unique_id=1441553469]
 offset_left = 840.0
 offset_top = 406.0
 offset_right = 962.0
@@ -158,14 +154,14 @@ theme_override_fonts/font = ExtResource("5_6vd4x")
 theme_override_font_sizes/font_size = 64
 text = "Play"
 
-[node name="Label" type="Label" parent="2D Overlay/Node2D" unique_id=2039814493]
-offset_left = 662.0
-offset_top = 183.0
-offset_right = 1026.0
-offset_bottom = 307.0
+[node name="Settings" type="Button" parent="2D Overlay/2D Elements" unique_id=1742702946]
+offset_left = 840.0
+offset_top = 486.0
+offset_right = 1040.0
+offset_bottom = 556.0
 theme_override_fonts/font = ExtResource("5_6vd4x")
-theme_override_font_sizes/font_size = 128
-text = "Tether"
+theme_override_font_sizes/font_size = 64
+text = "Settings"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="2D Overlay" unique_id=1505401229]
 
@@ -180,6 +176,11 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Cursor Sprite" type="Sprite2D" parent="2D Overlay" unique_id=1390664707]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_n82rj")
+offset = Vector2(54, 54)
 
 [node name="Test timer" type="Timer" parent="." unique_id=450193429]
 
@@ -254,7 +255,7 @@ mesh = SubResource("PlaneMesh_g4v7s")
 [node name="Stars" type="MeshInstance3D" parent="Background Meshes" unique_id=2130903834]
 mesh = SubResource("ArrayMesh_g4v7s")
 
-[connection signal="pressed" from="2D Overlay/Node2D/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="2D Overlay/2D Elements/Play" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Test timer" to="." method="_on_test_timer_timeout"]
 [connection signal="timeout" from="Background Meshes/Ship/Flashing Timer" to="." method="_on_flashing_timer_timeout"]
 [connection signal="timeout" from="Background Meshes/Ship/Ship Lerp Pos Change" to="." method="_on_ship_lerp_pos_change_timeout"]

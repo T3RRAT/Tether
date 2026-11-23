@@ -97,22 +97,25 @@ mesh = SubResource("SphereMesh_g4v7s")
 
 [node name="SpotLight1" type="SpotLight3D" parent="." unique_id=479365420]
 transform = Transform3D(0.6916077, 0.40574902, -0.5975339, 0.25481585, 0.63703126, 0.7275026, 0.67583114, -0.6554074, 0.33718437, 1.4915504, 2.7138417, 1.4433247)
+visible = false
 light_energy = 16.0
 spot_angle = 5.706224
 
 [node name="SpotLight2" type="SpotLight3D" parent="." unique_id=672181013]
 transform = Transform3D(0.6916077, 0.405749, -0.59753376, 0.25481585, 0.63703126, 0.72750264, 0.67583114, -0.6554075, 0.33718446, -0.3831811, 2.7138417, -4.097409)
+visible = false
 light_energy = 16.0
 spot_range = 11.621985
 spot_angle = 5.706224
 
 [node name="SpotLight3" type="SpotLight3D" parent="." unique_id=2141502867]
 transform = Transform3D(0.6916077, 0.40574896, -0.59753376, 0.25481585, 0.63703126, 0.72750264, 0.67583114, -0.6554075, 0.33718446, -10.430098, 2.7138417, -4.097409)
+visible = false
 light_energy = 16.0
 spot_range = 95.03477
 spot_angle = 5.706224
 
 [node name="Computer Deathscreen" parent="." unique_id=1862319246 instance=ExtResource("3_l4ws6")]
-transform = Transform3D(0.9330736, -0.25173986, 0.256906, 0.2604826, 0.96547854, 0, -0.24803723, 0.06691954, 0.9664364, -1, 0.3125459, 0)
+transform = Transform3D(0.9330736, -0.25173986, 0.256906, 0.2604826, 0.96547854, 0, -0.24803723, 0.06691954, 0.9664364, -1, 0.21960568, 0)
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

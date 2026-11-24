@@ -51,6 +51,7 @@ func _process(delta: float) -> void:
 # Sound Effects (background sfx, pulse, monster attacks, radar)
 # Lighting (inside ship, flickering, screens)
 # Reworked Flash System (done but could be better. improve later)
+# Fix the number keys on ship tab
 #
 # 
 # Stand Up and walking section (maybe just a click and move section)

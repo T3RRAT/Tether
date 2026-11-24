@@ -59,23 +59,12 @@ var doorOpenPos = Vector3(-2,0,2.6)
 # Gameplay Important Objects
 @onready var camMoveTimer = %"Cam Move Timer"
 @onready var powerDrainTimer = %"Power Timer"
+@onready var pulse_Timer = $"Player Timers/Pulse Timer"
 
 # CSG Items
-@onready var out_Bound = $"Pulse Items/OuterBound"
-@onready var in_Bound = $"Pulse Items/OuterBound/InnerBound"
-@onready var cosmic_Sphaghetti = $"Pulse Items/Cosmic Spaghetti"
-@onready var pulse_Timer = $"Player Timers/Pulse Timer"
-@onready var cosmic_Sphagetti_Mult = $Texture/ColorRect
 
 # Mesh crazy, these are put into an array or directory in godot stuff and accessed through it
-var m1 = preload("res://Assets/Cosmic Mesh/Cosmic Web 1.obj")
-var m2 = preload("res://Assets/Cosmic Mesh/Cosmic Web 2.obj")
-var m3 = preload("res://Assets/Cosmic Mesh/Cosmic Web 3.obj")
-var m4 = preload("res://Assets/Cosmic Mesh/Cosmic Web 4.obj")
-var m5 = preload("res://Assets/Cosmic Mesh/Cosmic Web 5.obj")
-var m6 = preload("res://Assets/Cosmic Mesh/Cosmic Web 6.obj")
-var m7 = preload("res://Assets/Cosmic Mesh/Cosmic Web 7.obj")
-var m8 = preload("res://Assets/Cosmic Mesh/Cosmic Web 8.obj")
+
 
 var meshArray
 
@@ -112,16 +101,6 @@ func _ready() -> void:
 	rButtonLerp = buttonRight.position + Vector2(120, 0)
 	
 	# used later for accessing a new mesh every pulse
-	meshArray = {
-		"m1": m1,
-		"m2": m2,
-		"m3": m3,
-		"m4": m4, 
-		"m5": m5,
-		"m6": m6,
-		"m7": m7,
-		"m8": m8
-	}
 	
 	
 	doorClosePos = door.global_position
@@ -203,9 +182,7 @@ func _process(delta: float) -> void:
 	
 	# Handle Pulsing Functionality
 	if pulsing == true:
-		out_Bound.radius = lerp(out_Bound.radius, 130.0, delta * 6)
-		in_Bound.radius = lerp(in_Bound.radius, out_Bound.radius, delta * 4)
-		cosmic_Sphagetti_Mult.color = lerp(cosmic_Sphagetti_Mult.color, Color.BLACK, delta * 4)
+		pass
 	
 	
 	# Handles Door Closing and Openning
@@ -223,7 +200,7 @@ func _process(delta: float) -> void:
 				lightLeft.light_energy = 40
 				lightRight.light_energy = 40
 				pulsing = true
-				cosmic_Sphagetti_Mult.color = Color.WHITE_SMOKE
+				
 				flashSound.play(0.38) # Number is here to make sure flash sound isnt delayed
 				pulse_Timer.start()
 				checkMonster()
@@ -468,14 +445,7 @@ func _on_up_button_mouse_entered() -> void:
 
 func _on_pulse_timer_timeout() -> void:
 	pulsing = false
-	out_Bound.radius = 0.01
-	in_Bound.radius = 0.01
-	
-	var meshNumber = randi_range(1,8)
-	var key = "m" + str(meshNumber)
-	
-	cosmic_Sphaghetti.mesh = meshArray[key]
 	
 	pulse_Timer.stop()
-	print(key)
 	
+	print("pulse finish")

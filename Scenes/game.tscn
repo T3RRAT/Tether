@@ -240,9 +240,45 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_itgiy")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_iivbl"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85qyi"]
+resource_local_to_scene = true
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
+emission_texture = SubResource("ViewportTexture_iivbl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwurv"]
+emission_enabled = true
+emission = Color(0.8346143, 0.8346143, 0.8346143, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mucmn"]
+emission_enabled = true
+emission = Color(0.66656864, 0.6665687, 0.66656864, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8m3t6"]
+emission_enabled = true
+emission = Color(0.49354547, 0.49354553, 0.49354553, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ese38"]
+emission_enabled = true
+emission = Color(0.37413925, 0.37413928, 0.37413922, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeip8"]
+emission_enabled = true
+emission = Color(0.29954746, 0.29954746, 0.29954743, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xe308"]
+emission_enabled = true
+emission = Color(0.26657522, 0.2665752, 0.2665752, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3cha"]
+emission_enabled = true
+emission = Color(0.11858138, 0.11858138, 0.11858138, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
+emission_enabled = true
 
 [node name="Game" type="Node3D" unique_id=314259388]
 script = ExtResource("1_ebmjs")
@@ -254,6 +290,8 @@ unique_name_in_owner = true
 wait_time = 0.3
 
 [node name="Pulse Timer" type="Timer" parent="Player Timers" unique_id=2049504237]
+
+[node name="Pulse Count Timer" type="Timer" parent="Player Timers" unique_id=30837792]
 
 [node name="Player Lerp Position" type="MeshInstance3D" parent="." unique_id=1867483037]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0)
@@ -461,15 +499,6 @@ mesh = SubResource("BoxMesh_5s0fj")
 [node name="Computer Tether Cam" parent="." unique_id=2107467460 instance=ExtResource("8_v158k")]
 transform = Transform3D(-0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881907, 1.6138719, 0.43520796, 0.66975665)
 
-[node name="Texture" type="SubViewport" parent="." unique_id=462445044]
-
-[node name="ColorRect" type="ColorRect" parent="Texture" unique_id=754261484]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Cosmic Web Full" type="MeshInstance3D" parent="." unique_id=696241645]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 visible = false
@@ -480,35 +509,53 @@ mesh = SubResource("ArrayMesh_81klo")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="Layer1" type="MeshInstance3D" parent="Cosmic Web" unique_id=887636457]
+material_override = SubResource("StandardMaterial3D_85qyi")
 mesh = ExtResource("10_85qyi")
 
 [node name="Layer2" type="MeshInstance3D" parent="Cosmic Web" unique_id=352408061]
 mesh = ExtResource("11_iivbl")
+surface_material_override/0 = SubResource("StandardMaterial3D_cwurv")
 
 [node name="Layer3" type="MeshInstance3D" parent="Cosmic Web" unique_id=1013268712]
 mesh = ExtResource("12_7nbq1")
+surface_material_override/0 = SubResource("StandardMaterial3D_mucmn")
 
 [node name="Layer4" type="MeshInstance3D" parent="Cosmic Web" unique_id=955761307]
 mesh = ExtResource("13_exi56")
+surface_material_override/0 = SubResource("StandardMaterial3D_8m3t6")
 
 [node name="Layer5" type="MeshInstance3D" parent="Cosmic Web" unique_id=971269771]
 mesh = ExtResource("14_7t8sx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ese38")
 
 [node name="Layer6" type="MeshInstance3D" parent="Cosmic Web" unique_id=636233833]
 mesh = ExtResource("15_mg4q0")
+surface_material_override/0 = SubResource("StandardMaterial3D_oeip8")
 
 [node name="Layer7" type="MeshInstance3D" parent="Cosmic Web" unique_id=1519624591]
 mesh = ExtResource("16_vm72l")
+surface_material_override/0 = SubResource("StandardMaterial3D_xe308")
 
 [node name="Layer8" type="MeshInstance3D" parent="Cosmic Web" unique_id=923950118]
 mesh = ExtResource("17_22asu")
+surface_material_override/0 = SubResource("StandardMaterial3D_d3cha")
 
 [node name="Layer9" type="MeshInstance3D" parent="Cosmic Web" unique_id=75341020]
 mesh = ExtResource("18_fkdbe")
 surface_material_override/0 = SubResource("StandardMaterial3D_g4v7s")
 
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1672084430]
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=415930747]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="timeout" from="Player Timers/Cam Move Timer" to="." method="_on_cam_move_timer_timeout"]
 [connection signal="timeout" from="Player Timers/Pulse Timer" to="." method="_on_pulse_timer_timeout"]
+[connection signal="timeout" from="Player Timers/Pulse Count Timer" to="." method="_on_pulse_count_timer_timeout"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Left Button" to="." method="_on_left_button_mouse_entered"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/Right Button" to="." method="_on_right_button_mouse_entered"]
 [connection signal="mouse_entered" from="2D Overlay/Control/CanvasLayer/ComputerButton" to="." method="_on_up_button_mouse_entered"]

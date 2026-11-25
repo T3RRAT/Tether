@@ -60,11 +60,21 @@ var doorOpenPos = Vector3(-2,0,2.6)
 @onready var camMoveTimer = %"Cam Move Timer"
 @onready var powerDrainTimer = %"Power Timer"
 @onready var pulse_Timer = $"Player Timers/Pulse Timer"
+@onready var pulse_Count = $"Player Timers/Pulse Count Timer"
+var pulseCount = 0
 
 # CSG Items
 
 # Mesh crazy, these are put into an array or directory in godot stuff and accessed through it
-
+@onready var l1 = $"Cosmic Web/Layer1"
+@onready var l2 = $"Cosmic Web/Layer2"
+@onready var l3 = $"Cosmic Web/Layer3"
+@onready var l4 = $"Cosmic Web/Layer4"
+@onready var l5 = $"Cosmic Web/Layer5"
+@onready var l6 = $"Cosmic Web/Layer6"
+@onready var l7 = $"Cosmic Web/Layer7"
+@onready var l8 = $"Cosmic Web/Layer8"
+@onready var l9 = $"Cosmic Web/Layer9"
 
 var meshArray
 
@@ -81,6 +91,11 @@ var meshArray
 
 @onready var cosmic_web = $"Cosmic Web Full"
 
+var darkColour = Color.BLACK
+var lightColour = Color.WHITE_SMOKE
+var matLight
+var matDark
+@onready var cosmic_web_colour_ctrl = $SubViewport/ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -100,7 +115,28 @@ func _ready() -> void:
 	lButtonLerp = buttonLeft.position + Vector2(-120, 0)
 	rButtonLerp = buttonRight.position + Vector2(120, 0)
 	
-	# used later for accessing a new mesh every pulse
+	# used later for accessing each layer of the mesh
+	meshArray = {
+		"l1": l1,
+		"l2": l2,
+		"l3": l3,
+		"l4": l4,
+		"l5": l5,
+		"l6": l6,
+		"l7": l7,
+		"l8": l8,
+		"l9": l9
+	}
+	
+	matLight = StandardMaterial3D.new()
+	matLight.emission_enabled = true
+	matLight.emission = lightColour
+	
+	matDark = StandardMaterial3D.new()
+	matDark.emission_enabled = true
+	matDark.emission = darkColour
+	
+	matDark.emission_energy_multiplier
 	
 	
 	doorClosePos = door.global_position
@@ -147,7 +183,39 @@ func _process(delta: float) -> void:
 	# when mouse is on left side of screen
 	# slowly move player left (rotate -)
 	# only if player rotation is not -90 or below.
-
+	
+	
+	# Handles Cosmic Space Mesh
+	if pulseCount == 0:
+		l1.material_override = matDark
+		l2.material_override = matDark
+		l3.material_override = matDark
+		l4.material_override = matDark
+		l5.material_override = matDark
+		l6.material_override = matDark
+		l7.material_override = matDark
+		l8.material_override = matDark
+		l9.material_override = matDark
+	
+	match pulseCount:
+		0:
+			l1.material_override = matDark
+			l2.material_override = matDark
+			l3.material_override = matDark
+			l4.material_override = matDark
+			l5.material_override = matDark
+			l6.material_override = matDark
+			l7.material_override = matDark
+			l8.material_override = matDark
+			l9.material_override = matDark
+			
+		1:
+			cosmic_web_colour_ctrl.color = lerp(cosmic_web_colour_ctrl.color, darkColour, delta * 1)
+			l1.material_overlay = matLight
+		2:
+			pass
+	
+	
 	
 	# Handle Camera Buttons
 	if inRight == true:
@@ -176,7 +244,7 @@ func _process(delta: float) -> void:
 		#print("below is cam rotation")
 		#print(cam.rotation.y)
 		print("Cam location = %d" % camLocation)
-		
+		pulseCount = 1
 		
 	
 	
@@ -449,3 +517,8 @@ func _on_pulse_timer_timeout() -> void:
 	pulse_Timer.stop()
 	
 	print("pulse finish")
+
+
+func _on_pulse_count_timer_timeout() -> void:
+	
+	pass # Replace with function body.

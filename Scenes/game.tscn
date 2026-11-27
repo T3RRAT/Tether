@@ -240,15 +240,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_itgiy")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iivbl"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85qyi"]
-resource_local_to_scene = true
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_texture = SubResource("ViewportTexture_iivbl")
-
 [node name="Game" type="Node3D" unique_id=314259388]
 script = ExtResource("1_ebmjs")
 
@@ -478,7 +469,6 @@ mesh = SubResource("ArrayMesh_81klo")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="Layer1" type="MeshInstance3D" parent="Cosmic Web" unique_id=887636457]
-material_override = SubResource("StandardMaterial3D_85qyi")
 mesh = ExtResource("10_85qyi")
 
 [node name="Layer2" type="MeshInstance3D" parent="Cosmic Web" unique_id=352408061]

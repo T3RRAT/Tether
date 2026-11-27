@@ -93,9 +93,10 @@ var meshArray
 
 var darkColour = Color.BLACK
 var lightColour = Color.WHITE_SMOKE
-var matLight
-var matDark
+var scanningWebMaterial = StandardMaterial3D.new()
+var notScanningMaterial = StandardMaterial3D.new()
 @onready var cosmic_web_colour_ctrl = $SubViewport/ColorRect
+var colourMult = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -128,21 +129,20 @@ func _ready() -> void:
 		"l9": l9
 	}
 	
-	matLight = StandardMaterial3D.new()
-	matLight.emission_enabled = true
-	matLight.emission = lightColour
-	
-	matDark = StandardMaterial3D.new()
-	matDark.emission_enabled = true
-	matDark.emission = darkColour
-	
-	matDark.emission_energy_multiplier
 	
 	
 	doorClosePos = door.global_position
 	doorOpenPos = doorClosePos - Vector3(1.5, 0, 0)
 	
 	#print(rad_to_deg(1))
+	
+	
+	scanningWebMaterial.emission_enabled = true
+	scanningWebMaterial.emission_texture = cosmic_web_colour_ctrl
+	
+	notScanningMaterial.emission_enabled = true
+	
+	
 	
 	pass # Replace with function body.
 
@@ -185,35 +185,94 @@ func _process(delta: float) -> void:
 	# only if player rotation is not -90 or below.
 	
 	
+	# Handles Pulsing
+	if pulsing == true:
+		pass
+	
+	
 	# Handles Cosmic Space Mesh
 	if pulseCount == 0:
-		l1.material_override = matDark
-		l2.material_override = matDark
-		l3.material_override = matDark
-		l4.material_override = matDark
-		l5.material_override = matDark
-		l6.material_override = matDark
-		l7.material_override = matDark
-		l8.material_override = matDark
-		l9.material_override = matDark
+		colourMult = 255
+	elif pulseCount > 0:
+		colourMult = lerp(colourMult, 0, delta * 2)
+		cosmic_web_colour_ctrl.modulate = Color(colourMult,colourMult,colourMult)
+	
 	
 	match pulseCount:
 		0:
-			l1.material_override = matDark
-			l2.material_override = matDark
-			l3.material_override = matDark
-			l4.material_override = matDark
-			l5.material_override = matDark
-			l6.material_override = matDark
-			l7.material_override = matDark
-			l8.material_override = matDark
-			l9.material_override = matDark
-			
+			# all materials shall be dark
+			l1.material_override = notScanningMaterial
+			l2.material_override = notScanningMaterial
+			l3.material_override = notScanningMaterial
+			l4.material_override = notScanningMaterial
+			l5.material_override = notScanningMaterial
+			l6.material_override = notScanningMaterial
+			l7.material_override = notScanningMaterial
+			l8.material_override = notScanningMaterial
+			l9.material_override = notScanningMaterial
 		1:
-			cosmic_web_colour_ctrl.color = lerp(cosmic_web_colour_ctrl.color, darkColour, delta * 1)
-			l1.material_overlay = matLight
+			# First layer begins
+			l1.material_override = scanningWebMaterial
 		2:
-			pass
+			# 2nd Layer
+			l1.material_override = scanningWebMaterial
+			l2.material_override = scanningWebMaterial
+		3:
+			# 3rd Layer
+			l1.material_override = scanningWebMaterial
+			l2.material_override = scanningWebMaterial
+			l3.material_override = scanningWebMaterial
+		4:
+			# 4th Layer
+			l1.material_override = scanningWebMaterial
+			l2.material_override = scanningWebMaterial
+			l3.material_override = scanningWebMaterial
+			l4.material_override = scanningWebMaterial
+		5:
+			# 5th Layer
+			l1.material_override = scanningWebMaterial
+			l2.material_override = scanningWebMaterial
+			l3.material_override = scanningWebMaterial
+			l4.material_override = scanningWebMaterial
+			l5.material_override = scanningWebMaterial
+		6:
+			# 6th Layer
+			l1.material_override = scanningWebMaterial
+			l2.material_override = scanningWebMaterial
+			l3.material_override = scanningWebMaterial
+			l4.material_override = scanningWebMaterial
+			l5.material_override = scanningWebMaterial
+			l6.material_override = scanningWebMaterial
+		7:
+			# 7th Layer
+			l1.material_override = scanningWebMaterial
+			l2.material_override = scanningWebMaterial
+			l3.material_override = scanningWebMaterial
+			l4.material_override = scanningWebMaterial
+			l5.material_override = scanningWebMaterial
+			l6.material_override = scanningWebMaterial
+			l7.material_override = scanningWebMaterial
+		8:
+			# 8th Layer
+			l1.material_override = scanningWebMaterial
+			l2.material_override = scanningWebMaterial
+			l3.material_override = scanningWebMaterial
+			l4.material_override = scanningWebMaterial
+			l5.material_override = scanningWebMaterial
+			l6.material_override = scanningWebMaterial
+			l7.material_override = scanningWebMaterial
+			l8.material_override = scanningWebMaterial
+		9:
+			# 9th Layer
+			l1.material_override = scanningWebMaterial
+			l2.material_override = scanningWebMaterial
+			l3.material_override = scanningWebMaterial
+			l4.material_override = scanningWebMaterial
+			l5.material_override = scanningWebMaterial
+			l6.material_override = scanningWebMaterial
+			l7.material_override = scanningWebMaterial
+			l8.material_override = scanningWebMaterial
+			l9.material_override = scanningWebMaterial
 	
 	
 	
@@ -248,9 +307,7 @@ func _process(delta: float) -> void:
 		
 	
 	
-	# Handle Pulsing Functionality
-	if pulsing == true:
-		pass
+	
 	
 	
 	# Handles Door Closing and Openning
@@ -520,5 +577,4 @@ func _on_pulse_timer_timeout() -> void:
 
 
 func _on_pulse_count_timer_timeout() -> void:
-	
-	pass # Replace with function body.
+	pulseCount += 1

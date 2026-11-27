@@ -79,7 +79,7 @@ var systemsPower = 100
 var collectionPower = 100
 var securityPower = 100
 var communicationsPower = 100
-var commOverlaySize
+var collectOverlaySize
 var activeSelection = null
 
 
@@ -140,6 +140,10 @@ func _ready() -> void:
 	security_Power.position = securityOrigin
 	communications_Power.position = commsOrigin
 	
+	
+	print(communications_Power.size.x)
+	
+	
 	pass # Replace with function body.
 
 
@@ -147,8 +151,10 @@ func _ready() -> void:
 # wait a second I can use emojis? 👍😘😘👌😊😊😂🤣❤️😍😒🙌👌🤷‍♀️🤦‍♀️😉😉😎🤷‍♀️🤷‍♀️🤦‍♀️🤦‍♀️💖💖😜😜😢😢
 func _process(delta: float) -> void:
 	
-	commOverlaySize = Vector2(communicationsPower / 365, 36)
-	percent_overlay.size = commOverlaySize
+	collectOverlaySize = Vector2(collection_Power.size.x * (collectionPower / 100), 36)
+	percent_overlay.size = collectOverlaySize
+	
+	
 	
 	#wire.look_at(backShip.position)
 	wire.look_at(backShip.global_position)

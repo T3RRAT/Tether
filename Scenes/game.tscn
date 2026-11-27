@@ -249,37 +249,6 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_texture = SubResource("ViewportTexture_iivbl")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwurv"]
-emission_enabled = true
-emission = Color(0.8346143, 0.8346143, 0.8346143, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mucmn"]
-emission_enabled = true
-emission = Color(0.66656864, 0.6665687, 0.66656864, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8m3t6"]
-emission_enabled = true
-emission = Color(0.49354547, 0.49354553, 0.49354553, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ese38"]
-emission_enabled = true
-emission = Color(0.37413925, 0.37413928, 0.37413922, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeip8"]
-emission_enabled = true
-emission = Color(0.29954746, 0.29954746, 0.29954743, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xe308"]
-emission_enabled = true
-emission = Color(0.26657522, 0.2665752, 0.2665752, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3cha"]
-emission_enabled = true
-emission = Color(0.11858138, 0.11858138, 0.11858138, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
-emission_enabled = true
-
 [node name="Game" type="Node3D" unique_id=314259388]
 script = ExtResource("1_ebmjs")
 
@@ -514,35 +483,27 @@ mesh = ExtResource("10_85qyi")
 
 [node name="Layer2" type="MeshInstance3D" parent="Cosmic Web" unique_id=352408061]
 mesh = ExtResource("11_iivbl")
-surface_material_override/0 = SubResource("StandardMaterial3D_cwurv")
 
 [node name="Layer3" type="MeshInstance3D" parent="Cosmic Web" unique_id=1013268712]
 mesh = ExtResource("12_7nbq1")
-surface_material_override/0 = SubResource("StandardMaterial3D_mucmn")
 
 [node name="Layer4" type="MeshInstance3D" parent="Cosmic Web" unique_id=955761307]
 mesh = ExtResource("13_exi56")
-surface_material_override/0 = SubResource("StandardMaterial3D_8m3t6")
 
 [node name="Layer5" type="MeshInstance3D" parent="Cosmic Web" unique_id=971269771]
 mesh = ExtResource("14_7t8sx")
-surface_material_override/0 = SubResource("StandardMaterial3D_ese38")
 
 [node name="Layer6" type="MeshInstance3D" parent="Cosmic Web" unique_id=636233833]
 mesh = ExtResource("15_mg4q0")
-surface_material_override/0 = SubResource("StandardMaterial3D_oeip8")
 
 [node name="Layer7" type="MeshInstance3D" parent="Cosmic Web" unique_id=1519624591]
 mesh = ExtResource("16_vm72l")
-surface_material_override/0 = SubResource("StandardMaterial3D_xe308")
 
 [node name="Layer8" type="MeshInstance3D" parent="Cosmic Web" unique_id=923950118]
 mesh = ExtResource("17_22asu")
-surface_material_override/0 = SubResource("StandardMaterial3D_d3cha")
 
 [node name="Layer9" type="MeshInstance3D" parent="Cosmic Web" unique_id=75341020]
 mesh = ExtResource("18_fkdbe")
-surface_material_override/0 = SubResource("StandardMaterial3D_g4v7s")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1672084430]
 

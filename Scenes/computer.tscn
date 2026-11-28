@@ -36,13 +36,13 @@ data = PackedVector3Array(0.705, -0.405, 0, -0.705, -0.405, 0, 0.705, 0.405, 0, 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_461db"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tn5d3"]
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fbd4"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8p3nl"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tn5d3"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bfw6"]
@@ -205,7 +205,6 @@ theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
 theme_override_styles/disabled = SubResource("StyleBoxFlat_461db")
-text = "Systems : 100"
 alignment = 0
 autowrap_trim_flags = 0
 
@@ -221,34 +220,22 @@ theme_override_font_sizes/font_size = 34
 button_mask = 2
 alignment = 0
 
-[node name="CollectionL" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=1261451041]
-offset_top = 175.5
-offset_right = 365.0
-offset_bottom = 211.5
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 1
-theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-theme_override_styles/disabled = SubResource("StyleBoxFlat_tn5d3")
-text = "Collect : 100"
-alignment = 0
+[node name="Systems Textbox" type="RichTextLabel" parent="TabContainer/Power/Drop Down/Inner Menu/SystemsL" unique_id=1888616152]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_piu5q")
+theme_override_font_sizes/normal_font_size = 34
+text = "Systems : 100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="CollectionR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=792052080]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 365.0
-offset_bottom = 36.0
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("3_piu5q")
-theme_override_font_sizes/font_size = 34
-button_mask = 2
-text = "
-"
-alignment = 0
-
-[node name="Panel" type="Panel" parent="TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=1107617230]
+[node name="Panel" type="Panel" parent="TabContainer/Power/Drop Down/Inner Menu/SystemsL" unique_id=1911342129]
+show_behind_parent = true
 clip_children = 1
 layout_mode = 1
 anchors_preset = 15
@@ -258,7 +245,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="TabContainer/Power/Drop Down/Inner Menu/CollectionL/Panel" unique_id=2087111144]
+[node name="ColorRect" type="ColorRect" parent="TabContainer/Power/Drop Down/Inner Menu/SystemsL/Panel" unique_id=1707119537]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -278,7 +265,6 @@ theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
 theme_override_styles/disabled = SubResource("StyleBoxFlat_5fbd4")
-text = "Security: 100"
 alignment = 0
 
 [node name="SecurityR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/SecurityL" unique_id=1581327950]
@@ -295,6 +281,41 @@ button_mask = 2
 alignment = 0
 autowrap_trim_flags = 0
 
+[node name="Security Textbox" type="RichTextLabel" parent="TabContainer/Power/Drop Down/Inner Menu/SecurityL" unique_id=620563475]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_piu5q")
+theme_override_font_sizes/normal_font_size = 34
+text = "Security: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="TabContainer/Power/Drop Down/Inner Menu/SecurityL" unique_id=2062145265]
+show_behind_parent = true
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="TabContainer/Power/Drop Down/Inner Menu/SecurityL/Panel" unique_id=1802955680]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="CommsL" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=160367644]
 offset_top = 123.5
 offset_right = 175.0
@@ -305,7 +326,6 @@ theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
 theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
 theme_override_styles/disabled = SubResource("StyleBoxFlat_8p3nl")
-text = "Comms   : 100"
 alignment = 0
 
 [node name="CommsR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/CommsL" unique_id=667499315]
@@ -319,6 +339,100 @@ theme_override_fonts/font = ExtResource("3_piu5q")
 theme_override_font_sizes/font_size = 34
 button_mask = 2
 alignment = 0
+
+[node name="Comms Textbox" type="RichTextLabel" parent="TabContainer/Power/Drop Down/Inner Menu/CommsL" unique_id=1388472182]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_piu5q")
+theme_override_font_sizes/normal_font_size = 34
+text = "Comms   : 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="TabContainer/Power/Drop Down/Inner Menu/CommsL" unique_id=1012090086]
+show_behind_parent = true
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="TabContainer/Power/Drop Down/Inner Menu/CommsL/Panel" unique_id=2010858175]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CollectionL" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=1261451041]
+offset_top = 175.5
+offset_right = 365.0
+offset_bottom = 211.5
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+theme_override_colors/font_hover_color = Color(0.9882353, 0.9254902, 1, 1)
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tn5d3")
+alignment = 0
+
+[node name="CollectionR" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=792052080]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 365.0
+offset_bottom = 36.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_piu5q")
+theme_override_font_sizes/font_size = 34
+button_mask = 2
+text = "
+"
+alignment = 0
+
+[node name="Panel" type="Panel" parent="TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=1107617230]
+show_behind_parent = true
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="TabContainer/Power/Drop Down/Inner Menu/CollectionL/Panel" unique_id=2087111144]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Collection Text" type="RichTextLabel" parent="TabContainer/Power/Drop Down/Inner Menu/CollectionL" unique_id=1853025020]
+z_index = 3
+layout_mode = 0
+offset_left = 4.0
+offset_right = 365.0
+offset_bottom = 36.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_piu5q")
+theme_override_font_sizes/normal_font_size = 34
+text = "Collect : 100"
+vertical_alignment = 1
 
 [node name="Tether Left" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=1098040798]
 offset_left = 182.0
@@ -376,6 +490,27 @@ theme_override_font_sizes/normal_font_size = 26
 text = "100.0%"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="TabContainer/Power/Drop Down/Inner Menu/Tether Left" unique_id=862886964]
+show_behind_parent = true
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="TabContainer/Power/Drop Down/Inner Menu/Tether Left/Panel" unique_id=23555810]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Transfer Power" type="Button" parent="TabContainer/Power/Drop Down/Inner Menu" unique_id=2062863818]
 offset_left = 248.0
@@ -1156,10 +1291,6 @@ area_size = Vector2(1.3374095, 0.735)
 [connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="TabContainer/Power" method="_on_systems_l_mouse_exited"]
 [connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/SystemsL" to="TabContainer/Power" method="_on_systems_pressed"]
 [connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/SystemsL/SystemsR" to="TabContainer/Power" method="_on_systems_r_pressed"]
-[connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="TabContainer/Power" method="_on_collection_l_mouse_entered"]
-[connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="TabContainer/Power" method="_on_collection_l_mouse_exited"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="TabContainer/Power" method="_on_collection_pressed"]
-[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL/CollectionR" to="TabContainer/Power" method="_on_collection_r_pressed"]
 [connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="TabContainer/Power" method="_on_security_l_mouse_entered"]
 [connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="TabContainer/Power" method="_on_security_l_mouse_exited"]
 [connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/SecurityL" to="TabContainer/Power" method="_on_security_pressed"]
@@ -1168,6 +1299,10 @@ area_size = Vector2(1.3374095, 0.735)
 [connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/CommsL" to="TabContainer/Power" method="_on_comms_l_mouse_exited"]
 [connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CommsL" to="TabContainer/Power" method="_on_communications_pressed"]
 [connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CommsL/CommsR" to="TabContainer/Power" method="_on_comms_r_pressed"]
+[connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="TabContainer/Power" method="_on_collection_l_mouse_entered"]
+[connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="TabContainer/Power" method="_on_collection_l_mouse_exited"]
+[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL" to="TabContainer/Power" method="_on_collection_pressed"]
+[connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/CollectionL/CollectionR" to="TabContainer/Power" method="_on_collection_r_pressed"]
 [connection signal="mouse_entered" from="TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="TabContainer/Power" method="_on_tether_left_mouse_entered"]
 [connection signal="mouse_exited" from="TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="TabContainer/Power" method="_on_tether_left_mouse_exited"]
 [connection signal="pressed" from="TabContainer/Power/Drop Down/Inner Menu/Tether Left" to="TabContainer/Power" method="_on_tether_power_pressed"]

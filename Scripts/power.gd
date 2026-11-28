@@ -12,20 +12,29 @@ var mitesActive = false
 
 @onready var systems_Power = $"Drop Down/Inner Menu/SystemsL"
 @onready var systems_Pr = $"Drop Down/Inner Menu/SystemsL/SystemsR"
-
-@onready var collection_Power = $"Drop Down/Inner Menu/CollectionL"
-@onready var collection_Pr = $"Drop Down/Inner Menu/Collection/CollectionR"
+@onready var systems_Power_Textbox = $"Drop Down/Inner Menu/SystemsL/Systems Textbox"
+@onready var percent_overlay_systems = $"Drop Down/Inner Menu/SystemsL/Panel/ColorRect"
 
 @onready var security_Power = $"Drop Down/Inner Menu/SecurityL"
 @onready var security_Pr = $"Drop Down/Inner Menu/SecurityL/SecurityR"
+@onready var security_Power_Textbox = $"Drop Down/Inner Menu/SecurityL/Security Textbox"
+@onready var percent_overlay_security = $"Drop Down/Inner Menu/SecurityL/Panel/ColorRect"
+
 
 @onready var communications_Power = $"Drop Down/Inner Menu/CommsL"
 @onready var communications_Pr = $"Drop Down/Inner Menu/CommsL/CommsR"
-@onready var percent_overlay = $"Drop Down/Inner Menu/CollectionL/Panel/ColorRect"
+@onready var comms_Power_Textbox = $"Drop Down/Inner Menu/CommsL/Comms Textbox"
+@onready var percent_overlay_comms = $"Drop Down/Inner Menu/CommsL/Panel/ColorRect"
+
+@onready var collection_Power = $"Drop Down/Inner Menu/CollectionL"
+@onready var collection_Pr = $"Drop Down/Inner Menu/Collection/CollectionR"
+@onready var collect_Power_Textbox = $"Drop Down/Inner Menu/CollectionL/Collection Text"
+@onready var percent_overlay_collect = $"Drop Down/Inner Menu/CollectionL/Panel/ColorRect"
 
 @onready var tether_Power = $"Drop Down/Inner Menu/Tether Left"
 @onready var tether_Pr = $"Drop Down/Inner Menu/Tether Left/Tether Right"
 @onready var tether_Text = $"Drop Down/Inner Menu/Tether Left/TetherText"
+@onready var percent_overlay_tether = $"Drop Down/Inner Menu/Tether Left/Panel/ColorRect"
 
 @onready var transfer_Button = $"Drop Down/Inner Menu/Transfer Power"
 
@@ -76,10 +85,16 @@ var samplesCollected = 0
 
 var tetherPower = 100
 var systemsPower = 100
-var collectionPower = 100
 var securityPower = 100
 var communicationsPower = 100
+var collectionPower = 100
+
+var tetherOverlayPos
+var systemsOverlaySize
+var securityOverlaySize
+var commsOverlaySize
 var collectOverlaySize
+
 var activeSelection = null
 
 
@@ -144,6 +159,10 @@ func _ready() -> void:
 	print(communications_Power.size.x)
 	
 	
+	
+	
+	
+	
 	pass # Replace with function body.
 
 
@@ -151,8 +170,23 @@ func _ready() -> void:
 # wait a second I can use emojis? 👍😘😘👌😊😊😂🤣❤️😍😒🙌👌🤷‍♀️🤦‍♀️😉😉😎🤷‍♀️🤷‍♀️🤦‍♀️🤦‍♀️💖💖😜😜😢😢
 func _process(delta: float) -> void:
 	
+	# Power Overlays
+	systemsOverlaySize = Vector2(systems_Power.size.x * (systemsPower / 100), systems_Power.size.y)
+	percent_overlay_systems.size = systemsOverlaySize
+	
+	securityOverlaySize = Vector2(security_Power.size.x * (securityPower / 100), security_Power.size.y)
+	percent_overlay_security.size = securityOverlaySize
+	
+	commsOverlaySize = Vector2(communications_Power.size.x * (communicationsPower / 100), communications_Power.size.y)
+	percent_overlay_comms.size = commsOverlaySize
+	
 	collectOverlaySize = Vector2(collection_Power.size.x * (collectionPower / 100), 36)
-	percent_overlay.size = collectOverlaySize
+	percent_overlay_collect.size = collectOverlaySize
+	
+	tetherOverlayPos = Vector2(tether_Power.global_position.x, (tether_Power.size.y * (100 / tetherPower)) - tether_Power.global_position.y)
+	percent_overlay_tether.global_position = tetherOverlayPos
+	
+	
 	
 	
 	
@@ -163,7 +197,8 @@ func _process(delta: float) -> void:
 	
 	# Power of each individual system
 	systems_Power.text = ("Systems : %d" % round(systemsPower))
-	collection_Power.text = ("Collect : %d" % round(collectionPower))
+	#collection_Power.text = ("Collect : %d" % round(collectionPower))
+	collect_Power_Textbox.text = ("Collect : %d" % round(collectionPower))
 	security_Power.text = ("Security: %d" % round(securityPower))
 	communications_Power.text = ("Comms   : %d" % round(communicationsPower))
 	tether_Text.text = str(snapped(tetherPower, 0.1))
@@ -181,6 +216,7 @@ func _process(delta: float) -> void:
 	
 	
 	# Colour if any item is selected as origin or destination
+	# need to rework with text overlay stuff
 	if chargingOrigin != null:
 		charging_Org_Button.add_theme_color_override("font_color", originFontColour)
 	if chargingDestination != null:
@@ -342,35 +378,35 @@ func power_Destination_Change(location):
 	match location:
 		"systems":
 			if charging_Des_Button:
-				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+				charging_Des_Button.add_theme_color_override("default_color", normFontColour)
 			charging_Des_Button = null
 			
 			chargingDestination = "systems"
 			charging_Des_Button = systems_Power
 		"collection":
 			if charging_Des_Button:
-				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+				charging_Des_Button.add_theme_color_override("default_color", normFontColour)
 			charging_Des_Button = null
 			
 			chargingDestination = "collection"
-			charging_Des_Button = collection_Power
+			charging_Des_Button = collect_Power_Textbox
 		"security":
 			if charging_Des_Button:
-				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+				charging_Des_Button.add_theme_color_override("default_color", normFontColour)
 			charging_Des_Button = null
 			
 			chargingDestination = "security"
 			charging_Des_Button = security_Power
 		"comms":
 			if charging_Des_Button:
-				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+				charging_Des_Button.add_theme_color_override("default_color", normFontColour)
 			charging_Des_Button = null
 			
 			chargingDestination = "comms"
 			charging_Des_Button = communications_Power
 		"tether":
 			if charging_Des_Button:
-				charging_Des_Button.add_theme_color_override("font_color", normFontColour)
+				charging_Des_Button.add_theme_color_override("default_color", normFontColour)
 			charging_Des_Button = null
 			
 			chargingDestination = "tether"
@@ -395,7 +431,7 @@ func power_Origin_Change(location):
 			charging_Org_Button = null
 			
 			chargingOrigin = "collection"
-			charging_Org_Button = collection_Power
+			charging_Org_Button = collect_Power_Textbox
 		"security":
 			if charging_Org_Button:
 				charging_Org_Button.add_theme_color_override("font_color", normFontColour)

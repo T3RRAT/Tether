@@ -495,9 +495,9 @@ mesh = ExtResource("17_22asu")
 [node name="Layer9" type="MeshInstance3D" parent="Cosmic Web" unique_id=75341020]
 mesh = ExtResource("18_fkdbe")
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=1672084430]
+[node name="SubViewport" type="SubViewport" parent="Cosmic Web" unique_id=857112082]
 
-[node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=415930747]
+[node name="Colour Control" type="ColorRect" parent="Cosmic Web/SubViewport" unique_id=415930747]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

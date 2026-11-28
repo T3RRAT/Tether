@@ -95,7 +95,8 @@ var darkColour = Color.BLACK
 var lightColour = Color.WHITE_SMOKE
 var scanningWebMaterial = StandardMaterial3D.new()
 var notScanningMaterial = StandardMaterial3D.new()
-@onready var cosmic_web_colour_ctrl = $SubViewport/ColorRect
+@onready var cosmic_web_viewport = $"Cosmic Web/SubViewport"
+@onready var cosmic_web_colour_ctrl = $"Cosmic Web/SubViewport/Colour Control"
 var colourMult = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -138,8 +139,7 @@ func _ready() -> void:
 	
 	
 	scanningWebMaterial.emission_enabled = true
-	scanningWebMaterial.emission_texture = cosmic_web_colour_ctrl
-	
+	scanningWebMaterial.emission_texture = cosmic_web_viewport
 	notScanningMaterial.emission_enabled = true
 	
 	
@@ -187,15 +187,18 @@ func _process(delta: float) -> void:
 	
 	# Handles Pulsing
 	if pulsing == true:
+		
 		pass
 	
 	
 	# Handles Cosmic Space Mesh
 	if pulseCount == 0:
-		colourMult = 255
+		colourMult = 255.0
 	elif pulseCount > 0:
-		colourMult = lerp(colourMult, 0, delta * 2)
-		cosmic_web_colour_ctrl.modulate = Color(colourMult,colourMult,colourMult)
+		# it says it cant convert argument 2 from int to float and float to int. what does this want?
+		colourMult = lerp(colourMult, 0.0, delta * 1)
+		cosmic_web_colour_ctrl.modulate = Color(round(colourMult),round(colourMult),round(colourMult))
+		scanningWebMaterial.emission_texture = cosmic_web_colour_ctrl
 	
 	
 	match pulseCount:
@@ -578,3 +581,4 @@ func _on_pulse_timer_timeout() -> void:
 
 func _on_pulse_count_timer_timeout() -> void:
 	pulseCount += 1
+	print(pulseCount)

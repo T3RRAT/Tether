@@ -183,7 +183,8 @@ func _process(delta: float) -> void:
 	collectOverlaySize = Vector2(collection_Power.size.x * (collectionPower / 100), 36)
 	percent_overlay_collect.size = collectOverlaySize
 	
-	tetherOverlayPos = Vector2(tether_Power.global_position.x, (tether_Power.size.y * (100 / tetherPower)) - tether_Power.global_position.y)
+	# fix this later i just cant rn
+	tetherOverlayPos = Vector2(tether_Power.global_position.x, tether_Power.global_position.y + (tether_Power.size.y * (tetherPower * 100)))
 	percent_overlay_tether.global_position = tetherOverlayPos
 	
 	
